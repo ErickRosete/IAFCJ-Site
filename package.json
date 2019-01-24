@@ -1,0 +1,33 @@
+{
+  "name": "iglesia",
+  "version": "1.0.0",
+  "description": "Página Web para IAFCJ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
+  },
+  "keywords": [
+    "React",
+    "GraphQL",
+    "Mongo",
+    "Express",
+    "Node",
+    "Iglesia",
+    "Jesus"
+  ],
+  "author": "Erick Rosete Beas",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
