@@ -1,0 +1,14 @@
+.drawer__list {
+    width: 15rem;
+}
+
+.drawer__title {
+    margin: 1rem;
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
+
+.drawer__title img {
+    margin-right: 1rem;
+}
