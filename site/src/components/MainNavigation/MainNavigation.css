@@ -1,0 +1,15 @@
+.main-navigation .navbar-nav>li>a:hover, .main-navigation .navbar-brand:hover {
+    color: #00a7ff;
+}
+
+.main-navigation .navbar-nav>li>a, .main-navigation .navbar-brand {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.main-navigation .navbar {
+    background-color: rgba(0, 0, 0, 0.25);
+    background-image: none;
+    border-color: transparent;
+}

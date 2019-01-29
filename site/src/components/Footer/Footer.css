@@ -1,0 +1,16 @@
+footer {
+    background-color: black;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 2vh 4vw;
+}
+
+footer span, footer a {
+    color: white;
+    font-size: large;
+}
+
+footer .social-networks svg {
+    margin-left: .75rem;
+}

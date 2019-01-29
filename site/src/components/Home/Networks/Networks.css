@@ -1,0 +1,10 @@
+
+.home__networks-header {
+    background-color: #f7bd1d;
+    padding-top: 10vh;
+}
+
+.home__networks-header h2 {
+    padding: 3vh 3vw;
+    margin: 0;
+}

@@ -8,11 +8,17 @@ import BlogPage from "./pages/Blog";
 import VideosPage from "./pages/Videos";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
+import Footer from "./components/Footer/Footer";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import "./App.css";
 
 class App extends Component {
   render() {
+    library.add([faFacebook, faLinkedin, faHome]);
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -27,6 +33,7 @@ class App extends Component {
               <Route path="/videos" component={VideosPage} />
             </Switch>
           </main>
+          <Footer />
         </React.Fragment>
       </BrowserRouter>
     );

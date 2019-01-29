@@ -1,0 +1,56 @@
+.home__contact-banner {
+    background-image: url('../../../assets/images/landing-page/iglesia-frente.jpeg');
+    background-size: 170% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top center;
+    height: 40vh;
+}
+
+.home__contact {
+    background-color: #363636;
+    color: white;
+}
+
+
+.home__contact label, .home__contact input, .home__contact .title {
+    color: white;
+}
+
+.home__contact label {
+    font-size: large;
+    display: inline-block;
+}
+
+.home__contact label.required::after {
+    content: "*";
+    font-size: x-large;
+    color: #f7bd1d;
+}
+
+.home__contact input {
+    border-bottom: solid 4px #00a7ff
+}
+
+.home__contact .title {
+    padding: 5vh 1vw;
+}
+
+.home__contact-textarea {
+    border: solid 5px #00a7ff;
+    border-radius: 10px;
+}
+
+.home__contact .btn-primary {
+    padding: 1vh 3vw;
+    margin: 2vh 0vh 2vh auto;
+    display: block;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+    .home__contact-banner {
+        background-size: 100% 100%;
+        height: 70vh;
+    }
+}

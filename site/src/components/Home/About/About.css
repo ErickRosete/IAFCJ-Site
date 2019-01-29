@@ -1,0 +1,42 @@
+.home__about {
+    text-align: center;
+}
+
+.home__about-img-container {
+    overflow: hidden;
+    padding-left: 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    max-height: 60vh;
+}
+
+.home__about-img-container img {
+    width: 100%;
+}
+
+.home__about-info {
+    padding: 3rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.home__about-title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.home__about-logo {
+    margin-right: 2rem;
+}
+
+.home__about-text {
+    max-width: 75%;
+    padding-top: 3rem;
+}

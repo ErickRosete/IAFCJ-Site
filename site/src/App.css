@@ -1,32 +1,79 @@
-.App {
-  text-align: center;
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+/* .main-content {
+  margin-top: 50px;
+} */
+
+a:hover {
+  color: #00a7ff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-primary {
+  background-color: #00a7ff;
+  background-image: none;
+}
+
+.btn-primary:hover {
+  background-color: #0099ff;
+  background-image: none;
+}
+
+.title {
+  color: black;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 3.2rem;
+}
+
+/* #banner-line {
+  border-top: 15px solid rgb(187, 163, 68);
+  margin: 0;
+} */
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: large;
+}
+
+a {
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-size: large;
+}
+
+.google-maps {
+  position: relative;
+  padding-bottom: 70vh;
+  height: 0;
+  overflow: hidden;
+}
+
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.row-eq-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row-eq-height>[class*='col-'] {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
