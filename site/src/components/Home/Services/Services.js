@@ -17,15 +17,15 @@ const Services = () => {
             <h2>Servicios</h2>
             <ul>
               <li>
-                <a class="selected" href="#">
+                <a class="selected" href="/">
                   Ayuda a enfermos
                 </a>
               </li>
               <li>
-                <a href="#">Personas Vulnerables</a>
+                <a href="/">Personas Vulnerables</a>
               </li>
               <li>
-                <a href="#">Personas de la tercera edad</a>
+                <a href="/">Personas de la tercera edad</a>
               </li>
             </ul>
           </Col>
@@ -38,7 +38,7 @@ const Services = () => {
             </p>
           </Col>
           <Col sm={3} xs={12} className="home__services-img-container">
-            <img src={service1} />
+            <img src={service1} alt="Service"/>
           </Col>
         </Row>
       </Grid>

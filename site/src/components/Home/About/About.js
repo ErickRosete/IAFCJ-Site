@@ -10,12 +10,12 @@ const about = () => {
     <Grid fluid className="home__about">
       <Row className="row-eq-height">
         <Col className="home__about-img-container" xsHidden sm={4} md={6}>
-          <img src={baile} />
+          <img src={baile} alt="About" />
         </Col>
         <Col xs={12} sm={8} md={6}>
           <div className="home__about-info">
             <div className="home__about-title">
-              <img className="home__about-logo" src={logo} height="75" />
+              <img className="home__about-logo" src={logo} height="75" alt="Logo" />
               <h2>Quiénes Somos</h2>
             </div>
             <div className="home__about-text">

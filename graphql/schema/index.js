@@ -45,14 +45,14 @@ type Cell {
   _id: ID!
   leader: String!
   address: Address
-  phone: Int!
+  phone: String!
   date: String!
 }
 
 input CellInput{
   leader: String!
   address: Address
-  phone: Int!
+  phone: String!
   date: String!
 }
 

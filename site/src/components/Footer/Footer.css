@@ -4,6 +4,7 @@ footer {
     align-content: center;
     justify-content: space-between;
     padding: 2vh 4vw;
+    flex-shrink: 0;
 }
 
 footer span, footer a {

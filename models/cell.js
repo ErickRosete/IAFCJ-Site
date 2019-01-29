@@ -12,7 +12,7 @@ const cellSchema = new Schema({
     ref: "Address"
   },
   phone: {
-    type: Number,
+    type: String,
     required: true
   },
   date: {
