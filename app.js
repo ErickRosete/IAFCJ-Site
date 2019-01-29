@@ -9,6 +9,8 @@ const graphqlResolvers = require("./graphql/resolvers/index");
 const externalRequest = require("./middleware/external-requests");
 const isAuth = require("./middleware/is-auth");
 
+const { sendEmail } = require("./helpers/sendEmail");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -26,10 +28,14 @@ app.use(
   })
 );
 
+app.post('/sendEmail', (req, res) => {
+  sendEmail(req.body);
+});
+
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_USER}:${
-      process.env.MONGO_PASSWORD
+    process.env.MONGO_PASSWORD
     }@cluster0-0uvqc.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`
   )
 

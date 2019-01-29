@@ -4,7 +4,7 @@ import Intro from "../components/Home/Intro/Intro";
 import About from "../components/Home/About/About";
 import Services from "../components/Home/Services/Services";
 import Networks from "../components/Home/Networks/Networks";
-import Contact from "../components/Home/Contact/Contact";
+import Contact from "../containers/Home/Contact/Contact";
 
 import "./Home.css"
 

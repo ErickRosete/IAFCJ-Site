@@ -51,7 +51,7 @@ type Cell {
 
 input CellInput{
   leader: String!
-  address: Address
+  address: AddressInput
   phone: String!
   date: String!
 }
@@ -135,7 +135,7 @@ input VideoInput {
 type RootQuery {
   addresses: [Address!]!
   blog: [BlogEntry!]!
-  cells: [cell!]!
+  cells: [Cell!]!
   events: [Event!]!
   networks: [Network!]!
   newsletterEmails: [NewsletterEmail!]! 
@@ -151,7 +151,7 @@ type RootMutation {
     createCell(cellInput: CellInput): Cell
     createEvent(eventInput: EventInput): Event
     createNetwork(networkInput: NetworkInput): Network
-    createNewsletterEmail(email: String): Newsletter
+    createNewsletterEmail(email: String): NewsletterEmail
     createMember(memberInput: MemberInput): Member
     createUser(userInput: UserInput): User
     createVideo(videoInput: VideoInput): Video
