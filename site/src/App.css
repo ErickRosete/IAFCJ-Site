@@ -1,22 +1,8 @@
 .main-content {
-  margin-top: 50px;
+  margin-top: 56px;
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-}
-
-a:hover {
-  color: #00a7ff;
-}
-
-.btn-primary {
-  background-color: #00a7ff;
-  background-image: none;
-}
-
-.btn-primary:hover {
-  background-color: #0099ff;
-  background-image: none;
 }
 
 .title {
@@ -25,11 +11,6 @@ a:hover {
   text-transform: uppercase;
   font-size: 3.2rem;
 }
-
-/* #banner-line {
-  border-top: 15px solid rgb(187, 163, 68);
-  margin: 0;
-} */
 
 h1 {
   font-family: 'Montserrat', sans-serif;
@@ -52,6 +33,20 @@ a {
   font-size: large;
 }
 
+a:hover {
+  color: #00a7ff;
+}
+
+.btn-primary {
+  background-color: #00a7ff;
+  background-image: none;
+}
+
+.btn-primary:hover {
+  background-color: #0099ff;
+  background-image: none;
+}
+
 .google-maps {
   position: relative;
   padding-bottom: 70vh;
@@ -65,14 +60,4 @@ a {
   left: 0;
   width: 100% !important;
   height: 100% !important;
-}
-
-.row-eq-height {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row-eq-height>[class*='col-'] {
-  display: flex;
-  flex-direction: column;
 }

@@ -1,40 +1,43 @@
 import React, { Component } from 'react'
 import {
-    Grid,
+    Form,
     Row,
     Col,
-    Form,
-    FormControl,
-    FormGroup,
-    ControlLabel,
-    Button
+    Button,
+    Container
 } from "react-bootstrap";
+
 import "./Contact.css";
 
 export class Contact extends Component {
     constructor(props) {
         super(props);
+        this.nameEl = React.createRef();
         this.emailEl = React.createRef();
+        this.phoneEl = React.createRef();
+        this.topicEl = React.createRef();
         this.bodyEl = React.createRef();
     }
 
     submitHandler = event => {
         event.preventDefault();
+        const name = this.nameEl.current.value;
         const email = this.emailEl.current.value;
+        const phone = this.phoneEl.current.value;
+        const topic = this.topicEl.current.value;
         const body = this.bodyEl.current.value;
-        console.log(email, body);
 
+        //validation
         if (email.trim().length === 0 || body.trim().length === 0) {
             return;
         }
 
         const requestBody = {
-            query: `
-            {
-                "email":"${email}",
-                "body":"${body}"
-            }
-            `
+            name,
+            email,
+            phone,
+            topic,
+            body,
         };
 
         fetch("http://localhost:8000/sendEmail", {
@@ -63,66 +66,86 @@ export class Contact extends Component {
                 <div className="home__contact-banner" />
                 <div className="home__contact-form">
                     <h1 className="title">Contacto</h1>
-                    <Form horizontal onSubmit={this.submitHandler}>
-                        <Grid fluid>
+                    <Form onSubmit={this.submitHandler}>
+                        <Container fluid>
                             <Row>
                                 <Col xs={12} md={6}>
-                                    <FormGroup controlId="contact-name">
-                                        <Col componentClass={ControlLabel} className="required" xs={4}>
+                                    <Form.Group as={Row} controlId="contact-name">
+                                        <Form.Label column className="required" xs={4}>
                                             Nombre
-                                        </Col>
+                                    </Form.Label>
                                         <Col xs={8}>
-                                            <FormControl type="text" placeholder="Jose Perez" />
+                                            <Form.Control
+                                                plaintext
+                                                required
+                                                type="text"
+                                                placeholder="Jose Perez"
+                                                ref={this.nameEl} />
                                         </Col>
-                                    </FormGroup>
-                                    <FormGroup controlId="contact-email">
-                                        <Col componentClass={ControlLabel} className="required" xs={4}>
-                                            correo electrónico
-                                        </Col>
+                                    </Form.Group>
+                                    <Form.Group as={Row} controlId="contact-email">
+                                        <Form.Label column className="required" xs={4}>
+                                            Correo electrónico
+                                        </Form.Label>
                                         <Col xs={8}>
-                                            <FormControl
+                                            <Form.Control
+                                                plaintext
+                                                required
                                                 type="email"
                                                 placeholder="jose.perez@hotmail.com"
-                                                inputRef={this.emailEl} 
+                                                ref={this.emailEl}
                                             />
                                         </Col>
-                                    </FormGroup>
-                                    <FormGroup controlId="contact-phone">
-                                        <Col componentClass={ControlLabel} xs={4}>
-                                            telefono
-                                        </Col>
+                                    </Form.Group>
+                                    <Form.Group as={Row} controlId="contact-phone">
+                                        <Form.Label column xs={4}>
+                                            Teléfono
+                                        </Form.Label>
                                         <Col xs={8}>
-                                            <FormControl type="tel" placeholder="6531074537" />
+                                            <Form.Control
+                                                plaintext
+                                                type="tel"
+                                                placeholder="6531074537"
+                                                ref={this.phoneEl} />
                                         </Col>
-                                    </FormGroup>
-                                    <FormGroup controlId="contact-topic">
-                                        <Col componentClass={ControlLabel} className="required" xs={4}>
+                                    </Form.Group>
+                                    <Form.Group as={Row} controlId="contact-topic">
+                                        <Form.Label column className="required" xs={4}>
                                             Tema
-                                        </Col>
+                                        </Form.Label>
                                         <Col xs={8}>
-                                            <FormControl type="text" placeholder="Consejos" />
+                                            <Form.Control
+                                                plaintext
+                                                required
+                                                ref={this.topicEl}
+                                                as="select">
+                                                <option>Dudas Generales</option>
+                                                <option>Consejos</option>
+                                                <option>Problemas con el sitio</option>
+                                            </Form.Control>
                                         </Col>
-                                    </FormGroup>
+                                    </Form.Group>
                                 </Col>
                                 <Col xs={12} md={6}>
-                                    <FormGroup controlId="contact-textarea">
-                                        <ControlLabel>Preguntas o comentarios</ControlLabel>
-                                        <FormControl
+                                    <Form.Group controlId="contact-textarea">
+                                        <Form.Label className="required">Preguntas o comentarios</Form.Label>
+                                        <Form.Control
+                                            required
                                             className="home__contact-textarea"
                                             componentClass="textarea"
                                             placeholder="Tengo una duda sobre ..."
-                                            inputRef={this.bodyEl} />
-                                    </FormGroup>
+                                            ref={this.bodyEl} />
+                                    </Form.Group>
 
                                     <Button type="submit" bsStyle="primary">
                                         Enviar
                                     </Button>
                                 </Col>
                             </Row>
-                        </Grid>
+                        </Container>
                     </Form>
                 </div>
-            </div>
+            </div >
         );
     }
 }

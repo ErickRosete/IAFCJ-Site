@@ -1,6 +1,5 @@
 import React from "react";
-import { Navbar, NavItem, Nav } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -9,32 +8,21 @@ import "./MainNavigation.css";
 const mainNavigation = (props) => {
   return (
     <header className="main-navigation">
-      <Navbar fluid fixedTop collapseOnSelect style={{ backgroundColor: props.navbarColor }}>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <NavLink to="/">
-              <FontAwesomeIcon icon="home" size="lg" />
-            </NavLink>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight>
-            <LinkContainer to="/encuentra">
-              <NavItem>Encuentra tu grupo</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/eventos">
-              <NavItem>Eventos</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/blog">
-              <NavItem>Blog</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/videos">
-              <NavItem>Videos</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/conocenos">
-              <NavItem>Conócenos</NavItem>
-            </LinkContainer>
+      <Navbar collapseOnSelect fixed="top" expand="md" variant="dark" style={{ backgroundColor: props.navbarColor }}>
+        <Navbar.Brand as={NavLink} to="/">
+          <FontAwesomeIcon icon="home" size="lg" />
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link as={NavLink} to="/encuentra">Encuentra tu grupo</Nav.Link>
+            <Nav.Link as={NavLink} to="/eventos">Eventos</Nav.Link>
+            <Nav.Link as={NavLink} to="/blog">Blog</Nav.Link>
+            <Nav.Link as={NavLink} to="/videos">Videos</Nav.Link>
+            <Nav.Link as={NavLink} to="/conocenos">Conócenos</Nav.Link>
+            {/* <LinkContainer to="/conocenos">
+                <NavItem>Conócenos</NavItem>
+              </LinkContainer> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

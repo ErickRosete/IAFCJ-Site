@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./Networks.css";
 
 const networks = () => {
@@ -10,7 +10,7 @@ const networks = () => {
           <h2>Ubicaciones</h2>
         </div>
         <div className="home__networks-church">
-          <Grid fluid>
+          <Container fluid>
             <Row>
               <Col xs={12} md={8}>
                 <div className="google-maps">
@@ -49,7 +49,7 @@ const networks = () => {
                 </div>
               </Col>
             </Row>
-          </Grid>
+          </Container>
         </div>
       </div>
     </div>

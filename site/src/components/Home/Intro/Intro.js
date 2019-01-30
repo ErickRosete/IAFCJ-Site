@@ -20,8 +20,7 @@ const intro = () => {
           <h2>Viernes 7:30 pm</h2>
           <h2>Domingos 2:00pm</h2>
         </div>
-
-        <a className="home__intro-location btn btn-primary" href="#redes">
+        <a className="home__intro-location btn btn-primary" href="#home__networks">
           Ubicaciones
         </a>
       </div>

@@ -12,8 +12,7 @@
     color: white;
 }
 
-
-.home__contact label, .home__contact input, .home__contact .title {
+.home__contact label, .home__contact .title {
     color: white;
 }
 
@@ -28,17 +27,26 @@
     color: #f7bd1d;
 }
 
-.home__contact input {
-    border-bottom: solid 4px #00a7ff
+.home__contact input, .home__contact select {
+    border: unset;
+    border-bottom: solid 4px #00a7ff;
+    background-color: transparent;
+    color: white;
+}
+.home__contact select option{
+    background-color: #363636
 }
 
 .home__contact .title {
     padding: 5vh 1vw;
 }
 
-.home__contact-textarea {
+.home__contact-textarea.form-control {
     border: solid 5px #00a7ff;
     border-radius: 10px;
+    background-color: transparent;
+    height: 11rem;
+    color: white;
 }
 
 .home__contact .btn-primary {

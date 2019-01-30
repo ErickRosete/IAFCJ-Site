@@ -4,7 +4,7 @@ import CellsList from "../components/Cells/CellsList/CellsList";
 import bannerImg from "../assets/images/Cells/banner-img.jpg";
 import Banner from "../components/Banner/Banner";
 
-import { Grid } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export class CellsPage extends Component {
     state = {
@@ -43,11 +43,11 @@ export class CellsPage extends Component {
         return (
             <div className="Cells">
                 <Banner img={bannerImg} title="Encuentra el tuyo!" subtitle="Todos son bienvenidos gratuitamente a nuestros grupos celulares" />
-                <Grid>
+                <Container>
                     <h1>Encuentra tu grupo</h1>
                     <CellsList cells={this.state.cells}></CellsList>
                     <h1>Mapita</h1>
-                </Grid>
+                </Container>
             </div>
         )
     }

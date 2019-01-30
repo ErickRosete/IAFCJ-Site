@@ -29,7 +29,6 @@
     top: 70%;
     transform: translate(-50%, -50%);
     z-index: 1;
-
 }
 
 .banner__centered {
@@ -40,23 +39,26 @@
     z-index: 1;
 }
 
-h1.banner__title{
+h1.banner__title {
     width: 90%;
     text-transform: initial;
     color: #f7bd1d;
 }
 
-h2.banner__subtitle{
+h2.banner__subtitle {
     width: 70%;
     color: white;
+    display: none;
 }
 
 @media screen and (min-width: 600px) {
-    .banner__title {
+    h1.banner__title {
         font-size: 5rem;
     }
-
-    .banner__centered.banner__title {
+    h1.banner__centered.banner__title {
         font-size: 7rem;
+    }
+    h2.banner__subtitle {
+        display: block;
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./About.css";
 
 import baile from "../../../assets/images/landing-page/baile.jpg";
@@ -7,8 +7,8 @@ import logo from "../../../assets/images/landing-page/logo.png";
 
 const about = () => {
   return (
-    <Grid fluid className="home__about">
-      <Row className="row-eq-height">
+    <Container fluid className="home__about">
+      <Row>
         <Col className="home__about-img-container" xsHidden sm={4} md={6}>
           <img src={baile} alt="About" />
         </Col>
@@ -32,7 +32,7 @@ const about = () => {
           </div>
         </Col>
       </Row>
-    </Grid>
+    </Container>
   );
 };
 
