@@ -6,6 +6,7 @@ import CellsPage from "./pages/Cells";
 import EventsPage from "./pages/Events";
 import BlogPage from "./pages/Blog";
 import VideosPage from "./pages/Videos";
+import AboutPage from "./pages/About";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
 import Footer from "./components/Footer/Footer";
@@ -42,6 +43,7 @@ class App extends Component {
               <Route path="/eventos" component={EventsPage} />
               <Route path="/blog" component={BlogPage} />
               <Route path="/videos" component={VideosPage} />
+              <Route path="/conocenos" component={AboutPage} />
             </Switch>
           </main>
           <Footer />

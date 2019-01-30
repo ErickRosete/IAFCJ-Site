@@ -32,6 +32,9 @@ const mainNavigation = (props) => {
             <LinkContainer to="/videos">
               <NavItem>Videos</NavItem>
             </LinkContainer>
+            <LinkContainer to="/conocenos">
+              <NavItem>Conócenos</NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import CellsList from "../components/Cells/CellsList/CellsList";
 
+import bannerImg from "../assets/images/Cells/banner-img.jpg";
+import Banner from "../components/Banner/Banner";
+
 import { Grid } from "react-bootstrap";
 
 export class CellsPage extends Component {
@@ -38,11 +41,14 @@ export class CellsPage extends Component {
     }
     render() {
         return (
-            <Grid>
-                <h1>Encuentra tu grupo</h1>
-                <CellsList cells={this.state.cells}></CellsList>
-                <h1>Mapita</h1>
-            </Grid>
+            <div className="Cells">
+                <Banner img={bannerImg} title="Encuentra el tuyo!" subtitle="Todos son bienvenidos gratuitamente a nuestros grupos celulares" />
+                <Grid>
+                    <h1>Encuentra tu grupo</h1>
+                    <CellsList cells={this.state.cells}></CellsList>
+                    <h1>Mapita</h1>
+                </Grid>
+            </div>
         )
     }
 }
