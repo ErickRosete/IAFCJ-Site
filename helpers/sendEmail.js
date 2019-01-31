@@ -3,44 +3,43 @@ const nodemailer = require("nodemailer");
 
 exports.sendEmail = async (emailContent) => {
     try {
-
         console.log(emailContent);
-        let account = await nodemailer.createTestAccount();
-
-        let transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
             port: 587,
-            secure: false, // true for 465, false for other ports
             auth: {
-                user: account.user, // generated ethereal user
-                pass: account.pass // generated ethereal password
+                user: 'hfcz7vurbmh5wei5@ethereal.email',
+                pass: 'k2JkgW7Ygj2hzQXfAD'
             }
         });
-        // const transporter = nodemailer.createTransport({
-        //     host: 'smtp.ethereal.email',
-        //     port: 587,
-        //     auth: {
-        //         user: 'hfcz7vurbmh5wei5@ethereal.email',
-        //         pass: 'k2JkgW7Ygj2hzQXfAD'
-        //     }
-        // });
+
+        const htmlContent = `
+            <p style="margin-bottom:2rem;">Saludos</p>
+            <p>${emailContent.name} quiere contactarse con usted </p>
+            <p>Su correo electrónico es: ${emailContent.email}</p>
+            <p>Su teléfono es: ${emailContent.phone}</p>
+            <p>El tema del correo es: ${emailContent.topic}</p>
+            <p>Su mensaje es el siguiente:</p>
+            <p>${emailContent.body}</p>
+            <p style="margin-top:3rem;">Atte: Sitio IAFCJ</p>
+        `
 
         // setup email data with unicode symbols
-        let mailOptions = {
-            from: '"Erick Rosete 👻" <erick.rosete@astradev.co>', // sender address
-            to: "oscaralonso@hotmail.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>" // html body
+        const mailOptions = {
+            from: '"Sitio IAFCJ" <erickrosetebeas@hotmail.com>', // sender address
+            to: "erickrosetebeas@hotmail.com", // list of receivers
+            subject: "Contacto - Sitio Web", // Subject line
+            html: htmlContent // html body
         };
 
         // send mail with defined transport object
-        let info = await transporter.sendMail(mailOptions)
+        const info = await transporter.sendMail(mailOptions)
 
         console.log("Message sent: %s", info.messageId);
-        // Preview only available when sending through an Ethereal account
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        return true;
     } catch (error) {
         console.log(error);
+        return false;
     }
 }

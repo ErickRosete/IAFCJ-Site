@@ -55,7 +55,11 @@ h2.banner__subtitle {
     h1.banner__title {
         font-size: 5rem;
     }
-    h1.banner__centered.banner__title {
+    h1.banner__title.sm-title {
+        font-size: 3.5rem;
+        font-style: italic
+    }
+    h1.banner__title.big-title {
         font-size: 7rem;
     }
     h2.banner__subtitle {

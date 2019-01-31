@@ -1,0 +1,11 @@
+.blog__blog-list a:hover {
+    text-decoration: none;
+}
+
+.blog__blog-list {
+    margin-bottom: 3rem;
+}
+
+.blog__blog-list-col {
+    margin-bottom: 1rem;
+}

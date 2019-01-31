@@ -3,14 +3,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BlogEntry from "./BlogEntry/BlogEntry";
 
+import "./BlogEntriesList.css"
+
 const BlogEntriesList = props => {
   return (
     <div className="blog__blog-list">
-      <Container>
+      <Container fluid>
         <Row>
           {props.BlogEntries.map(entry => {
             return (
-              <Col key={entry._id} xs={12} md={6}>
+              <Col className="blog__blog-list-col" key={entry._id} xs={12} md={4}>
                 <Link to={`/blog/${entry._id}`}>
                   <BlogEntry BlogEntry={entry} />
                 </Link>

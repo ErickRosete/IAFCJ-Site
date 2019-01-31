@@ -1,6 +1,9 @@
 import React from "react";
 import "./Intro.css";
 import { Player, ControlBar } from "video-react";
+import { Button } from "react-bootstrap";
+import { HashLink as Link } from 'react-router-hash-link';
+
 import "../../../../node_modules/video-react/dist/video-react.css";
 import introVideo from "../../../assets/videos/main.mp4";
 
@@ -20,9 +23,9 @@ const intro = () => {
           <h2>Viernes 7:30 pm</h2>
           <h2>Domingos 2:00pm</h2>
         </div>
-        <a className="home__intro-location btn btn-primary" href="#home__networks">
-          Ubicaciones
-        </a>
+        <Link smooth className="home__intro-location" to="/inicio#ubicacion">
+          <Button variant="primary">Ubicaciones</Button>
+        </Link>
       </div>
     </div>
   );

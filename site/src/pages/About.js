@@ -7,7 +7,7 @@ export class AboutPage extends Component {
   render() {
     return (
       <div>
-          <Banner img={BannerImg} title="Quiénes Somos"></Banner>
+          <Banner bigTitle img={BannerImg} title="Quiénes Somos"></Banner>
           about
         
       </div>

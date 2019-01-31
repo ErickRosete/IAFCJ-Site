@@ -1,0 +1,15 @@
+.blog__title {
+    text-align: center;
+    font-weight: 900;
+    display: block;
+    width: 60%;
+    margin: 3rem auto;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (min-width: 600px) {
+    .blog__title {
+        font-size: 5rem;
+    }
+}

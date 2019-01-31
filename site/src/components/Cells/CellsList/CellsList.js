@@ -6,8 +6,8 @@ const cellsList = (props) => {
 
     const cells = props.cells.map((cell) => {
         return (
-            <Col md={4}>
-                <Cell key={cell._id} cell={cell}></Cell>
+            <Col key={cell._id} md={4}>
+                <Cell cell={cell}></Cell>
             </Col>);
     })
     return (

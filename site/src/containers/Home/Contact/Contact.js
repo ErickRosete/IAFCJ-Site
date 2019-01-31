@@ -129,15 +129,13 @@ export class Contact extends Component {
                                 <Col xs={12} md={6}>
                                     <Form.Group controlId="contact-textarea">
                                         <Form.Label className="required">Preguntas o comentarios</Form.Label>
-                                        <Form.Control
-                                            required
+                                        <Form.Control as="textarea" required
                                             className="home__contact-textarea"
-                                            componentClass="textarea"
                                             placeholder="Tengo una duda sobre ..."
                                             ref={this.bodyEl} />
                                     </Form.Group>
 
-                                    <Button type="submit" bsStyle="primary">
+                                    <Button variant="primary" type="submit">
                                         Enviar
                                     </Button>
                                 </Col>

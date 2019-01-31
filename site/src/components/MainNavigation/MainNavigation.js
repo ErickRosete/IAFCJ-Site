@@ -9,7 +9,7 @@ const mainNavigation = (props) => {
   return (
     <header className="main-navigation">
       <Navbar collapseOnSelect fixed="top" expand="md" variant="dark" style={{ backgroundColor: props.navbarColor }}>
-        <Navbar.Brand as={NavLink} to="/">
+        <Navbar.Brand as={NavLink} to="/inicio">
           <FontAwesomeIcon icon="home" size="lg" />
         </Navbar.Brand>
         <Navbar.Toggle />

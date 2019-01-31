@@ -13,7 +13,7 @@ import MainNavigation from "./components/MainNavigation/MainNavigation";
 import Footer from "./components/Footer/Footer";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import "./App.css";
@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    library.add([faFacebook, faLinkedin, faHome]);
+    library.add([faFacebook, faLinkedin, faHome, faChevronLeft]);
     return (
       <BrowserRouter>
         <React.Fragment>

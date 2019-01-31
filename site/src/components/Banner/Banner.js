@@ -1,17 +1,37 @@
 import React from 'react'
 import "./Banner.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Banner = (props) => {
+    const titleClasses = [];
+    const subtitleClasses = []
+    subtitleClasses.push("banner__subtitle")
+    titleClasses.push("banner__title")
+    if (props.white) {
+        titleClasses.push("text-white");
+    }
+    if (props.bigTitle) {
+        titleClasses.push("big-title");
+    }
+    if (props.smTitle) {
+        titleClasses.push("sm-title");
+    }
+    if (props.subtitle) {
+        titleClasses.push("banner__bottom");
+        subtitleClasses.push("banner__centered");
+    }
+    else {
+        titleClasses.push("banner__centered");
+        subtitleClasses.push("d-none");
+    }
+
     return (
         <div className="banner">
             <img src={props.img} className="banner__img" alt="banner"></img>
-            {props.subtitle && <React.Fragment>
-                <h2 className="banner__centered banner__subtitle">{props.subtitle}</h2>
-                <h1 className="banner__bottom banner__title">{props.title}</h1>
-            </React.Fragment>}
-            {!props.subtitle && <h1 className="banner__centered banner__title">{props.title}</h1>}
-
+            {props.subtitle && <h2 className={subtitleClasses.join(" ")}>{props.subtitle}</h2>}
+            <h1 className={titleClasses.join(" ")}>{props.title}</h1>
             <div className="banner__cover" />
+            {props.returnAddress && <FontAwesomeIcon icon="chevron-left" size="lg" />}
         </div>
     )
 }
