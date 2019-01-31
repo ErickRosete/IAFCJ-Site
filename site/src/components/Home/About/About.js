@@ -9,7 +9,7 @@ const about = () => {
   return (
     <Container fluid className="home__about">
       <Row>
-        <Col className="home__about-img-container" xsHidden sm={4} md={6}>
+        <Col className="home__about-img-container d-none" sm={4} md={6}>
           <img src={baile} alt="About" />
         </Col>
         <Col xs={12} sm={8} md={6}>

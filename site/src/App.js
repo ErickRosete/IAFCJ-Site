@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import HomePage from "./pages/Home";
 import CellsPage from "./pages/Cells";
 import EventsPage from "./pages/Events";
-import BlogPage from "./pages/Blog";
+import BlogPage from "./pages/Blog/Blog";
+import BlogEntryPage from "./pages/Blog/BlogEntry/BlogEntry"
 import VideosPage from "./pages/Videos";
 import AboutPage from "./pages/About";
 
@@ -41,7 +42,8 @@ class App extends Component {
                   changeNavbarColor={this.changeNavbarColorHandler} />} />
               <Route path="/encuentra" component={CellsPage} />
               <Route path="/eventos" component={EventsPage} />
-              <Route path="/blog" component={BlogPage} />
+              <Route path="/blog" component={BlogPage} exact />
+              <Route path="/blog/:id" component={BlogEntryPage} />
               <Route path="/videos" component={VideosPage} />
               <Route path="/conocenos" component={AboutPage} />
             </Switch>
