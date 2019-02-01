@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Banner.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Banner = (props) => {
     const titleClasses = [];
@@ -31,7 +32,9 @@ const Banner = (props) => {
             {props.subtitle && <h2 className={subtitleClasses.join(" ")}>{props.subtitle}</h2>}
             <h1 className={titleClasses.join(" ")}>{props.title}</h1>
             <div className="banner__cover" />
-            {props.returnAddress && <FontAwesomeIcon icon="chevron-left" size="lg" />}
+            {props.returnAddress && <Link className="banner__return" to={props.returnAddress}>
+                <FontAwesomeIcon icon="chevron-left" size="2x" /> Regresar
+            </Link>}
         </div>
     )
 }

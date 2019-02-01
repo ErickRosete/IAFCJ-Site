@@ -3,7 +3,7 @@ import "./Map.css";
 
 const Map = () => {
   return (
-    <div className="google-maps">
+    <div id="map" className="google-maps">
       <a
         target="_blank"
         rel="noopener noreferrer"

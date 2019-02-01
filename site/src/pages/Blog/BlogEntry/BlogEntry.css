@@ -1,0 +1,18 @@
+.blog-entry__subtitle {
+    font-style: italic;
+    color: #a6a6a6;
+    font-weight: normal;
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.blog-entry__description-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.blog-entry__description {
+    width: 90%;
+    line-height: 1.6;
+}

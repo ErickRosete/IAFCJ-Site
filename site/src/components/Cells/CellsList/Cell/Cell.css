@@ -1,12 +1,18 @@
+.cells__list a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 .cells__cell-item {
-    /* border: 1px solid gray; */
+    border: 5px solid transparent;
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
+    transition: border-color 750ms ease;
 }
 
 .cells__cell-item:hover {
-    background-color: rgba(240, 240, 240);
+    border-color: gray;
     cursor: pointer;
 }
 
@@ -20,10 +26,12 @@
     font-weight: bold;
     margin-right: 1rem;
     font-size: large;
+    cursor: pointer;
 }
 
 .cells__cell-item span {
     font-size: large;
+    cursor: pointer;
 }
 
 .cells__cell-item-leader {

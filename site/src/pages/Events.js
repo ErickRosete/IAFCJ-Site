@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import Newsletter from "../containers/Newsletter/Newsletter"
 
 export class EventsPage extends Component {
     render() {
         return (
-            <div>
+            <div className="events">
                 <h1>I am an Events page</h1>
+                <Newsletter></Newsletter>
             </div>
         )
     }

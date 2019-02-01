@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BlogEntriesList from "../../components/Blog/BlogEntriesList/BlogEntriesList";
 import Banner from "../../components/Blog/Banner/Banner"
+import Newsletter from "../../containers/Newsletter/Newsletter"
 
 import BannerImg from "../../assets/images/Blog/blog-banner.jpg"
 
@@ -60,6 +61,7 @@ export class BlogPage extends Component {
         <Banner img={BannerImg} phrase='"Frase bonita Lorem Ipsum Algo"' author="-José Perez"></Banner>
         <h1 className="blog__title">Bienvenido a nuestro blog!</h1>
         <BlogEntriesList BlogEntries={this.state.BlogEntries} />
+        <Newsletter />
       </div>
     );
   }

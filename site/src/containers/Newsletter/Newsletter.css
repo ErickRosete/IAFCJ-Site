@@ -1,0 +1,48 @@
+.newsletter {
+    padding: 1rem 2rem;
+    background-color: #363636;
+}
+
+.newsletter h1 {
+    text-align: center;
+    width: 100%;
+    color: white;
+    margin-bottom: 2.5rem;
+}
+
+.newsletter__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newsletter__form input {
+    border: unset;
+    border-bottom: solid 4px #00a7ff;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 5vw;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.newsletter__form button {
+    padding: 0.2rem 3rem;
+    font-weight: 500;
+    font-size: x-large;
+}
+
+@media screen and (min-width: 600px) {
+    .newsletter {
+        padding: 2rem 3rem;
+    }
+    .newsletter h1 {
+        text-align: left;
+        width: 40%;
+    }
+    .newsletter__form {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+}

@@ -59,6 +59,28 @@ h2.banner__subtitle {
     display: none;
 }
 
+.banner__return {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+}
+
+.banner__return svg {
+    color: #f7bd1d;
+    margin-right: 1rem;
+}
+
+.banner__return:hover {
+    color: white;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
 @media screen and (min-width: 600px) {
     h1.banner__title {
         font-size: 4.5rem;

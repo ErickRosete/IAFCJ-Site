@@ -42,6 +42,14 @@ a:hover {
   color: #00a7ff;
 }
 
+input {
+  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .btn-primary {
   background-color: #00a7ff;
   background-image: none;

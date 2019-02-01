@@ -1,0 +1,30 @@
+.about__summary {
+    text-align: center;
+    margin: 2rem;
+}
+
+.about__summary-par1 {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.about__summary-par2 {
+    width: 90%;
+    margin: auto;
+    font-weight: bold;
+}
+
+.about__divider {
+    width: 90%;
+    border-top: 5px solid #00a7ff;
+}
+
+@media screen and (min-width: 600px) {
+    .about__summary-par1 {
+        width: 65%;
+    }
+    .about__summary-par2 {
+        width: 40%;
+    }
+}

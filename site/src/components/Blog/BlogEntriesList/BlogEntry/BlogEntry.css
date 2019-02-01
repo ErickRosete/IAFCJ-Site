@@ -5,6 +5,7 @@
     height: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
+    transition: -webkit-box-shadow 500ms, -moz-box-shadow 500ms, box-shadow 500ms;
 }
 
 .blog__blog-list-entry:hover {
