@@ -6,7 +6,7 @@
     position: relative;
     text-align: center;
     overflow: hidden;
-    max-height: 75vh;
+    max-height: 50vh;
 }
 
 .banner__img {
@@ -31,7 +31,15 @@
     z-index: 1;
 }
 
-.banner__centered {
+.banner__top {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.banner__center {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -53,14 +61,14 @@ h2.banner__subtitle {
 
 @media screen and (min-width: 600px) {
     h1.banner__title {
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
     h1.banner__title.sm-title {
         font-size: 3.5rem;
         font-style: italic
     }
     h1.banner__title.big-title {
-        font-size: 7rem;
+        font-size: 6rem;
     }
     h2.banner__subtitle {
         display: block;

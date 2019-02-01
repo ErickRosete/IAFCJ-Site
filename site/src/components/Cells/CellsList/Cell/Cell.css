@@ -1,6 +1,38 @@
 .cells__cell-item {
     /* border: 1px solid gray; */
-    padding: 5rem;
-    border-radius: 2rem;
-    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cells__cell-item:hover {
+    background-color: rgba(240, 240, 240);
+    cursor: pointer;
+}
+
+.cells__cell-item-icon-container {
+    color: #ec6433;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.cells__cell-item label {
+    font-weight: bold;
+    margin-right: 1rem;
+    font-size: large;
+}
+
+.cells__cell-item span {
+    font-size: large;
+}
+
+.cells__cell-item-leader {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.cells__cell-item-date-container {
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: bold;
 }

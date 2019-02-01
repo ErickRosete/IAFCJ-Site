@@ -18,10 +18,10 @@ const Banner = (props) => {
     }
     if (props.subtitle) {
         titleClasses.push("banner__bottom");
-        subtitleClasses.push("banner__centered");
+        subtitleClasses.push("banner__top");
     }
     else {
-        titleClasses.push("banner__centered");
+        titleClasses.push("banner__center");
         subtitleClasses.push("d-none");
     }
 
