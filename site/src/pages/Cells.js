@@ -5,8 +5,6 @@ import bannerImg from "../assets/images/Cells/banner-img.jpg";
 import Banner from "../components/Banner/Banner";
 import Map from "../components/Map/Map";
 
-import { Container } from "react-bootstrap";
-
 export class CellsPage extends Component {
   state = {
     cells: [
@@ -80,9 +78,7 @@ export class CellsPage extends Component {
           title="Encuentra el tuyo!"
           subtitle="Todos son bienvenidos gratuitamente a nuestros grupos celulares"
         />
-        <Container>
-          <CellsList cells={this.state.cells} />
-        </Container>
+        <CellsList cells={this.state.cells} />
         <Map />
       </div>
     );

@@ -1,20 +1,22 @@
 import React from "react";
 import "./Intro.css";
-import { Player, ControlBar } from "video-react";
+import ReactPlayer from 'react-player'
 import { Button } from "react-bootstrap";
 import { HashLink as Link } from 'react-router-hash-link';
 
-import "../../../../node_modules/video-react/dist/video-react.css";
 import introVideo from "../../../assets/videos/main.mp4";
 
 const intro = () => {
   return (
     <div className="home__intro">
       <div className="home__intro-container">
-        <Player autoPlay loop muted playsInline fluid>
-          <source src={introVideo} />
-          <ControlBar disableCompletely />
-        </Player>
+        <ReactPlayer
+          url={introVideo}
+          width='100%'
+          height='100%'
+          playing
+          loop
+          muted />
         <div className="home__intro-cover" />
         <h1 className="home__intro-title">
           Iglesia Apostólica de la Fé en Cristo Jesus

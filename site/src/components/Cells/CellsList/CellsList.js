@@ -1,7 +1,7 @@
 import Cell from "./Cell/Cell";
 import React from "react";
 import "./CellsList.css";
-import { Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const cellsList = props => {
   const cells = props.cells.map(cell => {
@@ -13,7 +13,9 @@ const cellsList = props => {
   });
   return (
     <div className="cells__list">
-      <Row>{cells}</Row>
+      <Container>
+        <Row>{cells}</Row>
+      </Container>
     </div>
   );
 };
