@@ -5,8 +5,9 @@ import About from "../components/Home/About/About";
 import Services from "../components/Home/Services/Services";
 import Networks from "../components/Home/Networks/Networks";
 import Contact from "../containers/Home/Contact/Contact";
+import { Helmet } from "react-helmet";
 
-import "./Home.css"
+import "./Home.css";
 
 export class HomePage extends Component {
   componentWillMount() {
@@ -28,8 +29,7 @@ export class HomePage extends Component {
       if (this.props.currentNavbarColor !== "rgba(0, 0, 0, 0.25)") {
         this.props.changeNavbarColor("rgba(0, 0, 0, 0.25)");
       }
-    }
-    else {
+    } else {
       if (this.props.currentNavbarColor !== "black") {
         this.props.changeNavbarColor("black");
       }
@@ -39,6 +39,13 @@ export class HomePage extends Component {
   render() {
     return (
       <div className="home">
+        <Helmet>
+          <title>2da IAFCJ San Luis</title>
+          <meta
+            name="description"
+            content="Forma parte de una Iglesia Cristiana dentro de San Luis Rio Colorado. Somos la 2da Iglesia Apostólica de la Fé en Cristo Jesús."
+          />
+        </Helmet>
         <Intro />
         <About />
         <Services />

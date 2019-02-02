@@ -1,0 +1,13 @@
+.events__title {
+    color: #00a7ff;
+    background-color: black;
+    text-align: center;
+    padding: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+    .events__title {
+        font-size: 5rem;
+        padding: 4rem;
+    }
+}

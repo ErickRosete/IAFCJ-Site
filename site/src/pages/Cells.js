@@ -5,6 +5,8 @@ import bannerImg from "../assets/images/Cells/banner-img.jpg";
 import Banner from "../components/Banner/Banner";
 import Map from "../components/Map/Map";
 
+import { Helmet } from "react-helmet";
+
 export class CellsPage extends Component {
   state = {
     cells: [
@@ -73,6 +75,13 @@ export class CellsPage extends Component {
   render() {
     return (
       <div className="Cells">
+        <Helmet>
+          <title>Encuentranos! - 2da IAFCJ</title>
+          <meta
+            name="description"
+            content="Descubre donde se encuentra tu célula y forma parte de nuestra Iglesia"
+          />
+        </Helmet>
         <Banner
           img={bannerImg}
           title="Encuentra el tuyo!"

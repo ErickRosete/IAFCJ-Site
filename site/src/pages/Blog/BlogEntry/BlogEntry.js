@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Banner from "../../../components/Banner/Banner";
-import "./BlogEntry.css"
+import { Helmet } from "react-helmet";
+
+import "./BlogEntry.css";
 
 export class BlogEntryPage extends Component {
   state = {
@@ -10,6 +12,7 @@ export class BlogEntryPage extends Component {
         "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
       title: "Título de la entrada de blog",
       subtitle: '"Subtítulo dummy text"',
+      shortDescription: "",
       description: `
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
       <br /> 
@@ -18,7 +21,7 @@ export class BlogEntryPage extends Component {
       <br /> 
       <br /> 
       <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`
-    },
+    }
   };
 
   componentDidMount() {
@@ -35,14 +38,40 @@ export class BlogEntryPage extends Component {
   };
 
   render() {
-    const { imageLink, title, subtitle, description } = this.state.blogEntry;
+    const {
+      imageLink,
+      title,
+      subtitle,
+      description,
+      shortDescription
+    } = this.state.blogEntry;
 
     return (
       <div className="blog-entry">
-        <Banner returnAddress="/blog" white smTitle img={imageLink} title={title} />
+        <Helmet>
+          <title>{title} - 2da IAFCJ</title>
+          <meta
+            name="description"
+            content={
+              shortDescription
+                ? shortDescription
+                : `Entrada de blog de IAFCj - ${title}`
+            }
+          />
+        </Helmet>
+        <Banner
+          returnAddress="/blog"
+          white
+          smTitle
+          img={imageLink}
+          title={title}
+        />
         <h2 className="blog-entry__subtitle">{subtitle}</h2>
         <div className="blog-entry__description-wrapper">
-          <div className="blog-entry__description" dangerouslySetInnerHTML={{ __html: description }} />
+          <div
+            className="blog-entry__description"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
         <p className="text-right p-4">The id received is {this.state._id}</p>
       </div>

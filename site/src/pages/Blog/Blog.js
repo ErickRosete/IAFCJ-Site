@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import BlogEntriesList from "../../components/Blog/BlogEntriesList/BlogEntriesList";
-import Banner from "../../components/Blog/Banner/Banner"
-import Newsletter from "../../containers/Newsletter/Newsletter"
+import Banner from "../../components/Blog/Banner/Banner";
+import Newsletter from "../../containers/Newsletter/Newsletter";
 
-import BannerImg from "../../assets/images/Blog/blog-banner.jpg"
+import BannerImg from "../../assets/images/Blog/blog-banner.jpg";
+import { Helmet } from "react-helmet";
 
-import "./Blog.css"
+import "./Blog.css";
 
 export class BlogPage extends Component {
   state = {
@@ -52,13 +53,23 @@ export class BlogPage extends Component {
         title: "Decide Ser Feliz 6",
         subtitle: "Subtitulo"
       }
-
     ]
   };
   render() {
     return (
       <div className="blog">
-        <Banner img={BannerImg} phrase='"Frase bonita Lorem Ipsum Algo"' author="-José Perez"></Banner>
+        <Helmet>
+          <title>Blog - 2da IAFCJ</title>
+          <meta
+            name="description"
+            content="¿Te gustaría conocer más sobre Dios y la iglesia cristiana? Estás en el lugar indicado."
+          />
+        </Helmet>
+        <Banner
+          img={BannerImg}
+          phrase='"Frase bonita Lorem Ipsum Algo"'
+          author="-José Perez"
+        />
         <h1 className="blog__title">Bienvenido a nuestro blog!</h1>
         <BlogEntriesList BlogEntries={this.state.BlogEntries} />
         <Newsletter />
