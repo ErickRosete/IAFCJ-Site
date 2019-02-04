@@ -14,7 +14,7 @@ export class BlogEntryPage extends Component {
       subtitle: '"Subtítulo dummy text"',
       shortDescription: "",
       description: `
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      <p> Lucas 14:13 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
       <br /> 
       <br /> 
       <br /> 
@@ -27,7 +27,38 @@ export class BlogEntryPage extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.fetchBlogEntry(id);
+    this.startReftagger();
   }
+
+  startReftagger = () => {
+    if (typeof window !== "undefined" && window !== null) {
+      if (window.refTagger == null) {
+        window.refTagger = {
+          settings: {
+            bibleVersion: "NVI",
+            socialSharing: ["twitter","facebook"],
+            roundCorners: true,
+            customStyle: {
+              heading: {
+                backgroundColor: "#ffffff"
+              },
+              body: {
+                moreLink: {
+                  color: "#f7bd1d"
+                }
+              }
+            }
+          }
+        };
+        const script = document.createElement("script");
+        script.src = "//api.reftagger.com/v2/RefTagger.es.js";
+        script.async = true;
+        document.body.appendChild(script);
+      } else {
+        window.refTagger.tag();
+      }
+    }
+  };
 
   fetchBlogEntry = _id => {
     console.log(_id);

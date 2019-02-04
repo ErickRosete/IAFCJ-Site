@@ -16,3 +16,7 @@
     width: 90%;
     line-height: 1.6;
 }
+
+.blog-entry__description a{
+    color: #00a7ff;
+}
