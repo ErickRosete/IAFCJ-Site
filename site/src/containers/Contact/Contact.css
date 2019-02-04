@@ -1,6 +1,7 @@
 .home__contact-banner {
-    background-image: url('../../assets/images/landing-page/iglesia-frente.jpeg');
-    background-size: 170% 100%;
+    background-image: url('../../assets/images/landing-page/iglesia-640w.jpeg');
+    /* background-image: -webkit-image-set(url(../../assets/images/landing-page/iglesia-640w.jpeg) 1x, url(../../assets/images/landing-page/iglesia-920w.jpeg) 2x); */
+    background-size: 140% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top center;
@@ -33,7 +34,8 @@
     background-color: transparent;
     color: white;
 }
-.home__contact select option{
+
+.home__contact select option {
     background-color: #363636
 }
 

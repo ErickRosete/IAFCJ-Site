@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import CellsList from "../components/Cells/CellsList/CellsList";
 
-import bannerImg from "../assets/images/Cells/banner-img.jpg";
+import banner400w from "../assets/images/Cells/cells-banner-400w.jpg";
+import banner800w from "../assets/images/Cells/cells-banner-800w.jpg";
+import banner1620w from "../assets/images/Cells/cells-banner-1620w.jpg";
+
 import Banner from "../components/Banner/Banner";
 import Map from "../components/Map/Map";
 
@@ -83,7 +86,8 @@ export class CellsPage extends Component {
           />
         </Helmet>
         <Banner
-          img={bannerImg}
+          srcSet={`${banner400w} 400w, ${banner800w} 800w, ${banner1620w} 1620w`}
+          img={banner800w}
           title="Encuentra el tuyo!"
           subtitle="Todos son bienvenidos gratuitamente a nuestros grupos celulares"
         />

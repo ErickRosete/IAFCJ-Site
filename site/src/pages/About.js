@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Banner from "../components/Banner/Banner";
-import BannerImg from "../assets/images/About/banner-img.jpg";
+
+import banner400w from "../assets/images/About/about-banner-400w.jpg";
+import banner800w from "../assets/images/About/about-banner-800w.jpg";
+import banner1620w from "../assets/images/About/about-banner-1620w.jpg";
+
 import { Helmet } from "react-helmet";
 
 import "./About.css";
@@ -17,7 +21,13 @@ export class AboutPage extends Component {
             Colorado comprometidas con ayudar a quienes lo necesiten"
           />
         </Helmet>
-        <Banner bigTitle img={BannerImg} title="Quiénes Somos" />
+
+        <Banner
+          bigTitle
+          srcSet={`${banner400w} 400w, ${banner800w} 800w, ${banner1620w} 1620w`}
+          img={banner800w}
+          title="Quiénes Somos"
+        />
         <div className="about__summary">
           <p className="about__summary-par1">
             Somos una congregación de 7 iglesias ubicadas en san luis rio

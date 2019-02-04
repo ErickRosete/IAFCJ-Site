@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Banner from "../components/Banner/Banner";
-import BannerImg from "../assets/images/Intro/intro-banner.jpg";
 import Helmet from "react-helmet";
 import Contact from "../containers/Contact/Contact";
 import ReactPlayer from "react-player";
-import poster from "../assets/images/landing-page/logo.png";
+import poster from "../assets/images/landing-page/logo-500w.png";
 import introVideo from "../assets/videos/main.mp4";
 import Link from "react-router-dom/Link";
+
+import banner400w from "../assets/images/Intro/intro-banner-400w.jpg";
+import banner800w from "../assets/images/Intro/intro-banner-800w.jpg";
+import banner1620w from "../assets/images/Intro/intro-banner-1620w.jpg";
 
 import "./intro.css";
 
@@ -21,7 +24,12 @@ export class IntroPage extends Component {
             content="Bienvenido, conoce e integrate a nuestra iglesia"
           />
         </Helmet>
-        <Banner bigTitle img={BannerImg} title="Bienvenido!" />
+        <Banner
+          srcSet={`${banner400w} 400w, ${banner800w} 800w, ${banner1620w} 1620w`}
+          img={banner800w}
+          bigTitle
+          title="Bienvenido!"
+        />
 
         <h2 className="intro__first-text">
           Seguramente tendrás muchas dudas... no te preocupes! estamos mas que

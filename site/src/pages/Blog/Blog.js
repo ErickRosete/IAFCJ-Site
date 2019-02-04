@@ -3,7 +3,10 @@ import BlogEntriesList from "../../components/Blog/BlogEntriesList/BlogEntriesLi
 import Banner from "../../components/Blog/Banner/Banner";
 import Newsletter from "../../containers/Newsletter/Newsletter";
 
-import BannerImg from "../../assets/images/Blog/blog-banner.jpg";
+import banner1600w from "../../assets/images/Blog/blog-banner-1600w.jpg";
+import banner800w from "../../assets/images/Blog/blog-banner-800w.jpg";
+import banner400w from "../../assets/images/Blog/blog-banner-400w.jpg";
+
 import { Helmet } from "react-helmet";
 
 import "./Blog.css";
@@ -66,7 +69,8 @@ export class BlogPage extends Component {
           />
         </Helmet>
         <Banner
-          img={BannerImg}
+          srcSet={`${banner400w} 400w, ${banner800w} 800w, ${banner1600w} 1600w`}
+          img={banner800w}
           phrase='"Frase bonita Lorem Ipsum Algo"'
           author="-José Perez"
         />
