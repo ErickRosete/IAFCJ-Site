@@ -19,48 +19,84 @@
     height: 100%;
 }
 
-.home__intro-title {
+.home__intro-logo {
+    filter: brightness(0) invert(1);
+    background-color: transparent;
+    max-width: 35%;
     position: absolute;
-    left: 50%;
+    left: 0.25rem;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     z-index: 1;
-    width: 90%;
+}
+
+.home__intro-text {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 55%;
+}
+
+.home__intro-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
     text-transform: initial;
-    text-align: center;
     color: #f7bd1d;
+    font-weight: bolder;
+}
+
+.home__intro .text-white {
+    display: inline-block;
 }
 
 .home__intro-time {
-    position: absolute;
     display: none;
-    left: 50%;
-    top: 72%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    width: 90%;
-    text-align: center;
-    color: white;
+    margin-bottom: 3rem;
 }
 
 .home__intro-time h2 {
+    font-size: 1.25rem;
     font-family: 'Trocchi', serif;
-    margin: 0.75rem;
+    font-weight: normal;
+    color: #00a7ff;
+    margin: 0.5rem;
 }
 
-.home__intro-location {
-    position: absolute;
-    left: 50%;
-    top: 90%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+.home__intro-location h3 {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0 2rem;
     text-align: center;
     color: white;
-    font-family: 'Trocchi', serif;
 }
 
-@media screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
+    .home__intro-logo {
+        left: 1rem;
+    }
+    .home__intro-text {
+        right: 1rem;
+    }
+    .home__intro-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
     .home__intro-time {
         display: block;
+    }
+    .home__intro-time h2 {
+        font-size: 2rem;
+    }
+    .home__intro-location h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .home__intro-title {
+        font-size: 3.5rem;
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import HomePage from "./pages/Home";
+import IntroPage from "./pages/Intro";
 import CellsPage from "./pages/Cells";
 import EventsPage from "./pages/Events";
 import BlogPage from "./pages/Blog/Blog";
@@ -57,6 +58,7 @@ class App extends Component {
                   />
                 )}
               />
+              <Route path="/nuevo" component={IntroPage} />
               <Route path="/encuentra" component={CellsPage} />
               <Route path="/eventos" component={EventsPage} />
               <Route path="/blog" component={BlogPage} exact />
