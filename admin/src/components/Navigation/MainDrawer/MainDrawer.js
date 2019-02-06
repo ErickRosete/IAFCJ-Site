@@ -7,15 +7,39 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Hidden from "@material-ui/core/Hidden";
 import EventIcon from "@material-ui/icons/Event";
 import { NavLink } from "react-router-dom";
 
 import "./MainDrawer.css";
 import logo from "../../../assets/images/landing-page/logo.png";
 
-const TemporaryDrawer = props => {
+const drawerWidth = 240;
+
+const styles = theme => ({
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0
+    }
+  },
+  toolbar: {
+    ...theme.mixins.toolbar,
+    alignItems: "center",
+    display: "flex",
+    backgroundColor: theme.palette.primary.main,
+    color: "white"
+  },
+  drawerPaper: {
+    width: drawerWidth
+  }
+});
+
+const ResponsiveDrawer = props => {
   const sideLinks = [
-    { id: 1, icon: <EventIcon />, text: "Blogs", linkTo: "/blogs" },
+    { id: 1, icon: <EventIcon />, text: "Blog", linkTo: "/blog" },
     { id: 2, icon: <EventIcon />, text: "Celulas", linkTo: "/celulas" },
     { id: 3, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
     { id: 4, icon: <EventIcon />, text: "Newsletter", linkTo: "/newsletter" },
@@ -23,23 +47,18 @@ const TemporaryDrawer = props => {
     { id: 6, icon: <EventIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
-  return (
-    <Drawer
-      className="drawer"
-      open={props.open}
-      onClose={props.toggleDrawer.bind(this, false)}
-    >
-      <NavLink
-        to="/"
-        className="drawer__title"
-        onClick={props.toggleDrawer.bind(this, false)}
-        onKeyDown={props.toggleDrawer.bind(this, false)}
-      >
-        <img height="50" src={logo} alt="IAFCJ" />
-        <Typography variant="h6" color="inherit">
-          IAFCJ
-        </Typography>
-      </NavLink>
+  const { classes, theme } = props;
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar}>
+        <NavLink to="/" className="drawer__title">
+          <img height="50" src={logo} alt="IAFCJ" />
+          <Typography variant="h6" color="inherit">
+            IAFCJ
+          </Typography>
+        </NavLink>
+      </div>
 
       <Divider />
 
@@ -60,8 +79,42 @@ const TemporaryDrawer = props => {
       </List>
 
       <Divider />
-    </Drawer>
+    </div>
+  );
+  
+  return (
+    <nav className={classes.drawer}>
+      <Hidden smUp implementation="css">
+        <Drawer
+          variant="temporary"
+          anchor={theme.direction === "rtl" ? "right" : "left"}
+          open={props.open}
+          onClose={props.toggleDrawer}
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+      <Hidden xsDown implementation="css">
+        <Drawer
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          variant="permanent"
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+    </nav>
   );
 };
 
-export default TemporaryDrawer;
+ResponsiveDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
+};
+
+export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);

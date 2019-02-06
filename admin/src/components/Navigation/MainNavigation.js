@@ -7,20 +7,24 @@ import "./MainNavigation.css";
 
 export class MainNavigation extends Component {
   state = {
-    open: false
+    mobileOpen: false
   };
 
-  toggleDrawerHandler = boolOpen => {
-    this.setState({
-      open: boolOpen
-    });
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   render() {
     return (
       <React.Fragment>
-        <MainAppBar onClick={this.toggleDrawerHandler} />
-        <MainDrawer toggleDrawer={this.toggleDrawerHandler} open={this.state.open} />
+        <MainAppBar
+          title={this.props.title}
+          onClick={this.handleDrawerToggle}
+        />
+        <MainDrawer
+          toggleDrawer={this.handleDrawerToggle}
+          open={this.state.mobileOpen}
+        />
       </React.Fragment>
     );
   }

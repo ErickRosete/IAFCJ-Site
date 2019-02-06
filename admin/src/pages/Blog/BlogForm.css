@@ -1,0 +1,13 @@
+.blog-form {
+    margin: 3rem 4rem;
+}
+
+.wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+
+.editor {
+    border: 1px solid lightgray;
+    min-height: 40vh;
+}

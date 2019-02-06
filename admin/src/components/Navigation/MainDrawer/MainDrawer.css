@@ -3,9 +3,10 @@
 }
 
 .drawer__title {
-    margin: 1rem;
-    align-items: center;
+    color: white;
     display: flex;
+    align-items: center;
+    margin: auto;
     text-decoration: none;
 }
 
