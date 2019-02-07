@@ -16,6 +16,12 @@ const transformUser = user => {
   };
 };
 
+const transformBlogEntry = blogEntry => {
+  return {
+    ...blogEntry._doc,
+  };
+};
+
 const getUser = async userId => {
   try {
     const user = await User.findById(userId);
@@ -50,3 +56,4 @@ exports.getEvents = getEvents;
 exports.getUser = getUser;
 exports.transformEvent = transformEvent;
 exports.transformUser = transformUser;
+exports.transformBlogEntry = transformBlogEntry;

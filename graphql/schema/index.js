@@ -1,164 +1,135 @@
 const { buildSchema } = require("graphql");
+const { blogEntryDef, blogEntryQuery, blogEntryMutation } = require("./blog-entry");
+const { addressDef, addressQuery, addressMutation } = require("./address");
 
 module.exports = buildSchema(`
-type AuthData {
-  userId: ID!
-  token: String!
-  tokenExpiration: Int!
-}
+  ${blogEntryDef}
+  ${addressDef}
 
-type Address {
-  _id: ID!
-  street: String!
-  exteriorNumber: Int!
-  city: String
-  postalCode: Int
-}
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+  }
 
-input AddressInput{
-  street: String!
-  exteriorNumber: Int!
-  city: String
-  postalCode: Int
-}
+  type Cell {
+    _id: ID!
+    leader: String!
+    address: Address
+    phone: String!
+    date: String!
+  }
 
-type BlogEntry {
-  _id: ID!
-  title: String!
-  imageLink: String
-  subtitle: String
-  shortDescription: String
-  description: String!
-  createdAt: String!
-  updatedAt: String!
-}
+  input CellInput{
+    leader: String!
+    address: AddressInput
+    phone: String!
+    date: String!
+  }
 
-input BlogEntryInput{
-  title: String!
-  imageLink: String
-  subtitle: String
-  shortDescription: String
-  description: String!
-}
+  type Event {
+    _id: ID!
+    title: String!
+    imageLink: String
+    shortDescription: String
+    description: String!
+    date: String!
+    address: Address
+    createdAt: String!
+    updatedAt: String!
+  }
 
-type Cell {
-  _id: ID!
-  leader: String!
-  address: Address
-  phone: String!
-  date: String!
-}
+  input EventInput{
+    title: String!
+    imageLink: String
+    shortDescription: String
+    description: String!
+    date: String!
+    address: AddressInput
+  }
 
-input CellInput{
-  leader: String!
-  address: AddressInput
-  phone: String!
-  date: String!
-}
+  type Network {
+    _id: ID!
+    leader: String!
+    category: String!
+    imageLink: String
+  }
 
-type Event {
-  _id: ID!
-  title: String!
-  imageLink: String
-  shortDescription: String
-  description: String!
-  date: String!
-  address: Address
-  createdAt: String!
-  updatedAt: String!
-}
+  input NetworkInput{
+    leader: String!
+    category: String!
+    imageLink: String
+  }
 
-input EventInput{
-  title: String!
-  imageLink: String
-  shortDescription: String
-  description: String!
-  date: String!
-  address: AddressInput
-}
+  type NewsletterEmail {
+    _id: ID!
+    email: String!
+  }
 
-type Network {
-  _id: ID!
-  leader: String!
-  category: String!
-  imageLink: String
-}
+  type Member {
+    _id: ID!
+    name: String!
+    job: String!
+    description: String!
+  }
 
-input NetworkInput{
-  leader: String!
-  category: String!
-  imageLink: String
-}
+  input MemberInput {
+    name: String!
+    job: String!
+    description: String!
+  }
 
-type NewsletterEmail {
-  _id: ID!
-  email: String!
-}
+  type User {
+    _id: ID!
+    email: String!
+    password: String
+  }
 
-type Member {
-  _id: ID!
-  name: String!
-  job: String!
-  description: String!
-}
+  input UserInput{
+    email: String!
+    password: String!
+  }
 
-input MemberInput {
-  name: String!
-  job: String!
-  description: String!
-}
+  type Video {
+    _id: ID!
+    name: String!
+    link: String!
+    description: String
+  }
 
-type User {
-  _id: ID!
-  email: String!
-  password: String
-}
+  input VideoInput {
+    name: String!
+    link: String!
+    description: String
+  }
 
-input UserInput{
-  email: String!
-  password: String!
-}
+  type RootQuery {
+    ${addressQuery}
+    ${blogEntryQuery}
+    cells: [Cell!]!
+    events: [Event!]!
+    networks: [Network!]!
+    newsletterEmails: [NewsletterEmail!]! 
+    members: [Member!]! 
+    users: [User!]!
+    videos: [Video!]!
+    login(userInput: UserInput!): AuthData!
+  }
 
-type Video {
-  _id: ID!
-  name: String!
-  link: String!
-  description: String
-}
+  type RootMutation {
+    ${addressMutation}
+    ${blogEntryMutation}
+      createCell(cellInput: CellInput): Cell
+      createEvent(eventInput: EventInput): Event
+      createNetwork(networkInput: NetworkInput): Network
+      createNewsletterEmail(email: String): NewsletterEmail
+      createMember(memberInput: MemberInput): Member
+      createUser(userInput: UserInput): User
+      createVideo(videoInput: VideoInput): Video
+  }
 
-input VideoInput {
-  name: String!
-  link: String!
-  description: String
-}
-
-type RootQuery {
-  addresses: [Address!]!
-  blog: [BlogEntry!]!
-  cells: [Cell!]!
-  events: [Event!]!
-  networks: [Network!]!
-  newsletterEmails: [NewsletterEmail!]! 
-  members: [Member!]! 
-  users: [User!]!
-  videos: [Video!]!
-  login(userInput: UserInput!): AuthData!
-}
-
-type RootMutation {
-    createAddress(addressInput: AddressInput): Address
-    createBlogEntry(blogEntryInput: BlogEntryInput): BlogEntry
-    createCell(cellInput: CellInput): Cell
-    createEvent(eventInput: EventInput): Event
-    createNetwork(networkInput: NetworkInput): Network
-    createNewsletterEmail(email: String): NewsletterEmail
-    createMember(memberInput: MemberInput): Member
-    createUser(userInput: UserInput): User
-    createVideo(videoInput: VideoInput): Video
-}
-
-schema {
-    query: RootQuery
-    mutation: RootMutation
-}
+  schema {
+      query: RootQuery
+      mutation: RootMutation
+  }
 `);
