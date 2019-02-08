@@ -15,12 +15,24 @@ module.exports = {
     }
   },
 
+  user: async args => {
+    try {
+      const user = await User.findById(args.id);
+      return transformUser(user);
+    } catch (err) {
+      throw err;
+    }
+  },
+
   login: async args => {
     const user = await User.findOne({ email: args.userInput.email });
     if (!user) {
       throw new Error("Invalid Credentials");
     }
-    const isEqual = await bcrypt.compare(args.userInput.password, user.password);
+    const isEqual = await bcrypt.compare(
+      args.userInput.password,
+      user.password
+    );
     if (!isEqual) {
       throw new Error("Invalid Credentials");
     }
@@ -49,6 +61,28 @@ module.exports = {
       });
       const result = await user.save();
       return transformUser(result);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  updatePassword: async args => {
+    try {
+      const user = await User.findByIdAndUpdate(
+        args.id,
+        { password: args.password },
+        { new: true }
+      );
+      return transformUser(user);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  deleteUser: async args => {
+    try {
+      const user = await User.findByIdAndDelete(args.id);
+      return transformUser(user);
     } catch (err) {
       throw err;
     }

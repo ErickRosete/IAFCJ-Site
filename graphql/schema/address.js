@@ -24,7 +24,7 @@ const addressQuery = `
 
 const addressMutation = `
     createAddress(addressInput: AddressInput): Address
-    updateAddress(id: ID!,addressInput: AddressInput): Address
+    updateAddress(id: ID!, addressInput: AddressInput): Address
     deleteAddress(id: ID!): Address
 `;
 
