@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Layout from "../../containers/Layout/Layout"
 
 import Modal from "../../components/Modal/Modal";
 import Backdrop from "../../components/Backdrop/Backdrop";
@@ -151,7 +152,7 @@ class EventsPage extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Layout>
         {(this.state.creating || this.state.selectedEvent) && <Backdrop />}
         {this.state.creating && (
           <Modal
@@ -212,7 +213,7 @@ class EventsPage extends Component {
             onDetail={this.showDetailHandler}
           />
         )}
-      </React.Fragment>
+      </Layout>
     );
   }
 }

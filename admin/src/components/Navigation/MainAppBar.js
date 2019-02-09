@@ -9,17 +9,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 // import { NavLink } from "react-router-dom";
 
-import AuthContext from "../../../context/auth-context";
+import AuthContext from "../../context/auth-context";
 
-const drawerWidth = 240;
+const drawerWidth = 241;
 
 const styles = theme => ({
-  drawer: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0
-    }
-  },
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
@@ -63,12 +57,12 @@ const ButtonAppBar = props => {
                 {props.title}
               </Typography>
 
-              <Button
-                color="inherit"
+              <Button color="inherit"
                 onClick={context.logout}
-                style={{ flexShrink: "0" }}
-              >
-                Logout
+                style={{ flexShrink: "0" }}>
+                <Typography variant="subtitle1" style={{ color: "white" }} >
+                  Logout
+                </Typography>
               </Button>
             </Toolbar>
           </AppBar>

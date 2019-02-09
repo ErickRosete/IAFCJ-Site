@@ -3,8 +3,18 @@ import Typography from "@material-ui/core/Typography";
 
 import AuthContext from "../../context/auth-context";
 
-import logo from "../../assets/images/landing-page/logo.png";
+import logo from "../../assets/images/logo/logo.png";
 import "./Auth.css";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  authRoot: {
+    height: "100vh",
+    display: "flex",
+    backgroundColor: theme.palette.primary.main
+  }
+});
 
 class AuthPage extends Component {
   static contextType = AuthContext;
@@ -13,14 +23,6 @@ class AuthPage extends Component {
     super(props);
     this.emailEl = React.createRef();
     this.passwordEl = React.createRef();
-  }
-
-  componentDidMount() {
-    document.body.style.backgroundColor = "#3a019a";
-  }
-
-  componentWillUnmount() {
-    document.body.style.backgroundColor = null;
   }
 
   submitHandler = event => {
@@ -73,8 +75,9 @@ class AuthPage extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div className="auth-body">
+      <div className={classes.authRoot}>
         <form className="auth-form" onSubmit={this.submitHandler}>
           <div className="auth-form__title">
             <img height="100" src={logo} alt="IAFCJ" />
@@ -98,5 +101,9 @@ class AuthPage extends Component {
     );
   }
 }
+AuthPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
+};
 
-export default AuthPage;
+export default withStyles(styles, { withTheme: true })(AuthPage);

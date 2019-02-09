@@ -10,13 +10,19 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
-import EventIcon from "@material-ui/icons/Event";
 import { NavLink } from "react-router-dom";
 
-import "./MainDrawer.css";
-import logo from "../../../assets/images/landing-page/logo.png";
+//Icons
+import EventIcon from "@material-ui/icons/Event";
+import CellIcon from "@material-ui/icons/LocationOn";
+import BlogIcon from "@material-ui/icons/CollectionsBookmark"
+import MemberIcon from "@material-ui/icons/Person";
+import VideoIcon from "@material-ui/icons/VideoLibrary";
+import NewsletterIcon from "@material-ui/icons/Email";
 
-const drawerWidth = 240;
+import logo from "../../assets/images/logo/logo.png";
+
+const drawerWidth = 241;
 
 const styles = theme => ({
   drawer: {
@@ -32,6 +38,13 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     color: "white"
   },
+  drawerTitle: {
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+    margin: "auto",
+    textDecoration: "none"
+  },
   drawerPaper: {
     width: drawerWidth
   }
@@ -39,21 +52,25 @@ const styles = theme => ({
 
 const ResponsiveDrawer = props => {
   const sideLinks = [
-    { id: 1, icon: <EventIcon />, text: "Blog", linkTo: "/blog" },
-    { id: 2, icon: <EventIcon />, text: "Celulas", linkTo: "/celulas" },
-    { id: 3, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
-    { id: 4, icon: <EventIcon />, text: "Newsletter", linkTo: "/newsletter" },
-    { id: 5, icon: <EventIcon />, text: "Organigrama", linkTo: "/organigrama" },
-    { id: 6, icon: <EventIcon />, text: "Videos", linkTo: "/videos" }
+    { id: 1, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
+    { id: 2, icon: <BlogIcon />, text: "Blog", linkTo: "/blog" },
+    { id: 3, icon: <CellIcon />, text: "Celulas", linkTo: "/celulas" },
+    { id: 4, icon: <MemberIcon />, text: "Organigrama", linkTo: "/organigrama" },
+    { id: 5, icon: <NewsletterIcon />, text: "Newsletter", linkTo: "/newsletter" },
+    { id: 6, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
   const { classes, theme } = props;
-
   const drawer = (
     <div>
       <div className={classes.toolbar}>
-        <NavLink to="/" className="drawer__title">
-          <img height="50" src={logo} alt="IAFCJ" />
+        <NavLink to="/" className={classes.drawerTitle} exact>
+          <img
+            height="50"
+            style={{ marginRight: "1rem" }}
+            src={logo}
+            alt="logo"
+          />
           <Typography variant="h6" color="inherit">
             IAFCJ
           </Typography>
@@ -62,15 +79,13 @@ const ResponsiveDrawer = props => {
 
       <Divider />
 
-      <List className="drawer__list">
+      <List>
         {sideLinks.map(sideLink => (
           <ListItem
             button
             key={sideLink.id}
             component={NavLink}
             to={sideLink.linkTo}
-            onClick={props.toggleDrawer.bind(this, false)}
-            onKeyDown={props.toggleDrawer.bind(this, false)}
           >
             <ListItemIcon>{sideLink.icon}</ListItemIcon>
             <ListItemText primary={sideLink.text} />
@@ -81,7 +96,7 @@ const ResponsiveDrawer = props => {
       <Divider />
     </div>
   );
-  
+
   return (
     <nav className={classes.drawer}>
       <Hidden smUp implementation="css">
