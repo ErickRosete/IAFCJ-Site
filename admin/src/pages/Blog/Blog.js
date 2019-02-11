@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Layout from "../../containers/Layout/Layout"
+import Layout from "../../containers/Layout/Layout";
 
 //Route
 import Link from "react-router-dom/Link";
@@ -8,13 +8,12 @@ import Link from "react-router-dom/Link";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 //wrappers
-import compose from 'recompose/compose';
+import compose from "recompose/compose";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 //Buttons
 import Fab from "@material-ui/core/Fab";
@@ -23,58 +22,61 @@ import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
 // import Button from "@material-ui/core/Button";
 
+//Dialog
+import DeleteDialog from "../../components/Dialog/DeleteDialog";
+
+import { Query, Mutation } from "react-apollo";
+import gql from "graphql-tag";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const styles = theme => ({
   fab: {
-    position: 'absolute',
+    position: "absolute",
     top: theme.mixins.toolbar.minHeight + theme.spacing.unit * 3,
-    right: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2
   },
+  progress: {
+    margin: theme.spacing.unit * 2
+  },
+  fabOptions: {
+    margin: theme.spacing.unit
+  }
 });
+
+const GET_BLOG = gql`
+  {
+    blog {
+      _id
+      title
+      subtitle
+      imageLink
+    }
+  }
+`;
+
+const DELETE_BLOGENTRY = gql`
+  mutation DeleteBlogEntry($id: ID!) {
+    deleteBlogEntry(id: $id) {
+      _id
+    }
+  }
+`;
 
 export class Blog extends Component {
   state = {
-    tileData: [
-      {
-        id: 1,
-        // img: image1,
-        title: "Titulo blog 1",
-        author: "author"
-      },
-      {
-        id: 2,
-        // img: image2,
-        title: "Titulo blog 2",
-        author: "author"
-      },
-      {
-        id: 3,
-        // img: image1,
-        title: "Titulo blog 3",
-        author: "author"
-      },
-      {
-        id: 4,
-        // img: image2,
-        title: "Titulo blog 4",
-        author: "author"
-      },
-      {
-        id: 5,
-        // img: image1,
-        title: "Titulo blog 5",
-        author: "author"
-      },
-      {
-        id: 6,
-        // img: image2,
-        title: "Titulo blog 6",
-        author: "author"
-      }
-    ]
+    openDialog: false,
+    selectedId: null
   };
 
-  deleteBlog = id => {
-    console.log(id);
+  handleClickOpenDeleteDialog = id => {
+    this.setState({
+      selectedId: id,
+      openDialog: true
+    });
+  };
+
+  handleCloseDialog = () => {
+    this.setState({ openDialog: false });
   };
 
   getGridListCols = () => {
@@ -89,64 +91,104 @@ export class Blog extends Component {
 
   render() {
     const { classes } = this.props;
-    const tileData = [...this.state.tileData];
     const gridListCols = this.getGridListCols();
-    console.log(this.props)
+
     return (
       <Layout title="Lista de blogs">
         <div className="blog">
-          <GridList cellHeight={200} cols={gridListCols} spacing={15}>
-            <GridListTile
-              key="Subheader"
-              cols={gridListCols}
-              style={{ height: "auto" }}
-            >
-              <ListSubheader component="div">December</ListSubheader>
-            </GridListTile>
-            {tileData.map(tile => (
-              <GridListTile key={tile.id} cols={1}>
-                {/* <img src={tile.img} alt={tile.title} /> */}
-                <GridListTileBar
-                  title={tile.title}
-                  subtitle={<span>by: {tile.author}</span>}
-                  actionIcon={
-                    <React.Fragment>
-                      <Link to={`blog/editar/${tile.id}`}>
-                        <Fab
-                          color="primary"
-                          aria-label="Edit"
-                          style={{ marginRight: "0.5rem" }}
-                        >
-                          <EditIcon />
-                        </Fab>
-                      </Link>
-                      <Fab
-                        color="secondary"
-                        aria-label="Delete"
-                        style={{ marginRight: "0.5rem" }}
-                        onClick={this.deleteBlog.bind(this, tile.id)}
-                      >
-                        <DeleteIcon />
-                      </Fab>
-                    </React.Fragment>
-                  }
-                />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
+          <Query query={GET_BLOG}>
+            {({ loading, error, data }) => {
+              if (loading)
+                return <CircularProgress className={classes.progress} />;
+              if (error) return <p>Error :(</p>;
+              return (
+                <GridList cellHeight={200} cols={gridListCols} spacing={15}>
+                  {data.blog.map(tile => (
+                    <GridListTile key={tile._id} cols={1}>
+                      {/* <img src={tile.img} alt={tile.title} /> */}
+                      <GridListTileBar
+                        title={tile.title}
+                        subtitle={<span>by: {tile.subtitle}</span>}
+                        actionIcon={
+                          <React.Fragment>
+                            <Link to={`blog/editar/${tile._id}`}>
+                              <Fab
+                                color="primary"
+                                aria-label="Edit"
+                                className={classes.fabOptions}
+                              >
+                                <EditIcon />
+                              </Fab>
+                            </Link>
+                            <Fab
+                              color="secondary"
+                              aria-label="Delete"
+                              className={classes.fabOptions}
+                              onClick={this.handleClickOpenDeleteDialog.bind(
+                                this,
+                                tile._id
+                              )}
+                            >
+                              <DeleteIcon />
+                            </Fab>
+                          </React.Fragment>
+                        }
+                      />
+                    </GridListTile>
+                  ))}
+                </GridList>
+              );
+            }}
+          </Query>
 
-        <Link className={classes.fab} to="/blog/agregar">
-          <Fab color="primary" aria-label="Add">
-            <AddIcon />
-          </Fab>
-        </Link>
+          <Mutation
+            mutation={DELETE_BLOGENTRY}
+            update={(cache, { data: { deleteBlogEntry } }) => {
+              const { blog } = cache.readQuery({ query: GET_BLOG });
+              const blogEntryIndex = blog.findIndex(
+                blogEntry => blogEntry._id === deleteBlogEntry._id
+              );
+              blog.splice(blogEntryIndex, 1);
+              cache.writeQuery({
+                query: GET_BLOG,
+                data: { blog: blog }
+              });
+            }}
+          >
+            {deleteBlogEntry => (
+              <DeleteDialog
+                info="entrada de blog"
+                open={this.state.openDialog}
+                onConfirm={() => {
+                  deleteBlogEntry({
+                    variables: { id: this.state.selectedId }
+                  });
+                  this.setState({
+                    selectedId: null,
+                    openDialog: false
+                  });
+                }}
+                onCancel={this.handleCloseDialog}
+              />
+            )}
+          </Mutation>
+
+          <Link className={classes.fab} to="/blog/agregar">
+            <Fab color="primary" aria-label="Add">
+              <AddIcon />
+            </Fab>
+          </Link>
+        </div>
       </Layout>
     );
   }
 }
+
 Blog.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default compose(withStyles(styles), withWidth())(Blog); 
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(Blog);

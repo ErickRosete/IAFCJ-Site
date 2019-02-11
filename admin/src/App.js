@@ -21,7 +21,7 @@ import ApolloClient from "apollo-boost";
 import AuthContext from "./context/auth-context";
 
 const client = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io"
+  uri: "http://localhost:8000/graphql"
 });
 
 class App extends Component {
@@ -65,7 +65,7 @@ class App extends Component {
               {/* {this.state.token ? ( */}
               <React.Fragment>
                 <Switch>
-                  <Route path="/blog/agregar/:id" component={BlogFormPage} />
+                  <Route path="/blog/agregar" component={BlogFormPage} />
                   <Route path="/blog/editar/:id" component={BlogFormPage} />
                   <Route path="/blog" component={BlogPage} />
                   <Route path="/celulas" component={CelulasPage} />
