@@ -90,7 +90,7 @@ export class Blog extends Component {
                 <GridList cellHeight={200} cols={gridListCols} spacing={15}>
                   {data.blog.map(tile => (
                     <GridListTile key={tile._id} cols={1}>
-                      {/* <img src={tile.img} alt={tile.title} /> */}
+                      <img src={tile.imageLink} alt={tile.title} />
                       <GridListTileBar
                         title={tile.title}
                         subtitle={<span>{tile.subtitle}</span>}

@@ -13,8 +13,11 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
 
+import Spinner from "../../components/Spinner/Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+import Grid from '@material-ui/core/Grid';
 
 export class Form extends Component {
   constructor(props) {
@@ -24,13 +27,14 @@ export class Form extends Component {
     let title;
     let subtitle;
     let shortDescription;
-    let image;
+    let imageLink;
 
     if (props.blogEntry) {
       console.log(props.blogEntry);
-      title = props.blogEntry.title;
-      subtitle = props.blogEntry.subtitle;
-      shortDescription = props.blogEntry.shortDescription;
+      title = props.blogEntry.title ? props.blogEntry.title : "";
+      subtitle = props.blogEntry.subtitle ? props.blogEntry.subtitle : "";
+      shortDescription = props.blogEntry.shortDescription ? props.blogEntry.shortDescription : "";
+      imageLink = props.blogEntry.imageLink ? props.blogEntry.imageLink : "";
       //editor
       const html = props.blogEntry.description;
       const contentBlock = htmlToDraft(html);
@@ -44,7 +48,7 @@ export class Form extends Component {
       title = "";
       subtitle = "";
       shortDescription = "";
-      image = null;
+      imageLink = "";
       editorState = EditorState.createEmpty();
     }
 
@@ -53,7 +57,8 @@ export class Form extends Component {
       subtitle,
       shortDescription,
       editorState,
-      image,
+      imageLink,
+      uploadingImage: false,
       return: false
     };
   }
@@ -82,29 +87,34 @@ export class Form extends Component {
     });
   };
 
-  uploadImage() {
-    var formData = new FormData();
-    formData.append("file", this.state.image);
-    formData.append("name", this.state.image.name);
+  changeImageHandler = event => {
+    this.setState({ uploadingImage: true });
 
-    fetch(`http://localhost:8000/images`, {
+    const image = event.target.files[0];
+    var formData = new FormData();
+    formData.append("file", image);
+    formData.append("name", image.name);
+
+    // headers: { "Content-Type": "multipart/form-data" },
+    fetch(`http://localhost:8000/uploadImage`, {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
       body: formData
     })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ images: data.images, isLoading: false });
-        this.props.updateImages(data.images);
+      .then(res => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error("Failed!");
+        }
+        return res.json();
       })
-      .catch(error => this.setState({ error, isLoading: false }));
+      .then(resData => {
+        this.setState({ uploadingImage: false, imageLink: resData });
+        console.log(resData);
+      })
+      .catch(err => {
+        this.setState({ uploadingImage: false });
+        console.log(err);
+      });
   }
-
-  changeImageHandler = event => {
-    this.setState({
-      image: event.target.files[0]
-    });
-  };
 
   onSubmitHandler = event => {
     event.preventDefault();
@@ -117,6 +127,7 @@ export class Form extends Component {
     let blogEntry = {
       title,
       subtitle: this.state.subtitle,
+      imageLink: this.state.imageLink,
       shortDescription: this.state.shortDescription,
       description: draftToHtml(
         convertToRaw(this.state.editorState.getCurrentContent())
@@ -136,73 +147,96 @@ export class Form extends Component {
     return (
       <form className="blog-form" onSubmit={this.onSubmitHandler}>
         {this.state.return && <Redirect push to="/blog" />}
-        <TextField
-          required
-          autoFocus
-          className={classes.textfield}
-          margin="dense"
-          label="Título"
-          type="text"
-          fullWidth
-          value={this.state.title}
-          onChange={this.changeTitleHandler}
-          error={this.state.title === ""}
-          helperText={this.state.title === "" ? "Valor Requerido" : ""}
-        />
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <TextField
+              required
+              autoFocus
+              className={classes.textfield}
+              margin="dense"
+              label="Título"
+              type="text"
+              fullWidth
+              value={this.state.title}
+              onChange={this.changeTitleHandler}
+              error={this.state.title === ""}
+              helperText={this.state.title === "" ? "Valor Requerido" : ""}
+            />
+          </Grid>
 
-        {/* image */}
-        <input
-          accept="image/*"
-          onChange={this.changeImageHandler}
-          className={classes.input}
-          id="contained-button-file"
-          type="file"
-        />
-        <label htmlFor="contained-button-file">
-          <Button
-            variant="contained"
-            component="span"
-            className={classes.button}
-          >
-            Subir Imagen
-          </Button>
-        </label>
+          <Grid item xs={12} md={6}>
+            <TextField
+              className={classes.textfield}
+              margin="dense"
+              label="Subtítulo"
+              type="text"
+              fullWidth
+              value={this.state.subtitle}
+              onChange={this.changeSubtitleHandler}
+            />
+          </Grid>
 
-        <TextField
-          className={classes.textfield}
-          margin="dense"
-          label="Subtítulo"
-          type="text"
-          fullWidth
-          value={this.state.subtitle}
-          onChange={this.changeSubtitleHandler}
-        />
-        <TextField
-          className={classes.textfield}
-          margin="dense"
-          label="Descripción corta"
-          type="text"
-          fullWidth
-          value={this.state.shortDescription}
-          onChange={this.changeShortDescriptionHandler}
-        />
-        <div className={classes.textfield}>
-          <FormLabel
-            required
-            error={!this.state.editorState.getCurrentContent().hasText()}
-          >
-            Contenido del blog
+          <Grid item xs={12} md={6}>
+            {/* image */}
+            <div className={classes.imagefield}>
+              <input
+                accept="image/*"
+                onChange={this.changeImageHandler}
+                className={classes.input}
+                id="contained-button-file"
+                type="file"
+              />
+              <label htmlFor="contained-button-file">
+                <Button
+                  variant="contained"
+                  component="span"
+                  className={classes.button}
+                >
+                  Subir Imagen
+                </Button>
+              </label>
+
+              {this.state.imageLink && <div className={classes.imgContainer}>
+                {this.state.uploadingImage ?
+                  <Spinner></Spinner> :
+                  <img height={100} src={this.state.imageLink} alt="blog main"></img>}
+              </div>}
+            </div>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              className={classes.textfield}
+              margin="dense"
+              label="Descripción corta"
+              type="text"
+              fullWidth
+              value={this.state.shortDescription}
+              onChange={this.changeShortDescriptionHandler}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <div className={classes.textfield}>
+              <FormLabel
+                required
+                error={!this.state.editorState.getCurrentContent().hasText()}
+              >
+                Contenido del blog
           </FormLabel>
-          <Editor
-            editorState={this.state.editorState}
-            wrapperClassName={classes.wrapper}
-            editorClassName={classes.editor}
-            onEditorStateChange={this.onEditorStateChange}
-          />
-        </div>
-        <Button type="submit" variant="contained" color="primary" autoFocus>
-          Guardar
+              <Editor
+                editorState={this.state.editorState}
+                wrapperClassName={classes.wrapper}
+                editorClassName={classes.editor}
+                onEditorStateChange={this.onEditorStateChange}
+              />
+            </div>
+          </Grid>
+
+          <Button type="submit" variant="contained" color="primary" autoFocus>
+            Guardar
         </Button>
+        </Grid>
       </form>
     );
   }
