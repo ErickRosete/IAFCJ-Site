@@ -1,107 +1,99 @@
 import React, { Component } from "react";
-import { EditorState, ContentState } from "draft-js";
-// import { convertToRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-// import draftToHtml from "draftjs-to-html";
-import htmlToDraft from "html-to-draftjs";
-
+import Form from "../../containers/Blog/Form";
 import Spinner from "../../components/Spinner/Spinner";
-import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./BlogForm.css";
-
 import Layout from "../../containers/Layout/Layout";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { Query, Mutation } from "react-apollo";
 
-const GET_BLOGENTRY = gql`
-  query BlogEntry($id: ID!) {
-    blogEntry(id: $id) {
-      _id
-      title
-      imageLink
-      subtitle
-      shortDescription
-      description
-    }
-  }
-`;
+import {
+  GET_BLOGENTRY,
+  GET_BLOG,
+  EDIT_BLOGENTRY,
+  ADD_BLOGENTRY
+} from "../../pages/Blog/constants";
 
-export class BlogFormPage extends Component {
+class BlogFormPage extends Component {
   componentDidMount() {
     this.id = this.props.match.params.id;
-    if (this.id !== null && this.id !== undefined) {
+    if (this.id) {
       this.setState({ edit: true });
     }
   }
 
   constructor(props) {
     super(props);
-    this.titleEl = React.createRef();
-
     this.state = {
       edit: false,
-      editorState: EditorState.createEmpty()
+      return: false
     };
   }
 
-  onEditorStateChange = editorState => {
-    this.setState({
-      editorState
-    });
-  };
-
   render() {
-    const { edit, editorState } = this.state;
+    const { edit } = this.state;
     return (
       <Layout
         title={edit ? "Editar entrada de blog" : "Añadir entrada de Blog"}
       >
-        <Query query={GET_BLOGENTRY} variables={{ id: this.id }}>
-          {({ loading, error, data }) => {
-            if (loading) return <Spinner />;
-            if (error) return <p>Error :(</p>;
-
-            console.log(data);
-            // this.titleEl.value = data.blogEntry.title;
-            // this.imageEl.value = data.blogEntry.imageLink;
-            // this.shortDescEl.value = data.blogEntry.shortDescription;
-            // this.subtitleEl.value = data.blogEntry.subtitle;
-            //set description
-            const html = data.blogEntry.description;
-            const contentBlock = htmlToDraft(html);
-            if (contentBlock) {
-              const contentState = ContentState.createFromBlockArray(
-                contentBlock.contentBlocks
+        {edit ? (
+          // Edit
+          <Query query={GET_BLOGENTRY} variables={{ id: this.id }}>
+            {({ loading, error, data }) => {
+              if (loading) return <Spinner />;
+              if (error) return <p>Error :(</p>;
+              return (
+                <Mutation
+                  mutation={EDIT_BLOGENTRY}
+                  update={(cache, { data: { updateBlogEntry } }) => {
+                    const { blog } = cache.readQuery({
+                      query: GET_BLOG
+                    });
+                    let editedBlogEntryIndex = blog.findIndex(
+                      blogEntry => blogEntry._id === updateBlogEntry._id
+                    );
+                    blog[editedBlogEntryIndex] = updateBlogEntry;
+                    cache.writeQuery({
+                      query: GET_BLOG,
+                      data: { blog }
+                    });
+                  }}
+                >
+                  {updateBlogEntry => (
+                    <Form
+                      blogEntry={data.blogEntry}
+                      onSubmit={blogEntry => {
+                        updateBlogEntry({
+                          variables: { ...blogEntry }
+                        });
+                      }}
+                    />
+                  )}
+                </Mutation>
               );
-              const editorStateWithContent = EditorState.createWithContent(
-                contentState
-              );
-
-              //if empty
-              if (!editorState.getCurrentContent().hasText()) {
-                this.setState({
-                  editorState: editorStateWithContent
-                });
-              }
-            }
-
-            return (
-              <form className="blog-form">
-                <label>Contenido del blog </label>
-                <Editor
-                  editorState={editorState}
-                  wrapperClassName="wrapper"
-                  editorClassName="editor"
-                  onEditorStateChange={this.onEditorStateChange}
-                />
-                {/* <textarea
-      disabled
-      value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-      /> */}
-              </form>
-            );
-          }}
-        </Query>
+            }}
+          </Query>
+        ) : (
+          // ADD
+          <Mutation
+            mutation={ADD_BLOGENTRY}
+            update={(cache, { data: { createBlogEntry } }) => {
+              const { blog } = cache.readQuery({ query: GET_BLOG });
+              blog.push(createBlogEntry);
+              cache.writeQuery({
+                query: GET_BLOG,
+                data: { blog }
+              });
+            }}
+          >
+            {createBlogEntry => (
+              <Form
+                onSubmit={blogEntry => {
+                  createBlogEntry({
+                    variables: { ...blogEntry }
+                  });
+                }}
+              />
+            )}
+          </Mutation>
+        )}
       </Layout>
     );
   }
