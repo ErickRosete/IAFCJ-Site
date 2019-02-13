@@ -2,16 +2,16 @@ const cellDef = `
     type Cell {
         _id: ID!
         leader: String!
-        address: Address
         phone: String!
         date: String!
+        address: Address
     }
 
     input CellInput{
         leader: String
-        address: AddressInput
         phone: String
         date: String
+        address: ID
     }
 `;
 

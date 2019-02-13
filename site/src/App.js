@@ -22,7 +22,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
+
 import "./App.css";
+
+const client = new ApolloClient({
+  uri: "http://localhost:8000/graphql"
+});
 
 class App extends Component {
   state = {
@@ -44,30 +51,32 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ScrollToTop>
-          <MainNavigation navbarColor={this.state.navbarColor} />
-          <main className="main-content">
-            <Switch>
-              <Redirect from="/" to="/inicio" exact />
-              <Route
-                path="/inicio"
-                render={props => (
-                  <HomePage
-                    {...props}
-                    currentNavbarColor={this.state.navbarColor}
-                    changeNavbarColor={this.changeNavbarColorHandler}
-                  />
-                )}
-              />
-              <Route path="/nuevo" component={IntroPage} />
-              <Route path="/encuentra" component={CellsPage} />
-              <Route path="/eventos" component={EventsPage} />
-              <Route path="/blog" component={BlogPage} exact />
-              <Route path="/blog/:id" component={BlogEntryPage} />
-              <Route path="/videos" component={VideosPage} />
-              <Route path="/conocenos" component={AboutPage} />
-            </Switch>
-          </main>
-          <Footer />
+          <ApolloProvider client={client}>
+            <MainNavigation navbarColor={this.state.navbarColor} />
+            <main className="main-content">
+              <Switch>
+                <Redirect from="/" to="/inicio" exact />
+                <Route
+                  path="/inicio"
+                  render={props => (
+                    <HomePage
+                      {...props}
+                      currentNavbarColor={this.state.navbarColor}
+                      changeNavbarColor={this.changeNavbarColorHandler}
+                    />
+                  )}
+                />
+                <Route path="/nuevo" component={IntroPage} />
+                <Route path="/encuentra" component={CellsPage} />
+                <Route path="/eventos" component={EventsPage} />
+                <Route path="/blog" component={BlogPage} exact />
+                <Route path="/blog/:id" component={BlogEntryPage} />
+                <Route path="/videos" component={VideosPage} />
+                <Route path="/conocenos" component={AboutPage} />
+              </Switch>
+            </main>
+            <Footer />
+          </ApolloProvider>
         </ScrollToTop>
       </BrowserRouter>
     );

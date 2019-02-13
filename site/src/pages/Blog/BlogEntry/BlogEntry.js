@@ -2,41 +2,20 @@ import React, { Component } from "react";
 import Banner from "../../../components/Banner/Banner";
 import { Helmet } from "react-helmet";
 
+import { Query } from "react-apollo";
+import { GET_BLOGENTRY } from "../constants";
+import Spinner from "../../../components/Spinner/Spinner";
+
 import "./BlogEntry.css";
 
 export class BlogEntryPage extends Component {
-  state = {
-    blogEntry: {
-      _id: "1",
-      imageLink:
-        "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-      title: "Título de la entrada de blog",
-      subtitle: '"Subtítulo dummy text"',
-      shortDescription: "",
-      description: `
-      <p> Lucas 14:13 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-      <br /> 
-      <br /> 
-      <br /> 
-      <br /> 
-      <br /> 
-      <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`
-    }
-  };
-
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    this.fetchBlogEntry(id);
-    this.startReftagger();
-  }
-
   startReftagger = () => {
     if (typeof window !== "undefined" && window !== null) {
       if (window.refTagger == null) {
         window.refTagger = {
           settings: {
             bibleVersion: "NVI",
-            socialSharing: ["twitter","facebook"],
+            socialSharing: ["twitter", "facebook"],
             roundCorners: true,
             customStyle: {
               heading: {
@@ -60,52 +39,57 @@ export class BlogEntryPage extends Component {
     }
   };
 
-  fetchBlogEntry = _id => {
-    console.log(_id);
-
-    this.setState({
-      _id
-    });
-  };
-
   render() {
-    const {
-      imageLink,
-      title,
-      subtitle,
-      description,
-      shortDescription
-    } = this.state.blogEntry;
-
     return (
-      <div className="blog-entry">
-        <Helmet>
-          <title>{title} - 2da IAFCJ</title>
-          <meta
-            name="description"
-            content={
-              shortDescription
-                ? shortDescription
-                : `Entrada de blog de IAFCj - ${title}`
-            }
-          />
-        </Helmet>
-        <Banner
-          returnAddress="/blog"
-          white
-          smTitle
-          img={imageLink}
-          title={title}
-        />
-        <h2 className="blog-entry__subtitle">{subtitle}</h2>
-        <div className="blog-entry__description-wrapper">
-          <div
-            className="blog-entry__description"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-        </div>
-        <p className="text-right p-4">The id received is {this.state._id}</p>
-      </div>
+      <Query
+        query={GET_BLOGENTRY}
+        variables={{ id: this.props.match.params.id }}
+        onCompleted={this.startReftagger}
+      >
+        {({ loading, error, data }) => {
+          if (loading) return <Spinner />;
+          if (error) return <p>Error :(</p>;
+          const {
+            imageLink,
+            title,
+            subtitle,
+            description,
+            shortDescription
+          } = data.blogEntry;
+
+          return (
+            <div className="blog-entry">
+              <Helmet>
+                <title>{title} - 2da IAFCJ</title>
+                <meta
+                  name="description"
+                  content={
+                    shortDescription
+                      ? shortDescription
+                      : `Entrada de blog de IAFCj - ${title}`
+                  }
+                />
+              </Helmet>
+              <Banner
+                returnAddress="/blog"
+                white
+                smTitle
+                img={imageLink}
+                title={title}
+              />
+              <h2 className="blog-entry__subtitle">{subtitle}</h2>
+              <div className="blog-entry__description-wrapper">
+                <div
+                  className="blog-entry__description"
+                  dangerouslySetInnerHTML={{
+                    __html: description
+                  }}
+                />
+              </div>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }
