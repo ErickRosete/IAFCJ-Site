@@ -4,8 +4,8 @@ const transformEvent = event => {
   return {
     ...event._doc,
     date: dateToString(event.date),
-    createdAt: dateToString(blogEntry.createdAt),
-    updatedAt: dateToString(blogEntry.updatedAt)
+    createdAt: dateToString(event.createdAt),
+    updatedAt: dateToString(event.updatedAt)
   };
 };
 

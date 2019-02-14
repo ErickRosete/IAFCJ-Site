@@ -44,7 +44,7 @@ module.exports = {
     try {
       const event = await Event.findByIdAndUpdate(
         args.id,
-        { ...args.eventInput },
+        { ...args.eventInput, date: new Date(args.eventInput.date) },
         { new: true }
       );
       return transformEvent(event);

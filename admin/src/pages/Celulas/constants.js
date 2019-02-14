@@ -48,7 +48,7 @@ export const ADD_CELL = gql`
         leader: $leader
         phone: $phone
         date: $date
-        address: $addressId
+        address: $address
       }
     ) {
       _id
@@ -72,7 +72,7 @@ export const EDIT_CELL = gql`
     $leader: String
     $phone: String
     $date: String
-    $addressId: ID
+    $address: ID
   ) {
     updateCell(
       id: $id
@@ -80,7 +80,7 @@ export const EDIT_CELL = gql`
         leader: $leader
         phone: $phone
         date: $date
-        address: $addressId
+        address: $address
       }
     ) {
       _id

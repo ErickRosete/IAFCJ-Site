@@ -11,7 +11,7 @@ const externalRequest = require("./middleware/external-requests");
 const isAuth = require("./middleware/is-auth");
 
 const { sendEmail } = require("./helpers/sendEmail");
-const { saveImage } = require("./helpers/saveImage");
+const { saveImage } = require("./helpers/images");
 
 const app = express();
 

@@ -8,8 +8,9 @@ import "./App.css";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 // import AuthPage from "./pages/Auth/Auth";
 import BlogPage from "./pages/Blog/Blog";
-import BlogFormPage from "./pages/Blog/BlogForm";
+import BlogFormPage from "./pages/Blog/Form/BlogForm";
 import CelulasPage from "./pages/Celulas/Celulas";
+import EventsFormPage from "./pages/Events/Form/EventForm";
 import EventsPage from "./pages/Events/Events";
 import NewsletterPage from "./pages/Newsletter/Newsletter";
 import OrganigramaPage from "./pages/Organigrama/Organigrama";
@@ -65,10 +66,12 @@ class App extends Component {
               {/* {this.state.token ? ( */}
               <React.Fragment>
                 <Switch>
-                  <Route path="/blog/agregar" component={BlogFormPage} />
-                  <Route path="/blog/editar/:id" component={BlogFormPage} />
+                  <Route path="/blog/add" component={BlogFormPage} />
+                  <Route path="/blog/edit/:id" component={BlogFormPage} />
                   <Route path="/blog" component={BlogPage} />
                   <Route path="/celulas" component={CelulasPage} />
+                  <Route path="/events/add" component={EventsFormPage} />
+                  <Route path="/events/edit/:id" component={EventsFormPage} />
                   <Route path="/events" component={EventsPage} />
                   <Route path="/newsletter" component={NewsletterPage} />
                   <Route path="/organigrama" component={OrganigramaPage} />

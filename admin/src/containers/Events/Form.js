@@ -16,7 +16,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 export class Form extends Component {
   constructor(props) {
@@ -24,18 +24,21 @@ export class Form extends Component {
 
     let editorState;
     let title;
-    let subtitle;
-    let shortDescription;
     let imageLink;
+    let shortDescription;
+    let date;
 
-    if (props.blogEntry) {
-      console.log(props.blogEntry);
-      title = props.blogEntry.title ? props.blogEntry.title : "";
-      subtitle = props.blogEntry.subtitle ? props.blogEntry.subtitle : "";
-      shortDescription = props.blogEntry.shortDescription ? props.blogEntry.shortDescription : "";
-      imageLink = props.blogEntry.imageLink ? props.blogEntry.imageLink : "";
+    if (props.event) {
+      console.log(props.event);
+      title = props.event.title ? props.event.title : "";
+      shortDescription = props.event.shortDescription
+        ? props.event.shortDescription
+        : "";
+      imageLink = props.event.imageLink ? props.event.imageLink : "";
+      date = props.event.date ? props.event.date : "";
+
       //editor
-      const html = props.blogEntry.description;
+      const html = props.event.description;
       const contentBlock = htmlToDraft(html);
       if (contentBlock) {
         const contentState = ContentState.createFromBlockArray(
@@ -45,7 +48,7 @@ export class Form extends Component {
       }
     } else {
       title = "";
-      subtitle = "";
+      date = "";
       shortDescription = "";
       imageLink = "";
       editorState = EditorState.createEmpty();
@@ -53,11 +56,11 @@ export class Form extends Component {
 
     this.state = {
       title,
-      subtitle,
+      date,
       shortDescription,
       editorState,
       imageLink,
-      uploadingImage: false,
+      uploadingImage: false
     };
   }
 
@@ -73,9 +76,9 @@ export class Form extends Component {
     });
   };
 
-  changeSubtitleHandler = event => {
+  changeDateHandler = event => {
     this.setState({
-      subtitle: event.target.value
+      date: event.target.value
     });
   };
 
@@ -88,10 +91,8 @@ export class Form extends Component {
   changeImageHandler = event => {
     this.setState({ uploadingImage: true });
 
-    const image = event.target.files[0];
     var formData = new FormData();
-    formData.append("file", image);
-    formData.append("name", image.name);
+    formData.append("file", event.target.files[0]);
 
     // headers: { "Content-Type": "multipart/form-data" },
     fetch(`http://localhost:8000/uploadImage`, {
@@ -112,19 +113,19 @@ export class Form extends Component {
         this.setState({ uploadingImage: false });
         console.log(err);
       });
-  }
+  };
 
-  onSubmitHandler = event => {
-    event.preventDefault();
+  onSubmitHandler = e => {
+    e.preventDefault();
 
     const title = this.state.title;
     if (title === "") {
       return;
     }
 
-    let blogEntry = {
+    let event = {
       title,
-      subtitle: this.state.subtitle,
+      date: this.state.date,
       imageLink: this.state.imageLink,
       shortDescription: this.state.shortDescription,
       description: draftToHtml(
@@ -132,25 +133,25 @@ export class Form extends Component {
       )
     };
 
-    if (this.props.blogEntry) {
-      blogEntry = { id: this.props.blogEntry._id, ...blogEntry };
+    if (this.props.event) {
+      event = { id: this.props.event._id, ...event };
     }
 
-    this.props.onSubmit(blogEntry);
+    this.props.onSubmit(event);
   };
 
   render() {
     const { classes } = this.props;
     return (
-      <form className="blog-form" onSubmit={this.onSubmitHandler}>
-        <Grid container spacing={24}>
+      <form className="event-form" onSubmit={this.onSubmitHandler}>
+        <Grid container spacing={24} justify="center">
           <Grid item xs={12}>
             <TextField
               required
               autoFocus
               className={classes.textfield}
               margin="dense"
-              label="Título"
+              label="Nombre"
               type="text"
               fullWidth
               value={this.state.title}
@@ -160,21 +161,9 @@ export class Form extends Component {
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
-            <TextField
-              className={classes.textfield}
-              margin="dense"
-              label="Subtítulo"
-              type="text"
-              fullWidth
-              value={this.state.subtitle}
-              onChange={this.changeSubtitleHandler}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            {/* image */}
-            <div className={classes.imagefield}>
+          {/* image */}
+          <Grid item xs={12} md={7}>
+            <div className={classes.center}>
               <input
                 accept="image/*"
                 onChange={this.changeImageHandler}
@@ -192,12 +181,40 @@ export class Form extends Component {
                 </Button>
               </label>
 
-              {this.state.imageLink && <div className={classes.imgContainer}>
-                {this.state.uploadingImage ?
-                  <Spinner></Spinner> :
-                  <img height={100} src={this.state.imageLink} alt="blog main"></img>}
-              </div>}
+              {this.state.imageLink && (
+                <div className={classes.imgContainer}>
+                  {this.state.uploadingImage ? (
+                    <Spinner />
+                  ) : (
+                    <img
+                      height={100}
+                      key={this.state.imageLink}
+                      className={classes.img}
+                      src={this.state.imageLink}
+                      alt="evento"
+                    />
+                  )}
+                </div>
+              )}
             </div>
+          </Grid>
+
+          <Grid item xs={12} md={5}>
+            <TextField
+              className={classes.textField}
+              id="datetime-local"
+              label="Fecha"
+              type="datetime-local"
+              value={this.state.date}
+              onChange={this.changeDateHandler}
+              error={this.state.date === ""}
+              helperText={this.state.date === "" ? "Valor Requerido" : ""}
+              required
+              fullWidth
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
           </Grid>
 
           <Grid item xs={12}>
@@ -218,8 +235,8 @@ export class Form extends Component {
                 required
                 error={!this.state.editorState.getCurrentContent().hasText()}
               >
-                Contenido del blog
-          </FormLabel>
+                Descripción del evento
+              </FormLabel>
               <Editor
                 editorState={this.state.editorState}
                 wrapperClassName={classes.wrapper}
@@ -231,7 +248,7 @@ export class Form extends Component {
 
           <Button type="submit" variant="contained" color="primary" autoFocus>
             Guardar
-        </Button>
+          </Button>
         </Grid>
       </form>
     );

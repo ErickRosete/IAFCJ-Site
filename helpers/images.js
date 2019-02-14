@@ -3,7 +3,6 @@ const fs = require("fs");
 
 const handleError = (err, res) => {
     console.log(err)
-
     res
         .status(500)
         .contentType("text/plain")
@@ -11,26 +10,40 @@ const handleError = (err, res) => {
 };
 
 exports.saveImage = (req, res) => {
-    const tempPath = req.file.path;
-    const targetPath = path.join(__dirname, "../public/images", req.file.originalname);
-    const imageLink = `http://localhost:8000/images/${req.file.originalname}`;
+    const imageLink = saveImageAux(req.file, res);
+    res.status(200).json(imageLink);
+}
 
-    const fileExt = path.extname(req.file.originalname).toLowerCase();
+exports.saveImages = (req, res) => {
+    const imageLinks = [];
+    req.files.forEach(file => {
+        const imageLink = saveImageAux(file, res);
+        imageLinks.push(imageLink);
+    });
+    res.status(200).json(imageLinks);
+}
+
+const saveImageAux = (file, res) => {
+    const tempPath = file.path;
+    const targetPath = path.join(__dirname, "../public/images", file.originalname);
+    const imageLink = `http://localhost:8000/images/${file.originalname}`;
+
+    const fileExt = path.extname(file.originalname).toLowerCase();
     if (fileExt === ".png" || fileExt === ".jpg" || fileExt === ".jpeg"
         || fileExt === ".bmp" || fileExt === ".gif") {
         fs.rename(tempPath, targetPath, err => {
             if (err) return handleError(err, res);
             console.log("image uploaded")
-            res.status(200).json(imageLink);
         });
     } else {
         fs.unlink(tempPath, err => {
             if (err) return handleError(err, res);
             console.log("incorrect format")
-
             res.status(403)
                 .contentType("text/plain")
                 .end("Only .png, .jpg, .jpeg, .bmp and .gif files are allowed!");
         });
     }
+
+    return imageLink;
 }

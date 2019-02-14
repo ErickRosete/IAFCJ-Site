@@ -17,7 +17,7 @@ const eventDef = `
         shortDescription: String
         description: String
         date: String
-        address: AddressInput
+        address: ID
     }
 `;
 
