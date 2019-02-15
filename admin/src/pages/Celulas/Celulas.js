@@ -20,13 +20,34 @@ import { Query, Mutation } from "react-apollo";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { GET_CELLS, DELETE_CELL, EDIT_CELL, ADD_CELL } from "./constants"
 
+const key = "AIzaSyAn8wwQMrPlwu9WXVaow-05DZ8YblELc34";
+const placesScript = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=initScript`
+
 export class CellsPage extends Component {
   state = {
+    scriptLoaded: false,
     openDeleteDialog: false,
     openEditDialog: false,
     openAddDialog: false,
-    selectedCell: { _id: ""},
+    selectedCell: { _id: "" },
   };
+
+  componentDidMount() {
+    if (!window.initScript) {
+      window.initScript = this.initScript
+      const gmapScriptEl = document.createElement(`script`)
+      gmapScriptEl.src = placesScript
+      gmapScriptEl.async = true
+      document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+    }
+    else {
+      this.setState({ scriptLoaded: true })
+    }
+  }
+
+  initScript = () => {
+    this.setState({ scriptLoaded: true })
+  }
 
   handleClickOpenDeleteDialog = cell => {
     this.setState({
@@ -121,6 +142,8 @@ export class CellsPage extends Component {
             {updateCell => (
               <FormDialog
                 key={this.state.selectedCell._id}
+                scriptLoaded={this.state.scriptLoaded}
+                apiKey={key}
                 cell={this.state.selectedCell}
                 open={this.state.openEditDialog}
                 onConfirm={(cell) => {
@@ -152,6 +175,8 @@ export class CellsPage extends Component {
             }}>
             {createCell => (
               <FormDialog
+                scriptLoaded={this.state.scriptLoaded}
+                apiKey={key}
                 open={this.state.openAddDialog}
                 onConfirm={(cell) => {
                   createCell({

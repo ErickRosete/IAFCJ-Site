@@ -16,6 +16,7 @@ import NewsletterPage from "./pages/Newsletter/Newsletter";
 import OrganigramaPage from "./pages/Organigrama/Organigrama";
 import VideosPage from "./pages/Videos/Videos";
 
+
 //Providers and context
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";

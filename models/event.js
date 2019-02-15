@@ -18,10 +18,7 @@ const eventSchema = new Schema(
       type: Date,
       required: true
     },
-    address: {
-      type: Schema.Types.ObjectId,
-      ref: "Address"
-    }
+    address: String
   },
   { timestamps: true }
 );

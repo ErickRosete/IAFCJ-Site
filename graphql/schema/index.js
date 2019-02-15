@@ -1,6 +1,5 @@
 const { buildSchema } = require("graphql");
 
-const { addressDef, addressQuery, addressMutation } = require("./address");
 const { authDef, authQuery, authMutation } = require("./auth");
 const { blogEntryDef, blogEntryQuery, blogEntryMutation } = require("./blog-entry");
 const { cellDef, cellQuery, cellMutation } = require("./cell");
@@ -12,7 +11,6 @@ const { videoDef, videoQuery, videoMutation } = require("./video");
 
 
 module.exports = buildSchema(`
-  ${addressDef}
   ${authDef}
   ${blogEntryDef}
   ${cellDef}
@@ -23,7 +21,6 @@ module.exports = buildSchema(`
   ${videoDef}
 
   type RootQuery {
-    ${addressQuery}
     ${authQuery}
     ${blogEntryQuery}
     ${cellQuery}
@@ -35,7 +32,6 @@ module.exports = buildSchema(`
   }
 
   type RootMutation {
-    ${addressMutation}
     ${authMutation}
     ${blogEntryMutation}
     ${cellMutation}

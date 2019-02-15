@@ -6,7 +6,9 @@ const eventDef = `
         shortDescription: String
         description: String!
         date: String!
-        address: Address
+        address: String
+        lat: String
+        lng: String
         createdAt: String!
         updatedAt: String!
     }
@@ -17,7 +19,9 @@ const eventDef = `
         shortDescription: String
         description: String
         date: String
-        address: ID
+        address: String
+        lat: String
+        lng: String
     }
 `;
 

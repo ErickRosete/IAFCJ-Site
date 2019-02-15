@@ -7,13 +7,9 @@ export const GET_CELL = gql`
       leader
       phone
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address
+      lat
+      lng
     }
   }
 `;
@@ -25,13 +21,9 @@ export const GET_CELLS = gql`
       leader
       phone
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address
+      lat
+      lng
     }
   }
 `;
@@ -41,7 +33,7 @@ export const ADD_CELL = gql`
     $leader: String
     $phone: String
     $date: String
-    $addressId: ID
+    $address: String
   ) {
     createCell(
       cellInput: {
@@ -55,13 +47,9 @@ export const ADD_CELL = gql`
       leader
       phone
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address 
+      lat
+      lng
     }
   }
 `;
@@ -72,7 +60,7 @@ export const EDIT_CELL = gql`
     $leader: String
     $phone: String
     $date: String
-    $address: ID
+    $address: String
   ) {
     updateCell(
       id: $id
@@ -87,13 +75,9 @@ export const EDIT_CELL = gql`
       leader
       phone
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address
+      lat
+      lng
     }
   }
 `;

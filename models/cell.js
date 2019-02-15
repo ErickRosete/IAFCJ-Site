@@ -7,10 +7,7 @@ const cellSchema = new Schema({
     type: String,
     required: true
   },
-  address: {
-    type: Schema.Types.ObjectId,
-    ref: "Address"
-  },
+  address: String,
   phone: {
     type: String,
     required: true

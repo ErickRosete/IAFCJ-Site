@@ -9,13 +9,7 @@ export const GET_EVENT = gql`
       shortDescription
       description
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address 
     }
   }
 `;
@@ -29,13 +23,7 @@ export const GET_EVENTS = gql`
       shortDescription
       description
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address 
     }
   }
 `;
@@ -47,7 +35,7 @@ export const ADD_EVENT = gql`
     $shortDescription: String
     $description: String
     $date: String
-    $address: ID
+    $address: String
   ) {
     createEvent(
       eventInput: {
@@ -65,13 +53,7 @@ export const ADD_EVENT = gql`
       shortDescription
       description
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address
     }
   }
 `;
@@ -84,7 +66,7 @@ export const EDIT_EVENT = gql`
     $imageLink: String
     $shortDescription: String
     $description: String
-    $address: ID
+    $address: String
   ) {
     updateEvent(
       id: $id
@@ -103,13 +85,7 @@ export const EDIT_EVENT = gql`
       shortDescription
       description
       date
-      address {
-        street
-        exteriorNumber
-        city
-        country
-        zipCode
-      }
+      address
     }
   }
 `;

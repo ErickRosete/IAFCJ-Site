@@ -4,21 +4,24 @@ const cellDef = `
         leader: String!
         phone: String!
         date: String!
-        address: Address
+        address: String
+        lat: String
+        lng: String
     }
 
     input CellInput{
         leader: String
         phone: String
         date: String
-        address: ID
+        address: String
+        lat: String
+        lng: String
     }
 `;
 
 const cellQuery = `
     cells: [Cell!]!
     cell(id: ID!): Cell!
-
 `;
 
 const cellMutation = `
