@@ -7,7 +7,6 @@ const cellSchema = new Schema({
     type: String,
     required: true
   },
-  address: String,
   phone: {
     type: String,
     required: true
@@ -15,7 +14,11 @@ const cellSchema = new Schema({
   date: {
     type: String,
     required: true
-  }
+  },
+  address: String,
+  googlemaps: String,
+  lat: Number,
+  lng: Number
 });
 
 module.exports = mongoose.model("Cell", cellSchema);

@@ -8,7 +8,7 @@ const eventSchema = new Schema(
       type: String,
       required: true
     },
-    imageLink:String,
+    imageLink: String,
     shortDescription: String,
     description: {
       type: String,
@@ -18,7 +18,10 @@ const eventSchema = new Schema(
       type: Date,
       required: true
     },
-    address: String
+    address: String,
+    googlemaps: String,
+    lat: Number,
+    lng: Number
   },
   { timestamps: true }
 );

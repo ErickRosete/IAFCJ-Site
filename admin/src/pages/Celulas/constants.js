@@ -8,6 +8,7 @@ export const GET_CELL = gql`
       phone
       date
       address
+      googlemaps
       lat
       lng
     }
@@ -22,6 +23,7 @@ export const GET_CELLS = gql`
       phone
       date
       address
+      googlemaps
       lat
       lng
     }
@@ -34,6 +36,9 @@ export const ADD_CELL = gql`
     $phone: String
     $date: String
     $address: String
+    $googlemaps: String
+    $lat: Float
+    $lng: Float
   ) {
     createCell(
       cellInput: {
@@ -41,13 +46,17 @@ export const ADD_CELL = gql`
         phone: $phone
         date: $date
         address: $address
+        googlemaps: $googlemaps
+        lat: $lat
+        lng: $lng
       }
     ) {
       _id
       leader
       phone
       date
-      address 
+      address
+      googlemaps
       lat
       lng
     }
@@ -61,6 +70,9 @@ export const EDIT_CELL = gql`
     $phone: String
     $date: String
     $address: String
+    $googlemaps: String
+    $lat: Float
+    $lng: Float
   ) {
     updateCell(
       id: $id
@@ -69,6 +81,9 @@ export const EDIT_CELL = gql`
         phone: $phone
         date: $date
         address: $address
+        googlemaps: $googlemaps
+        lat: $lat
+        lng: $lng
       }
     ) {
       _id
@@ -76,6 +91,7 @@ export const EDIT_CELL = gql`
       phone
       date
       address
+      googlemaps
       lat
       lng
     }
@@ -96,14 +112,22 @@ export const styles = theme => ({
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    display: "flex"
+    display: "flex",
+    flexDirection: "column"
   },
   fab: {
-    position: "absolute",
+    position: "fixed",
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2
   },
   progress: {
     margin: theme.spacing.unit * 2
+  },
+  textfield: {
+    marginLeft: 8,
+    flex: 1
+  },
+  iconButton: {
+    padding: 10
   }
 });

@@ -7,26 +7,29 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
 //Google Maps
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import MapsSearch from "../../components/Maps/MapsSearch";
 
 export class FormDialog extends Component {
-
   constructor(props) {
     super(props);
 
-    console.log(props)
     let leader = "";
     let phone = "";
     let date = "";
     let address = "";
-    let coords = { lat: 32.457334, lng: -114.793487 }
+    let googlemaps = "";
+    let coords = { lat: 32.457334, lng: -114.793487 };
 
     if (this.props.cell) {
       leader = this.props.cell.leader ? this.props.cell.leader : "";
       phone = this.props.cell.phone ? this.props.cell.phone : "";
       date = this.props.cell.date ? this.props.cell.date : "";
+      googlemaps = this.props.cell.googlemaps ? this.props.cell.googlemaps : "";
       address = this.props.cell.address ? this.props.cell.address : "";
+      coords = this.props.cell.lat
+        ? { lat: this.props.cell.lat, lng: this.props.cell.lng }
+        : { lat: 32.457334, lng: -114.793487 };
     }
 
     this.state = {
@@ -34,40 +37,10 @@ export class FormDialog extends Component {
       phone,
       date,
       address,
+      googlemaps,
       coords
     };
-  }
-
-  componentDidMount() {
-    if (this.state.address) {
-      geocodeByAddress(this.state.address)
-        .then(results => getLatLng(results[0]))
-        .then(coords => {
-          this.setState({
-            coords
-          })
-        })
-    }
-  }
-
-  changeAddressHandler = event => {
-    const address = event.target.value;
-    this.setState({
-      address
-    })
-  };
-
-  searchAddressHandler = () => {
-    geocodeByAddress(this.state.address)
-      .then(results => {
-        return getLatLng(results[0])
-      })
-      .then(coords => {
-        this.setState({
-          coords
-        })
-      })
-      .catch(error => console.log(error));
+    console.log(this.state);
   }
 
   changeLeaderHandler = event => {
@@ -88,12 +61,46 @@ export class FormDialog extends Component {
     });
   };
 
+  changeAddressHandler = event => {
+    this.setState({
+      address: event.target.value
+    });
+  };
+
+  changeGoogleMapsHandler = googlemaps => {
+    this.setState({
+      googlemaps
+    });
+  };
+
+  selectGoogleMapsHandler = googlemaps => {
+    this.setState({
+      googlemaps
+    });
+    this.searchGoogleMapsHandler();
+  };
+
+  searchGoogleMapsHandler = () => {
+    geocodeByAddress(this.state.googlemaps)
+      .then(results => {
+        return getLatLng(results[0]);
+      })
+      .then(coords => {
+        this.setState({
+          coords
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
   onConfirmHandler = () => {
     //validation
-    if (this.state.leader === "" ||
+    if (
+      this.state.leader === "" ||
       this.state.phone === "" ||
       this.state.phone === "" ||
-      this.state.address === "") {
+      this.state.address === ""
+    ) {
       return;
     }
 
@@ -102,13 +109,16 @@ export class FormDialog extends Component {
       leader: this.state.leader,
       phone: this.state.phone,
       date: this.state.date,
-      address: this.state.address
+      address: this.state.address,
+      googlemaps: this.state.googlemaps,
+      ...this.state.coords
     };
 
     //adding id in edit
     if (this.props.cell) {
       cell = { ...cell, id: this.props.cell._id };
     }
+    console.log(cell);
 
     this.props.onConfirm(cell);
   };
@@ -123,8 +133,8 @@ export class FormDialog extends Component {
         {this.props.cell ? (
           <DialogTitle id="form-cell-dialog">Editar Celula</DialogTitle>
         ) : (
-            <DialogTitle id="form-cell-dialog">Añadir Celula</DialogTitle>
-          )}
+          <DialogTitle id="form-cell-dialog">Añadir Celula</DialogTitle>
+        )}
 
         <DialogContent>
           <TextField
@@ -166,15 +176,31 @@ export class FormDialog extends Component {
             helperText={this.state.date === "" ? "Valor Requerido" : ""}
           />
 
-          {this.props.scriptLoaded &&
-            <MapsSearch
-              address={this.state.address}
-              onChange={this.changeAddressHandler}
-              onSearch={this.searchAddressHandler}
-              coords={this.state.coords}
-              apiKey={this.props.apikey} />}
+          <TextField
+            required
+            autoFocus
+            margin="dense"
+            label="Dirección"
+            type="text"
+            fullWidth
+            value={this.state.address}
+            onChange={this.changeAddressHandler}
+            error={this.state.address === ""}
+            helperText={this.state.address === "" ? "Valor Requerido" : ""}
+          />
 
+          {this.props.scriptLoaded && (
+            <MapsSearch
+              googlemaps={this.state.googlemaps}
+              coords={this.state.coords}
+              onChange={this.changeGoogleMapsHandler}
+              onSelect={this.selectGoogleMapsHandler}
+              onSearch={this.searchGoogleMapsHandler}
+              apiKey={this.props.apikey}
+            />
+          )}
         </DialogContent>
+
         <DialogActions>
           <Button onClick={this.props.onCancel} color="primary">
             Cancelar

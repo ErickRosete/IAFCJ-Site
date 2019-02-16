@@ -5,8 +5,9 @@ const cellDef = `
         phone: String!
         date: String!
         address: String
-        lat: String
-        lng: String
+        googlemaps: String
+        lat: Float
+        lng: Float
     }
 
     input CellInput{
@@ -14,8 +15,9 @@ const cellDef = `
         phone: String
         date: String
         address: String
-        lat: String
-        lng: String
+        googlemaps: String
+        lat: Float
+        lng: Float
     }
 `;
 

@@ -7,8 +7,9 @@ const eventDef = `
         description: String!
         date: String!
         address: String
-        lat: String
-        lng: String
+        googlemaps: String
+        lat: Float
+        lng: Float
         createdAt: String!
         updatedAt: String!
     }
@@ -20,8 +21,9 @@ const eventDef = `
         description: String
         date: String
         address: String
-        lat: String
-        lng: String
+        googlemaps: String
+        lat: Float
+        lng: Float
     }
 `;
 

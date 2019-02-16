@@ -9,7 +9,10 @@ export const GET_EVENT = gql`
       shortDescription
       description
       date
-      address 
+      address
+      googlemaps
+      lat
+      lng
     }
   }
 `;
@@ -23,7 +26,10 @@ export const GET_EVENTS = gql`
       shortDescription
       description
       date
-      address 
+      address
+      googlemaps
+      lat
+      lng
     }
   }
 `;
@@ -36,6 +42,9 @@ export const ADD_EVENT = gql`
     $description: String
     $date: String
     $address: String
+    $googlemaps: String
+    $lat: Float
+    $lng: Float
   ) {
     createEvent(
       eventInput: {
@@ -45,6 +54,9 @@ export const ADD_EVENT = gql`
         description: $description
         date: $date
         address: $address
+        googlemaps: $googlemaps
+        lat: $lat
+        lng: $lng
       }
     ) {
       _id
@@ -54,6 +66,9 @@ export const ADD_EVENT = gql`
       description
       date
       address
+      googlemaps
+      lat
+      lng
     }
   }
 `;
@@ -67,6 +82,9 @@ export const EDIT_EVENT = gql`
     $shortDescription: String
     $description: String
     $address: String
+    $googlemaps: String
+    $lat: Float
+    $lng: Float
   ) {
     updateEvent(
       id: $id
@@ -77,6 +95,9 @@ export const EDIT_EVENT = gql`
         description: $description
         date: $date
         address: $address
+        googlemaps: $googlemaps
+        lat: $lat
+        lng: $lng
       }
     ) {
       _id
@@ -86,6 +107,9 @@ export const EDIT_EVENT = gql`
       description
       date
       address
+      googlemaps
+      lat
+      lng
     }
   }
 `;
