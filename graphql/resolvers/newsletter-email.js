@@ -22,8 +22,15 @@ module.exports = {
   },
 
   createNewsletterEmail: async args => {
+    const newsletterEmailInDB = await NewsletterEmail.findOne({
+      email: args.email.toLowerCase()
+    });
+    if (newsletterEmailInDB) {
+      return { ...newsletterEmailInDB._doc };
+    }
+
     const newsletterEmail = NewsletterEmail({
-      email: args.email
+      email: args.email.toLowerCase()
     });
 
     try {

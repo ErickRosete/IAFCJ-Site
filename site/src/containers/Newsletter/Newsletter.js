@@ -1,67 +1,75 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
-import "./Newsletter.css"
+import { Mutation } from "react-apollo";
+import "./Newsletter.css";
+import { ADD_NEWSLETTER_EMAIL } from "./constants";
+import Alert from "react-bootstrap/Alert";
 
 export class Newsletter extends Component {
+  state = {
+    showAlert: false,
+    email: ""
+  };
 
-    constructor(props) {
-        super(props);
-        this.emailEl = React.createRef();
-    }
+  emailHandler = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
 
-    submitHandler = event => {
-        event.preventDefault();
-        const email = this.emailEl.current.value;
+  showAlertHandler = () => {
+    this.setState({ showAlert: true, email: "" });
+    setTimeout(this.hideAlertHandler, 1500);
+  };
 
-        //validation
-        if (email.trim().length === 0) {
-            return;
-        }
+  hideAlertHandler = () => {
+    this.setState({ showAlert: false });
+  };
 
-        const requestBody = {
-            email,
-        };
-
-        console.log(requestBody);
-
-        // fetch("http://localhost:8000/sendEmail", {
-        //     method: "POST",
-        //     body: JSON.stringify(requestBody),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // })
-        //     .then(res => {
-        //         if (res.status !== 200 && res.status !== 201) {
-        //             throw new Error("Failed!");
-        //         }
-        //         return res.json();
-        //     })
-        //     .then(resData => {
-        //         console.log(resData);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
-    };
-
-    render() {
-        return (
-            <div className="newsletter">
-                <h1>
-                    Suscribete a nuestro newsletter
-                </h1>
-                <Form onSubmit={this.submitHandler} className="newsletter__form">
-                    <Form.Control type="email"
-                        ref={this.emailEl}
-                        plaintext
-                        required
-                        placeholder="Ingresa tu correo electrónico" />
-                    <Button type="submit" variant="primary">Suscribir!</Button>
-                </Form>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="newsletter">
+        <h1>Suscribete a nuestro newsletter</h1>
+        <Mutation mutation={ADD_NEWSLETTER_EMAIL}>
+          {createNewsletterEmail => (
+            <Form
+              className="newsletter__form"
+              onSubmit={event => {
+                event.preventDefault();
+                if (this.state.email === "") return;
+                createNewsletterEmail({
+                  variables: { email: this.state.email }
+                });
+                this.showAlertHandler();
+              }}
+            >
+              <Form.Control
+                type="email"
+                onChange={this.emailHandler}
+                value={this.state.email}
+                plaintext
+                required
+                placeholder="Ingresa tu correo electrónico"
+              />
+              <Button type="submit" variant="primary">
+                Suscribir!
+              </Button>
+            </Form>
+          )}
+        </Mutation>
+        {this.state.showAlert && (
+          <Alert
+            dismissible
+            onClose={this.hideAlertHandler}
+            className="newsletter__alert"
+            variant="success"
+          >
+            Correo electronico añadido correctamente
+          </Alert>
+        )}
+      </div>
+    );
+  }
 }
 
-export default Newsletter
+export default Newsletter;
