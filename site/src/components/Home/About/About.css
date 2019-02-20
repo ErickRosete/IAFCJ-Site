@@ -41,11 +41,22 @@
     padding-top: 3rem;
 }
 
+.home__about .btn {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 600px) {
     .home__about-logo {
         width: 5rem;
         height: 5rem;
         margin-right: 2rem;
         display: block;
+    }
+    .home__about .btn {
+        font-size: 1.5rem;
+    }
+    .home__about .btn {
+        margin-top: 2rem
     }
 }

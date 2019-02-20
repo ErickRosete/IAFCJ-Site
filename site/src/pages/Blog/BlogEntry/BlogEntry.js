@@ -6,6 +6,8 @@ import { Query } from "react-apollo";
 import { GET_BLOGENTRY } from "../constants";
 import Spinner from "../../../components/Spinner/Spinner";
 
+import Layout from "../../../components/Layout/Layout";
+
 import "./BlogEntry.css";
 
 export class BlogEntryPage extends Component {
@@ -41,55 +43,57 @@ export class BlogEntryPage extends Component {
 
   render() {
     return (
-      <Query
-        query={GET_BLOGENTRY}
-        variables={{ id: this.props.match.params.id }}
-        onCompleted={this.startReftagger}
-      >
-        {({ loading, error, data }) => {
-          if (loading) return <Spinner />;
-          if (error) return <p>Error :(</p>;
-          const {
-            imageLink,
-            title,
-            subtitle,
-            description,
-            shortDescription
-          } = data.blogEntry;
+      <Layout>
+        <Query
+          query={GET_BLOGENTRY}
+          variables={{ id: this.props.match.params.id }}
+          onCompleted={this.startReftagger}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <Spinner />;
+            if (error) return <p>Error :(</p>;
+            const {
+              imageLink,
+              title,
+              subtitle,
+              description,
+              shortDescription
+            } = data.blogEntry;
 
-          return (
-            <div className="blog-entry">
-              <Helmet>
-                <title>{title} - 2da IAFCJ</title>
-                <meta
-                  name="description"
-                  content={
-                    shortDescription
-                      ? shortDescription
-                      : `Entrada de blog de IAFCj - ${title}`
-                  }
+            return (
+              <div className="blog-entry">
+                <Helmet>
+                  <title>{title} - 2da IAFCJ</title>
+                  <meta
+                    name="description"
+                    content={
+                      shortDescription
+                        ? shortDescription
+                        : `Entrada de blog de IAFCj - ${title}`
+                    }
+                  />
+                </Helmet>
+                <Banner
+                  returnAddress="/blog"
+                  white
+                  smTitle
+                  img={imageLink}
+                  title={title}
                 />
-              </Helmet>
-              <Banner
-                returnAddress="/blog"
-                white
-                smTitle
-                img={imageLink}
-                title={title}
-              />
-              <h2 className="blog-entry__subtitle">{subtitle}</h2>
-              <div className="blog-entry__description-wrapper">
-                <div
-                  className="blog-entry__description"
-                  dangerouslySetInnerHTML={{
-                    __html: description
-                  }}
-                />
+                <h2 className="blog-entry__subtitle">{subtitle}</h2>
+                <div className="blog-entry__description-wrapper">
+                  <div
+                    className="blog-entry__description"
+                    dangerouslySetInnerHTML={{
+                      __html: description
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        }}
-      </Query>
+            );
+          }}
+        </Query>
+      </Layout>
     );
   }
 }

@@ -116,8 +116,9 @@ export class Contact extends Component {
                         ref={this.topicEl}
                         as="select"
                       >
-                        <option>Dudas Generales</option>
-                        <option>Consejos</option>
+                        <option>Asesoría matrimonial</option>
+                        <option>Asesoría Espiritual </option>
+                        <option>Asesoría Familiar </option>
                         <option>Problemas con el sitio</option>
                       </Form.Control>
                     </Col>

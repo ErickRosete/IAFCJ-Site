@@ -12,7 +12,7 @@
 
 .home__intro-cover {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     top: 0;
     left: 0;
     width: 100%;
@@ -20,7 +20,6 @@
 }
 
 .home__intro-logo {
-    filter: brightness(0) invert(1);
     background-color: transparent;
     max-width: 35%;
     position: absolute;
@@ -65,10 +64,18 @@
     margin: 0.5rem;
 }
 
-.home__intro-location h3 {
-    font-size: 1rem;
+.home__intro-action-bar {
+    display: flex;
+    justify-content: flex-start
+}
+
+.home__intro-action-bar .btn {
+    margin-right: 0.3rem;
+}
+
+.home__intro-action-bar h3 {
+    font-size: 0.75rem;
     margin: 0;
-    padding: 0 2rem;
     text-align: center;
     color: white;
 }
@@ -90,8 +97,12 @@
     .home__intro-time h2 {
         font-size: 2rem;
     }
-    .home__intro-location h3 {
+    .home__intro-action-bar h3 {
         font-size: 1.5rem;
+        padding: 0 2rem;
+    }
+    .home__intro-action-bar .btn {
+        margin-right: 1rem;
     }
 }
 

@@ -2,13 +2,16 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./About.css";
 
+import Button from "react-bootstrap/Button";
+import Link from "react-router-dom/Link";
+
 import baile1620w from "../../../assets/images/landing-page/baile-1620w.jpg";
 import baile800w from "../../../assets/images/landing-page/baile-800w.jpg";
 import baile400w from "../../../assets/images/landing-page/baile-400w.jpg";
 
-import logo500w from "../../../assets/images/landing-page/logo-500w.png";
-import logo250w from "../../../assets/images/landing-page/logo-250w.png";
-import logo120w from "../../../assets/images/landing-page/logo-120w.png";
+import logo500w from "../../../assets/images/logos/logo-500w.png";
+import logo250w from "../../../assets/images/logos/logo-250w.png";
+import logo120w from "../../../assets/images/logos/logo-120w.png";
 
 const about = () => {
   return (
@@ -38,15 +41,16 @@ const about = () => {
             </div>
             <div className="home__about-text">
               <p>
-                Somos una congregación de 7 iglesias ubicadas en san luis rio
-                colorado comprometidas con ayudar a quienes lo necesiten
-              </p>
-              <p>
-                "Eramos gente que andaba en la oscuridad... hasta que hubo
-                esperanza, hubo fe, hubo la promesa del Salvador. Dios amó tanto
-                que nos envió a su único hijo."
+                Ser una iglesia sana, vivificada en el Espiritu Santo,
+                fundamentada en apóstoles y profetas, siendo la principal piedra
+                del ángulo JESUCRISTO mismo, con la mision de llevar el
+                evangelio a toda persona, ejercitándonos en el amor y las buenas
+                obras, sirviendo a Dios en Santidad.
               </p>
             </div>
+            <Link to="/conocenos">
+              <Button variant="primary">Conócenos</Button>
+            </Link>
           </div>
         </Col>
       </Row>

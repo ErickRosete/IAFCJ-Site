@@ -29,4 +29,5 @@
     background-image: none;
     border-color: transparent;
     margin: 0;
+    transition: background-color 200ms linear;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import VideosList from "../components/Videos/VideosList/VideosList";
+import VideosList from "../../components/Videos/VideosList/VideosList";
+import Layout from "../../components/Layout/Layout";
 import { Helmet } from "react-helmet";
 
 import "./Videos.css";
@@ -39,17 +40,19 @@ export class VideosPage extends Component {
   };
   render() {
     return (
-      <div className="videos">
-        <Helmet>
-          <title>Videos - IAFCJ</title>
-          <meta
-            name="description"
-            content="Mira nuestros videos y conoce más de nuestra iglesia y Jesús."
-          />
-        </Helmet>
-        <h1 className="videos__title">Videos de 2da IAFCJ</h1>
-        <VideosList videos={this.state.videos} />
-      </div>
+      <Layout>
+        <div className="videos">
+          <Helmet>
+            <title>Videos - IAFCJ</title>
+            <meta
+              name="description"
+              content="Mira nuestros videos y conoce más de nuestra iglesia y Jesús."
+            />
+          </Helmet>
+          <h1 className="videos__title">Videos de 2da IAFCJ</h1>
+          <VideosList videos={this.state.videos} />
+        </div>
+      </Layout>
     );
   }
 }

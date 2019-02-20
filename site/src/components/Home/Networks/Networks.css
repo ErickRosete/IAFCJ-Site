@@ -1,10 +1,53 @@
-
-.home__networks-header {
-    background-color: #f7bd1d;
-    padding-top: 10vh;
+.home__networks-list {
+    text-align: center;
+    color: white;
+    background-color: #363636;
 }
 
-.home__networks-header h2 {
-    padding: 3vh 3vw;
+.home__networks-list p {
+    margin: 0;
+    font-style: italic;
+}
+
+.home__networks-list h3 {
+    margin: 0;
+}
+
+.home__networks-leader {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.home__networks-img-containers {
+    display: flex;
+    align-items: center;
+    max-height: 25rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.home__networks-img-containers img {
+    width: 100%;
+    -webkit-filter: grayscale(50%);
+    filter: grayscale(50%);
+}
+
+.home__networks-leader-info {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+}
+
+.home__networks-info {
+    background-color: #f7bd1d;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.home__networks-info p {
+    font-style: italic;
     margin: 0;
 }

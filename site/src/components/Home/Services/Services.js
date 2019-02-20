@@ -16,17 +16,13 @@ const Services = () => {
         >
           <h2>Servicios</h2>
           <ul>
+            <li className="selected">Consejería familiar y matrimonial</li>
+            <li>Guía espiritual</li>
+            <li>Ayuda a enfermos</li>
             <li>
-              <a className="selected" href="/">
-                Ayuda a enfermos
-              </a>
+              Ayuda a familias Vulnerables, inmigrantes o de bajos recursos.
             </li>
-            <li>
-              <a href="/">Personas Vulnerables</a>
-            </li>
-            <li>
-              <a href="/">Personas de la tercera edad</a>
-            </li>
+            <li>Asistencia a Personas de la tercera edad</li>
           </ul>
         </Col>
         <Col sm={6} xs={12} className="home__services-details">

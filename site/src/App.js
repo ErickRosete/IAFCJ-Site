@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
-import HomePage from "./pages/Home";
-import IntroPage from "./pages/Intro";
-import CellsPage from "./pages/Cells";
-import EventsPage from "./pages/Events";
+import HomePage from "./pages/Home/Home";
+import IntroPage from "./pages/Intro/Intro";
+import CellsPage from "./pages/Cells/Cells";
+import EventsPage from "./pages/Events/Events";
 import BlogPage from "./pages/Blog/Blog";
 import BlogEntryPage from "./pages/Blog/BlogEntry/BlogEntry";
-import VideosPage from "./pages/Videos";
-import AboutPage from "./pages/About";
+import VideosPage from "./pages/Videos/Videos";
+import AboutPage from "./pages/About/About";
 
-import MainNavigation from "./components/MainNavigation/MainNavigation";
 import ScrollToTop from "./containers/ScrollToTop/ScrollToTop";
 import Footer from "./components/Footer/Footer";
 
@@ -32,14 +31,6 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
-  state = {
-    navbarColor: "black"
-  };
-
-  changeNavbarColorHandler = color => {
-    this.setState({ navbarColor: color });
-  };
-
   render() {
     library.add([
       faFacebook,
@@ -52,29 +43,17 @@ class App extends Component {
       <BrowserRouter>
         <ScrollToTop>
           <ApolloProvider client={client}>
-            <MainNavigation navbarColor={this.state.navbarColor} />
-            <main className="main-content">
-              <Switch>
-                <Redirect from="/" to="/inicio" exact />
-                <Route
-                  path="/inicio"
-                  render={props => (
-                    <HomePage
-                      {...props}
-                      currentNavbarColor={this.state.navbarColor}
-                      changeNavbarColor={this.changeNavbarColorHandler}
-                    />
-                  )}
-                />
-                <Route path="/nuevo" component={IntroPage} />
-                <Route path="/encuentra" component={CellsPage} />
-                <Route path="/eventos" component={EventsPage} />
-                <Route path="/blog" component={BlogPage} exact />
-                <Route path="/blog/:id" component={BlogEntryPage} />
-                <Route path="/videos" component={VideosPage} />
-                <Route path="/conocenos" component={AboutPage} />
-              </Switch>
-            </main>
+            <Switch>
+              <Redirect from="/" to="/inicio" exact />
+              <Route path="/inicio" component={HomePage} />
+              <Route path="/nuevo" component={IntroPage} />
+              <Route path="/encuentra" component={CellsPage} />
+              <Route path="/eventos" component={EventsPage} />
+              <Route path="/blog/:id" component={BlogEntryPage} />
+              <Route path="/blog" component={BlogPage} />
+              <Route path="/videos" component={VideosPage} />
+              <Route path="/conocenos" component={AboutPage} />
+            </Switch>
             <Footer />
           </ApolloProvider>
         </ScrollToTop>
