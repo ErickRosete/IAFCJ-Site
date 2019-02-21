@@ -1,0 +1,27 @@
+.network__card {
+    width: 40rem;
+    max-width: 90%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    -webkit-box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.75);
+}
+
+.network__card-img-container {
+    max-width: 30%;
+}
+
+.network__card img {
+    width: 100%;
+    height: auto;
+}
+
+.network__card-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;    
+    align-items: center;
+    justify-content: center;
+}

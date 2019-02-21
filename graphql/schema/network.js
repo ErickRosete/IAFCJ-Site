@@ -1,14 +1,14 @@
 const networkDef = `
     type Network {
         _id: ID!
+        name: String!
         leader: String!
-        category: String!
         imageLink: String
     }
 
     input NetworkInput{
+        name: String
         leader: String
-        category: String
         imageLink: String
     }
 `;

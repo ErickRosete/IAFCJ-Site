@@ -15,7 +15,7 @@ import EventsPage from "./pages/Events/Events";
 import NewsletterPage from "./pages/Newsletter/Newsletter";
 import OrganigramaPage from "./pages/Organigrama/Organigrama";
 import VideosPage from "./pages/Videos/Videos";
-
+import NetworksPage from "./pages/Networks/Networks";
 
 //Providers and context
 import { ApolloProvider } from "react-apollo";
@@ -50,7 +50,7 @@ class App extends Component {
         useNextVariants: true
       }
     });
-    
+
     return (
       <BrowserRouter>
         <AuthContext.Provider
@@ -67,6 +67,7 @@ class App extends Component {
               {/* {this.state.token ? ( */}
               <React.Fragment>
                 <Switch>
+                  <Route path="/networks" component={NetworksPage} />
                   <Route path="/blog/add" component={BlogFormPage} />
                   <Route path="/blog/edit/:id" component={BlogFormPage} />
                   <Route path="/blog" component={BlogPage} />

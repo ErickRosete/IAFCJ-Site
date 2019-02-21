@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 
 //Icons
 import EventIcon from "@material-ui/icons/Event";
+import NetworkIcon from "@material-ui/icons/List";
 import CellIcon from "@material-ui/icons/LocationOn";
 import BlogIcon from "@material-ui/icons/CollectionsBookmark"
 import MemberIcon from "@material-ui/icons/Person";
@@ -55,9 +56,10 @@ const ResponsiveDrawer = props => {
     { id: 1, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
     { id: 2, icon: <BlogIcon />, text: "Blog", linkTo: "/blog" },
     { id: 3, icon: <CellIcon />, text: "Celulas", linkTo: "/celulas" },
-    { id: 4, icon: <MemberIcon />, text: "Organigrama", linkTo: "/organigrama" },
-    { id: 5, icon: <NewsletterIcon />, text: "Newsletter", linkTo: "/newsletter" },
-    { id: 6, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
+    { id: 4, icon: <NetworkIcon />, text: "Redes", linkTo: "/networks" },
+    { id: 5, icon: <MemberIcon />, text: "Organigrama", linkTo: "/organigrama" },
+    { id: 6, icon: <NewsletterIcon />, text: "Newsletter", linkTo: "/newsletter" },
+    { id: 7, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
   const { classes, theme } = props;
