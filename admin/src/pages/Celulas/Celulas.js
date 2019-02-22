@@ -6,7 +6,7 @@ import { styles } from "./constants";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-import DeleteDialog from "../../components/Cells/DeleteDialog";
+import DeleteDialog from "../../components/Dialog/DeleteDialog";
 import FormDialog from "../../containers/Cells/FormDialog";
 import Table from "../../components/Cells/Table";
 import Fab from "@material-ui/core/Fab";

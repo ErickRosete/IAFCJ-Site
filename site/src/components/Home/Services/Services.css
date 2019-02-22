@@ -10,7 +10,6 @@
 .home__services-list-container {
     background-color: #f7bd1d;
     text-align: left;
-    padding-bottom: 15vh;
 }
 
 .home__services-list-container h2, h3 {
@@ -53,7 +52,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    max-height: 60vh;
+    max-height: 70vh;
     margin-bottom: 2rem;
 }
 

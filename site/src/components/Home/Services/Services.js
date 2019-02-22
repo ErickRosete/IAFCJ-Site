@@ -12,7 +12,7 @@ const Services = () => {
         <Col
           sm={3}
           xs={12}
-          className="home__services-list-container equal-height-col"
+          className="home__services-list-container"
         >
           <h2>Servicios</h2>
           <ul>
@@ -26,10 +26,10 @@ const Services = () => {
           </ul>
         </Col>
         <Col sm={6} xs={12} className="home__services-details">
-          <h2>Ayuda a enfermos</h2>
+          <h2>Ayuda a familias Vulnerables</h2>
           <p>
             En nuestra iglesia nos preocupamos por nuestra comunidad y ofrecemos
-            ayuda a personas y a organizaciones de pacientes con enfermedades.
+            ayuda a familias Vulnerables, inmigrantes o de bajos recursos.
           </p>
         </Col>
         <Col sm={3} xs={12} className="home__services-img-container">

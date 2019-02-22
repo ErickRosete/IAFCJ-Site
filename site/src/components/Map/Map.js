@@ -1,26 +1,18 @@
 import React from "react";
-import "./Map.css";
+import Marker from "./Marker";
+import GoogleMapReact from "google-map-react";
 
-const Map = () => {
+const Map = props => {
+  const key = "AIzaSyAn8wwQMrPlwu9WXVaow-05DZ8YblELc34";
   return (
-    <div id="map" className="google-maps">
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://maps.google.com/maps?q=Avenida%20Colima%20y%201ra.%20San%20Luis%20Rio%20Colorado%2C%20Son"
+    <div id="map" style={{ height: "100%", minHeight: "60vh", width: "100%" }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key }}
+        center={[props.coords.lat, props.coords.lng]}
+        defaultZoom={17}
       >
-        <iframe
-          width="600"
-          height="200"
-          title="map_network"
-          id="gmap_canvas"
-          src="https://maps.google.com/maps?q=Avenida%20Colima%20y%201ra.%20San%20Luis%20Rio%20Colorado%2C%20Son.&t=&z=13&ie=UTF8&iwloc=&output=embed"
-          frameBorder="0"
-          scrolling="no"
-          marginHeight="0"
-          marginWidth="0"
-        />
-      </a>
+        <Marker {...props.coords} />
+      </GoogleMapReact>
     </div>
   );
 };

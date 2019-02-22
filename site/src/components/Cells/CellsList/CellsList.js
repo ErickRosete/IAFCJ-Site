@@ -6,8 +6,8 @@ import { Container, Row, Col } from "react-bootstrap";
 const cellsList = props => {
   const cells = props.cells.map(cell => {
     return (
-      <Col key={cell._id} md={4}>
-        <Cell cell={cell} />
+      <Col className="mb-4" key={cell._id} md={4}>
+        <Cell changeCoords={props.changeCoords} cell={cell} />
       </Col>
     );
   });

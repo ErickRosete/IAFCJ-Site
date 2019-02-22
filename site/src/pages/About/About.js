@@ -6,6 +6,10 @@ import banner800w from "../../assets/images/About/about-banner-800w.jpg";
 import banner1620w from "../../assets/images/About/about-banner-1620w.jpg";
 
 import Layout from "../../components/Layout/Layout";
+import { Container, Row, Col } from "react-bootstrap";
+import { Query } from "react-apollo";
+import { GET_MEMBERS } from "./constants";
+import Spinner from "../../components/Spinner/Spinner";
 
 import { Helmet } from "react-helmet";
 
@@ -33,11 +37,11 @@ export class AboutPage extends Component {
           />
           <div className="about__summary">
             <p className="about__summary-par1">
-              Somos una congregación de 7 iglesias ubicadas en san luis rio
-              colorado comprometidas con ayudar a quienes lo necesiten "Eramos
-              gente que andaba en la oscuridad... hasta que hubo esperanza, hubo
-              fe, hubo la promesa del Salvador. Dios amó tanto que nos envió a
-              su único hijo "
+              Somos una iglesia sana, vivificada en el Espiritu Santo,
+              fundamentada en apóstoles y profetas, siendo la principal piedra
+              del ángulo JESUCRISTO mismo, con la mision de llevar el evangelio
+              a toda persona, ejercitándonos en el amor y las buenas obras,
+              sirviendo a Dios en Santidad.
             </p>
             <p className="about__summary-par2">
               ... hasta que hubo esperanza, hubo fe, hubo la promesa del
@@ -46,6 +50,31 @@ export class AboutPage extends Component {
           </div>
           <hr className="about__divider" />
         </div>
+        <Container className="about__members">
+          <h2 className="about__members-title">Nuestros miembros</h2>
+          <Query query={GET_MEMBERS}>
+            {({ loading, error, data }) => {
+              if (loading) return <Spinner />;
+              if (error) return <p>Error :(</p>;
+
+              return data.members.map(member => {
+                return (
+                  <Row key={member._id} className="about__member">
+                    <Col xs={6} md={4}>
+                      <img src={member.imageLink} alt={member.name} />
+                    </Col>
+                    <Col xs={6} md={8}>
+                      <h3 className="mt-0">{member.name}</h3>
+                      <h4>{member.job}</h4>
+                      <p>{member.description}</p>
+                    </Col>
+                    <hr className="about__members-divider" />
+                  </Row>
+                );
+              });
+            }}
+          </Query>
+        </Container>
       </Layout>
     );
   }

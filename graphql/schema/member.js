@@ -4,12 +4,14 @@ const memberDef = `
         name: String!
         job: String!
         description: String!
+        imageLink: String
     }
 
     input MemberInput {
         name: String
         job: String
         description: String
+        imageLink: String
     }
 `;
 

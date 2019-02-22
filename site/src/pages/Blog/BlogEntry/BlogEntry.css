@@ -3,7 +3,8 @@
     color: #a6a6a6;
     font-weight: normal;
     text-align: center;
-    margin: 4rem 0;
+    margin: 4rem auto;
+    width: 90%;
 }
 
 .blog-entry__description-wrapper {
@@ -17,6 +18,20 @@
     line-height: 1.6;
 }
 
-.blog-entry__description a{
+.blog-entry__description a {
     color: #00a7ff;
+    font-size: inherit;
+}
+
+.blog-entry__description span {
+    font-size: inherit;
+}
+
+@media only screen and (min-width: 600px) {
+    .blog-entry__subtitle {
+        width: 60%;
+    }
+    .blog-entry__description {
+        width: 60%;
+    }
 }

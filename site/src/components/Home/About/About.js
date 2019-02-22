@@ -41,7 +41,7 @@ const about = () => {
             </div>
             <div className="home__about-text">
               <p>
-                Ser una iglesia sana, vivificada en el Espiritu Santo,
+                Somos una iglesia sana, vivificada en el Espiritu Santo,
                 fundamentada en apóstoles y profetas, siendo la principal piedra
                 del ángulo JESUCRISTO mismo, con la mision de llevar el
                 evangelio a toda persona, ejercitándonos en el amor y las buenas

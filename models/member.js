@@ -14,7 +14,8 @@ const memberSchema = new Schema({
   description: {
     type: String,
     required: true
-  }
+  },
+  imageLink: String
 });
 
 module.exports = mongoose.model("Member", memberSchema);

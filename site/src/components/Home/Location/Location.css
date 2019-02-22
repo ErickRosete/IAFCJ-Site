@@ -1,10 +1,13 @@
-
 .home__location-header {
-    background-color: #f7bd1d;
-    padding-top: 10vh;
+    background-color: #363636;
+    padding: 5vh 0;
 }
 
 .home__location-header h2 {
-    padding: 3vh 3vw;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    font-size: 3rem;
     margin: 0;
 }

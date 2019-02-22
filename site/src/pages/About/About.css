@@ -20,6 +20,23 @@
     border-top: 5px solid #00a7ff;
 }
 
+.about__members-title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.about__members-divider {
+    width: 100%;
+    border-top: 3px solid lightgray;
+}
+
+.about__member img {
+    width: 100%;
+    height: 100%;
+}
+
 @media screen and (min-width: 600px) {
     .about__summary-par1 {
         width: 65%;

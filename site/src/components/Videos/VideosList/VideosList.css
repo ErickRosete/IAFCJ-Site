@@ -4,4 +4,5 @@
 
 .videos__list-col {
     margin-bottom: 2rem;
+    min-height: 40vh;
 }

@@ -17,9 +17,11 @@ export const GET_BLOG = gql`
   {
     blog {
       _id
+      _id
       title
-      subtitle
       imageLink
+      subtitle
+      shortDescription
     }
   }
 `;

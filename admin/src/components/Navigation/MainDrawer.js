@@ -16,12 +16,14 @@ import { NavLink } from "react-router-dom";
 import EventIcon from "@material-ui/icons/Event";
 import NetworkIcon from "@material-ui/icons/List";
 import CellIcon from "@material-ui/icons/LocationOn";
-import BlogIcon from "@material-ui/icons/CollectionsBookmark"
+import BlogIcon from "@material-ui/icons/CollectionsBookmark";
 import MemberIcon from "@material-ui/icons/Person";
 import VideoIcon from "@material-ui/icons/VideoLibrary";
 import NewsletterIcon from "@material-ui/icons/Email";
 
-import logo from "../../assets/images/logo/logo.png";
+import logo500w from "../../assets/images/logos/logo-500w.png";
+import logo250w from "../../assets/images/logos/logo-250w.png";
+import logo120w from "../../assets/images/logos/logo-120w.png";
 
 const drawerWidth = 241;
 
@@ -57,8 +59,18 @@ const ResponsiveDrawer = props => {
     { id: 2, icon: <BlogIcon />, text: "Blog", linkTo: "/blog" },
     { id: 3, icon: <CellIcon />, text: "Celulas", linkTo: "/celulas" },
     { id: 4, icon: <NetworkIcon />, text: "Redes", linkTo: "/networks" },
-    { id: 5, icon: <MemberIcon />, text: "Organigrama", linkTo: "/organigrama" },
-    { id: 6, icon: <NewsletterIcon />, text: "Newsletter", linkTo: "/newsletter" },
+    {
+      id: 5,
+      icon: <MemberIcon />,
+      text: "Organigrama",
+      linkTo: "/organigrama"
+    },
+    {
+      id: 6,
+      icon: <NewsletterIcon />,
+      text: "Newsletter",
+      linkTo: "/newsletter"
+    },
     { id: 7, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
@@ -68,13 +80,14 @@ const ResponsiveDrawer = props => {
       <div className={classes.toolbar}>
         <NavLink to="/" className={classes.drawerTitle} exact>
           <img
-            height="50"
+            height='50'
             style={{ marginRight: "1rem" }}
-            src={logo}
+            src={logo250w}
+            srcSet={`${logo120w} 120w, ${logo250w} 250w, ${logo500w} 500w`}
             alt="logo"
           />
           <Typography variant="h6" color="inherit">
-            IAFCJ
+            2da IAFCJ
           </Typography>
         </NavLink>
       </div>

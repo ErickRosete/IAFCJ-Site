@@ -7,13 +7,13 @@ const networks = () => {
   return (
     <div id="ubicacion" className="home__location">
       <div className="home__location-header">
-        <h2>Ubicaciones</h2>
+        <h2>Ubicación</h2>
       </div>
       <div className="home__location-church">
         <Container fluid>
           <Row>
             <Col xs={12} md={8}>
-              <Map />
+              <Map coords={{lat: 32.442408, lng:  -114.743104}}/>
             </Col>
 
             <Col xs={12} md={4}>

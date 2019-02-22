@@ -17,7 +17,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
   faChevronLeft,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
@@ -35,10 +36,12 @@ class App extends Component {
     library.add([
       faFacebook,
       faLinkedin,
+      faSearch,
       faHome,
       faChevronLeft,
-      faMapMarkerAlt
+      faMapMarkerAlt,
     ]);
+
     return (
       <BrowserRouter>
         <ScrollToTop>
