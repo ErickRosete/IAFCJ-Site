@@ -1,4 +1,4 @@
-module.exports = {
+xmodule.exports = {
   apps : [{
     name: 'API',
     script: 'app.js',
@@ -13,10 +13,7 @@ module.exports = {
       NODE_ENV: 'development'
     },
     env_production: {
-      NODE_ENV: 'production',
-      MONGO_USER: "erick-rw",
-      MONGO_PASSWORD: "LocLnbdoa1Pi7GLW",
-      MONGO_DB: "iglesia-db"
+      NODE_ENV: 'production'
     }
   }],
 

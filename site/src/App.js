@@ -28,7 +28,7 @@ import ApolloClient from "apollo-boost";
 import "./App.css";
 
 const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql"
+  uri: "https://server.iglesiacristianasanluis.com/graphql"
 });
 
 class App extends Component {
