@@ -85,7 +85,7 @@ export class FormDialog extends Component {
     formData.append("name", image.name);
 
     // headers: { "Content-Type": "multipart/form-data" },
-    fetch(`http://localhost:8000/uploadImage`, {
+    fetch(`https://server.iglesiacristianasanluis.com/uploadImage`, {
       method: "POST",
       body: formData
     })
