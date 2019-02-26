@@ -95,7 +95,7 @@ export class Form extends Component {
     formData.append("file", event.target.files[0]);
 
     // headers: { "Content-Type": "multipart/form-data" },
-    fetch(`https://server.iglesiacristianasanluis.com/uploadImage`, {
+    fetch(`https://server.iglesiacristiana.com/uploadImage`, {
       method: "POST",
       body: formData
     })

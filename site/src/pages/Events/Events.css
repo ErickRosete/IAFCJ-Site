@@ -5,6 +5,32 @@
     padding: 2rem;
 }
 
+.event__card {
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.event__card-img-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.event__card-img-cont img {
+    width: 100%;
+    height: auto;
+}
+
+.event__card-info {
+    margin-top: 1rem;
+}
+
 @media screen and (min-width: 600px) {
     .events__title {
         font-size: 5rem;

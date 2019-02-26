@@ -14,6 +14,24 @@ module.exports = {
     }
   },
 
+  featuredEvent: async () => {
+    try {
+      //search next event
+      let event = await Event.findOne({ date: { $gt: new Date() } }).sort({
+        date: 1
+      });
+
+      if (!event) {
+        //if no future events show last event
+        event = await Event.findOne().sort({ date: -1 });
+      }
+
+      return transformEvent(event);
+    } catch (err) {
+      throw err;
+    }
+  },
+
   event: async args => {
     try {
       const event = await Event.findById(args.id);

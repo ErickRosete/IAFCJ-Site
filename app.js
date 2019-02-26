@@ -35,7 +35,7 @@ app.post('/sendEmail', (req, res) => {
 });
 
 const upload = multer({
-  dest: "/uploads"
+  dest: "./uploads"
 });
 
 app.post('/uploadImage', upload.single("file"), (req, res) => {

@@ -30,6 +30,7 @@ const eventDef = `
 const eventQuery = `
     events: [Event!]!
     event(id: ID!): Event!
+    featuredEvent: Event
 `;
 
 const eventMutation = `

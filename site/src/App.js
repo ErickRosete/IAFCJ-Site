@@ -39,7 +39,7 @@ class App extends Component {
       faSearch,
       faHome,
       faChevronLeft,
-      faMapMarkerAlt,
+      faMapMarkerAlt
     ]);
 
     return (
