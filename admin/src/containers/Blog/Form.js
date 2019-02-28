@@ -16,23 +16,25 @@ import Spinner from "../../components/Spinner/Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 export class Form extends Component {
   constructor(props) {
     super(props);
 
-    let editorState;
-    let title;
-    let subtitle;
-    let shortDescription;
-    let imageLink;
+    let editorState = "";
+    let title = "";
+    let subtitle = "";
+    let shortDescription = "";
+    let imageLink = "";
 
     if (props.blogEntry) {
       console.log(props.blogEntry);
       title = props.blogEntry.title ? props.blogEntry.title : "";
       subtitle = props.blogEntry.subtitle ? props.blogEntry.subtitle : "";
-      shortDescription = props.blogEntry.shortDescription ? props.blogEntry.shortDescription : "";
+      shortDescription = props.blogEntry.shortDescription
+        ? props.blogEntry.shortDescription
+        : "";
       imageLink = props.blogEntry.imageLink ? props.blogEntry.imageLink : "";
       //editor
       const html = props.blogEntry.description;
@@ -43,12 +45,6 @@ export class Form extends Component {
         );
         editorState = EditorState.createWithContent(contentState);
       }
-    } else {
-      title = "";
-      subtitle = "";
-      shortDescription = "";
-      imageLink = "";
-      editorState = EditorState.createEmpty();
     }
 
     this.state = {
@@ -57,7 +53,7 @@ export class Form extends Component {
       shortDescription,
       editorState,
       imageLink,
-      uploadingImage: false,
+      uploadingImage: false
     };
   }
 
@@ -94,7 +90,7 @@ export class Form extends Component {
     formData.append("name", image.name);
 
     // headers: { "Content-Type": "multipart/form-data" },
-    fetch(`https://server.iglesiacristianasanluis.com/uploadImage`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/uploadImage`, {
       method: "POST",
       body: formData
     })
@@ -112,7 +108,7 @@ export class Form extends Component {
         this.setState({ uploadingImage: false });
         console.log(err);
       });
-  }
+  };
 
   onSubmitHandler = event => {
     event.preventDefault();
@@ -192,11 +188,19 @@ export class Form extends Component {
                 </Button>
               </label>
 
-              {this.state.imageLink && <div className={classes.imgContainer}>
-                {this.state.uploadingImage ?
-                  <Spinner></Spinner> :
-                  <img height={100} src={this.state.imageLink} alt="blog main"></img>}
-              </div>}
+              {this.state.imageLink && (
+                <div className={classes.imgContainer}>
+                  {this.state.uploadingImage ? (
+                    <Spinner />
+                  ) : (
+                    <img
+                      height={100}
+                      src={this.state.imageLink}
+                      alt="blog main"
+                    />
+                  )}
+                </div>
+              )}
             </div>
           </Grid>
 
@@ -219,7 +223,7 @@ export class Form extends Component {
                 error={!this.state.editorState.getCurrentContent().hasText()}
               >
                 Contenido del blog
-          </FormLabel>
+              </FormLabel>
               <Editor
                 editorState={this.state.editorState}
                 wrapperClassName={classes.wrapper}
@@ -231,7 +235,7 @@ export class Form extends Component {
 
           <Button type="submit" variant="contained" color="primary" autoFocus>
             Guardar
-        </Button>
+          </Button>
         </Grid>
       </form>
     );

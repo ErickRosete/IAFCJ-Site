@@ -13,6 +13,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { NavLink } from "react-router-dom";
 
 //Icons
+import IntroIcon from "@material-ui/icons/Landscape";
 import EventIcon from "@material-ui/icons/Event";
 import NetworkIcon from "@material-ui/icons/List";
 import CellIcon from "@material-ui/icons/LocationOn";
@@ -55,23 +56,24 @@ const styles = theme => ({
 
 const ResponsiveDrawer = props => {
   const sideLinks = [
-    { id: 1, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
-    { id: 2, icon: <BlogIcon />, text: "Blog", linkTo: "/blog" },
-    { id: 3, icon: <CellIcon />, text: "Celulas", linkTo: "/celulas" },
-    { id: 4, icon: <NetworkIcon />, text: "Redes", linkTo: "/networks" },
+    { id: 1, icon: <IntroIcon />, text: "Introducción", linkTo: "/intro" },
+    { id: 2, icon: <EventIcon />, text: "Eventos", linkTo: "/events" },
+    { id: 3, icon: <BlogIcon />, text: "Blog", linkTo: "/blog" },
+    { id: 4, icon: <CellIcon />, text: "Celulas", linkTo: "/celulas" },
+    { id: 5, icon: <NetworkIcon />, text: "Redes", linkTo: "/networks" },
     {
-      id: 5,
+      id: 6,
       icon: <MemberIcon />,
       text: "Organigrama",
       linkTo: "/organigrama"
     },
     {
-      id: 6,
+      id: 7,
       icon: <NewsletterIcon />,
       text: "Newsletter",
       linkTo: "/newsletter"
     },
-    { id: 7, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
+    { id: 8, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
   const { classes, theme } = props;
@@ -80,7 +82,7 @@ const ResponsiveDrawer = props => {
       <div className={classes.toolbar}>
         <NavLink to="/" className={classes.drawerTitle} exact>
           <img
-            height='50'
+            height="50"
             style={{ marginRight: "1rem" }}
             src={logo250w}
             srcSet={`${logo120w} 120w, ${logo250w} 250w, ${logo500w} 500w`}

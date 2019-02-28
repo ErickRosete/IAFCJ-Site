@@ -6,6 +6,7 @@ const networkResolver = require("./network");
 const newsletterResolver = require("./newsletter-email");
 const memberResolver = require("./member");
 const videoResolver = require("./video");
+const introResolver = require("./intro")
 
 const rootResolver = {
   ...authResolver,
@@ -15,7 +16,8 @@ const rootResolver = {
   ...networkResolver,
   ...newsletterResolver,
   ...memberResolver,
-  ...videoResolver
+  ...videoResolver,
+  ...introResolver
 };
 
 module.exports = rootResolver;

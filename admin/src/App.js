@@ -16,6 +16,7 @@ import NewsletterPage from "./pages/Newsletter/Newsletter";
 import OrganigramaPage from "./pages/Organigrama/Organigrama";
 import VideosPage from "./pages/Videos/Videos";
 import NetworksPage from "./pages/Networks/Networks";
+import IntroPage from "./pages/Intro/Intro";
 
 //Providers and context
 import { ApolloProvider } from "react-apollo";
@@ -23,7 +24,7 @@ import ApolloClient from "apollo-boost";
 import AuthContext from "./context/auth-context";
 
 const client = new ApolloClient({
-  uri: "https://server.iglesiacristianasanluis.com/graphql"
+  uri: `${process.env.REACT_APP_SERVER_URL}/graphql`
 });
 
 class App extends Component {
@@ -67,6 +68,7 @@ class App extends Component {
               {/* {this.state.token ? ( */}
               <React.Fragment>
                 <Switch>
+                  <Route path="/intro" component={IntroPage} />
                   <Route path="/networks" component={NetworksPage} />
                   <Route path="/blog/add" component={BlogFormPage} />
                   <Route path="/blog/edit/:id" component={BlogFormPage} />

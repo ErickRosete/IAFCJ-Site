@@ -95,7 +95,7 @@ export class Form extends Component {
     formData.append("file", event.target.files[0]);
 
     // headers: { "Content-Type": "multipart/form-data" },
-    fetch(`https://server.iglesiacristiana.com/uploadImage`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/uploadImage`, {
       method: "POST",
       body: formData
     })
