@@ -3,10 +3,13 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
+import Paper from "@material-ui/core/Paper";
 
 import Spinner from "../../components/Spinner/Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { EDIT_INTRO } from "../../pages/Intro/constants";
+import Mutation from "react-apollo/Mutation";
 
 export class Form extends Component {
   constructor(props) {
@@ -82,55 +85,76 @@ export class Form extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className="blog-form" onSubmit={this.onSubmitHandler}>
-        <TextField
-          required
-          autoFocus
-          className={classes.textfield}
-          margin="dense"
-          label="Horario de atención"
-          type="text"
-          fullWidth
-          value={this.state.attentionSchedule}
-          onChange={this.changeAttentionScheduleHandler}
-          error={this.state.attentionSchedule === ""}
-          helperText={
-            this.state.attentionSchedule === "" ? "Valor Requerido" : ""
-          }
-        />
-
-        <div className={classes.imagefield}>
-          <input
-            accept="image/*"
-            onChange={this.changeImageHandler}
-            className={classes.input}
-            id="contained-button-file"
-            type="file"
+      <form className={classes.form} onSubmit={this.onSubmitHandler}>
+        <Paper className={classes.root} elevation={1}>
+          <TextField
+            required
+            autoFocus
+            className={classes.textfield}
+            multiline
+            rowsMax="3"
+            margin="normal"
+            label="Horario de atención"
+            type="text"
+            fullWidth
+            value={this.state.attentionSchedule}
+            onChange={this.changeAttentionScheduleHandler}
+            error={this.state.attentionSchedule === ""}
+            helperText={
+              this.state.attentionSchedule === "" ? "Valor Requerido" : ""
+            }
           />
-          <label htmlFor="contained-button-file">
-            <Button
-              variant="contained"
-              component="span"
-              className={classes.button}
-            >
-              Subir Imagen
-            </Button>
-          </label>
 
-          {this.state.imageLink && (
-            <div className={classes.imgContainer}>
-              {this.state.uploadingImage ? (
-                <Spinner />
-              ) : (
-                <img
-                  height={200}
-                  src={this.state.imageLink}
-                  alt="intro-background"
-                />
-              )}
-            </div>
-          )}
-        </div>
+          <div className={classes.imagefield}>
+            <input
+              accept="image/*"
+              onChange={this.changeImageHandler}
+              className={classes.input}
+              id="contained-button-file"
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="contained"
+                component="span"
+                className={classes.button}
+              >
+                Subir Imagen
+              </Button>
+            </label>
+
+            {this.state.imageLink && (
+              <div className={classes.imgContainer}>
+                {this.state.uploadingImage ? (
+                  <Spinner />
+                ) : (
+                  <img
+                    className={classes.image}
+                    src={this.state.imageLink}
+                    alt="intro-background"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+          <Mutation mutation={EDIT_INTRO}>
+            {updateIntro => (
+              <Button
+                className={classes.buttonCenter}
+                variant="contained"
+                color="primary"
+                onClick={updateIntro.bind(this, {
+                  variables: {
+                    attentionSchedule: this.state.attentionSchedule,
+                    imageLink: this.state.imageLink
+                  }
+                })}
+              >
+                Guardar
+              </Button>
+            )}
+          </Mutation>
+        </Paper>
       </form>
     );
   }

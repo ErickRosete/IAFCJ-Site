@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const GET_INTRO = gql`
   {
-    Intro {
+    intro {
       _id
       attentionSchedule
       imageLink
