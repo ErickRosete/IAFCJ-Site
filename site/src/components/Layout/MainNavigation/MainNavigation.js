@@ -34,11 +34,11 @@ const mainNavigation = props => {
             <Nav.Link as={NavLink} to="/encuentra">
               Encuentra tu grupo
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/eventos">
-              Eventos
-            </Nav.Link>
             <Nav.Link as={NavLink} to="/blog">
               Blog
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/eventos">
+              Eventos
             </Nav.Link>
             <Nav.Link as={NavLink} to="/videos">
               Videos

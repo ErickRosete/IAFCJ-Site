@@ -102,8 +102,8 @@ export class IntroPage extends Component {
                 ¿Más dudas? Aquí puedes contactarnos!
               </p>
             </div>
-            <Contact />
           </div>
+          <Contact />
         </div>
       </Layout>
     );

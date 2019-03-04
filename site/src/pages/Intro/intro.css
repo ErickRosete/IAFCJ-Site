@@ -61,4 +61,9 @@
     .intro__faq-note {
         width: 50%;
     }
+    .intro__faq{
+        margin: auto;
+        display: block;
+        max-width: 80%;
+    }
 }
