@@ -16,7 +16,7 @@ export class BlogEntryPage extends Component {
       if (window.refTagger == null) {
         window.refTagger = {
           settings: {
-            bibleVersion: "NVI",
+            bibleVersion: "RVR60",
             socialSharing: ["twitter", "facebook"],
             roundCorners: true,
             customStyle: {
