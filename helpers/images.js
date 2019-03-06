@@ -26,7 +26,7 @@ exports.saveImages = (req, res) => {
 const saveImageAux = (file, res) => {
     const tempPath = file.path;
     const targetPath = path.join(__dirname, "../public/images", file.originalname);
-    const imageLink = `https://server.iglesiacristianasanluis.com/images/${file.originalname}`;
+    const imageLink = `${process.env.REACT_APP_SERVER_URL}/images/${file.originalname}`;
 
     const fileExt = path.extname(file.originalname).toLowerCase();
     if (fileExt === ".png" || fileExt === ".jpg" || fileExt === ".jpeg"

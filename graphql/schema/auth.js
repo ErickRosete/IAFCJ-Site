@@ -2,7 +2,7 @@ const authDef = `
     type AuthData {
         userId: ID!
         token: String!
-        tokenExpiration: Int!
+        tokenExpiration: String!
         role: String!
     }
 

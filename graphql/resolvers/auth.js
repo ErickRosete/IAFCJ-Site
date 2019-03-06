@@ -36,7 +36,7 @@ module.exports = {
     if (!isEqual) {
       throw new Error("Invalid Credentials");
     }
-    const expiresIn="2h"
+    const expiresIn = "2h";
     const token = jwt.sign(
       { userId: user.id, email: user.email },
       "asecretkeynotknownbyanyone",
