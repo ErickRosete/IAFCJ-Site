@@ -20,8 +20,13 @@ const networks = () => {
               <div className="p-4">
                 <h3>2da Iglesia Apostólica</h3>
                 <p>
-                  <b>Ubicacion:</b> Avenida Colima y 1ra. San Luis Rio Colorado,
-                  Son.
+                  <b >Ubicacion: </b> 
+                  <a href="https://www.google.com.mx/maps/place/Iglesia+Cristiana+2da+IAFCJ+San+Luis/@32.457334,-114.7956758,17z/data=!3m1!4b1!4m5!3m4!1s0x80d64f3d056e963d:0xb219c030a572e34f!8m2!3d32.457334!4d-114.7934871"
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    Avenida Colima y 1ra. San Luis Rio Colorado,
+                    Son.
+                  </a>
                 </p>
                 <p>
                   <b>Telefono:</b> 01 686 566 5791
