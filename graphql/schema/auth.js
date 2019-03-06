@@ -3,17 +3,20 @@ const authDef = `
         userId: ID!
         token: String!
         tokenExpiration: Int!
+        role: String!
     }
 
     type User {
         _id: ID!
         email: String!
         password: String!
+        role: String!
     }
 
     input UserInput{
         email: String
         password: String
+        role: String
     }
 `;
 

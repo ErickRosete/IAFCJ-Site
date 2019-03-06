@@ -6,7 +6,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "./App.css";
 
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-// import AuthPage from "./pages/Auth/Auth";
+import AuthPage from "./pages/Auth/Auth";
+import UsersPage from "./pages/Users/Users"
 import BlogPage from "./pages/Blog/Blog";
 import BlogFormPage from "./pages/Blog/Form/BlogForm";
 import CelulasPage from "./pages/Celulas/Celulas";
@@ -28,17 +29,37 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
-  state = {
-    token: null,
-    userId: null
-  };
+  constructor(props) {
+    super(props);
+    const data = JSON.parse(localStorage.getItem("jwtToken"));
+    if (data) {
+      this.state = {
+        ...data
+      };
+    } else {
+      this.state = {
+        token: null,
+        userId: null,
+        role: null
+      };
+    }
+  }
 
-  login = (token, userId, tokenExpiration) => {
-    this.setState({ token: token, userId: userId });
+  login = (token, userId, tokenExpiration, role) => {
+    if (role === "Admin" || role === "Editor") {
+      const authObject = {
+        token,
+        userId,
+        role
+      };
+      localStorage.setItem("jwtToken", JSON.stringify(authObject));
+      this.setState(authObject);
+    }
   };
 
   logout = () => {
-    this.setState({ token: null, userId: null });
+    localStorage.setItem("jwtToken", null);
+    this.setState({ token: null, userId: null, role: null });
   };
 
   render() {
@@ -58,6 +79,7 @@ class App extends Component {
           value={{
             token: this.state.token,
             userId: this.state.userId,
+            role: this.state.role,
             login: this.login,
             logout: this.logout
           }}
@@ -65,30 +87,33 @@ class App extends Component {
           <ApolloProvider client={client}>
             <MuiThemeProvider theme={theme}>
               <CssBaseline />
-              {/* {this.state.token ? ( */}
-              <React.Fragment>
+              {this.state.token ? (
+                <React.Fragment>
+                  <Switch>
+                    <Route path="/intro" component={IntroPage} />
+                    <Route path="/networks" component={NetworksPage} />
+                    <Route path="/blog/add" component={BlogFormPage} />
+                    <Route path="/blog/edit/:id" component={BlogFormPage} />
+                    <Route path="/blog" component={BlogPage} />
+                    <Route path="/celulas" component={CelulasPage} />
+                    <Route path="/events/add" component={EventsFormPage} />
+                    <Route path="/events/edit/:id" component={EventsFormPage} />
+                    <Route path="/events" component={EventsPage} />
+                    <Route path="/newsletter" component={NewsletterPage} />
+                    <Route path="/organigrama" component={OrganigramaPage} />
+                    <Route path="/videos" component={VideosPage} />
+                    {this.state.role === "admin" && (
+                      <Route path="/users" component={UsersPage} />
+                    )}
+                    <Redirect to="/events" exact />
+                  </Switch>
+                </React.Fragment>
+              ) : (
                 <Switch>
-                  <Route path="/intro" component={IntroPage} />
-                  <Route path="/networks" component={NetworksPage} />
-                  <Route path="/blog/add" component={BlogFormPage} />
-                  <Route path="/blog/edit/:id" component={BlogFormPage} />
-                  <Route path="/blog" component={BlogPage} />
-                  <Route path="/celulas" component={CelulasPage} />
-                  <Route path="/events/add" component={EventsFormPage} />
-                  <Route path="/events/edit/:id" component={EventsFormPage} />
-                  <Route path="/events" component={EventsPage} />
-                  <Route path="/newsletter" component={NewsletterPage} />
-                  <Route path="/organigrama" component={OrganigramaPage} />
-                  <Route path="/videos" component={VideosPage} />
-                  <Redirect to="/events" exact />
+                  <Route path="/auth" component={AuthPage} />
+                  <Redirect to="/auth" exact />
                 </Switch>
-              </React.Fragment>
-              {/* ) : (
-              <Switch>
-                <Route path="/auth" component={AuthPage} />
-                <Redirect to="/auth" exact />
-              </Switch>
-            )} */}
+              )}
             </MuiThemeProvider>
           </ApolloProvider>
         </AuthContext.Provider>

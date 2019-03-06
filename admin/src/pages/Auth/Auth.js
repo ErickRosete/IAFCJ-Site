@@ -2,62 +2,56 @@ import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
 
 import AuthContext from "../../context/auth-context";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-import logo from "../../assets/images/logo/logo.png";
-import "./Auth.css";
+import logo120w from "../../assets/images/logos/logo-120w.png";
+import logo250w from "../../assets/images/logos/logo-250w.png";
+import logo500w from "../../assets/images/logos/logo-500w.png";
+
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { styles, LOGIN } from "./constants";
+import { withApollo } from "react-apollo";
 
-const styles = theme => ({
-  authRoot: {
-    height: "100vh",
-    display: "flex",
-    backgroundColor: theme.palette.primary.main
-  }
-});
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 class AuthPage extends Component {
+  state = {
+    email: "",
+    password: "",
+    error: false,
+    showPassword: false
+  };
+
   static contextType = AuthContext;
 
-  constructor(props) {
-    super(props);
-    this.emailEl = React.createRef();
-    this.passwordEl = React.createRef();
-  }
+  changeHandler = (name, event) => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
 
   submitHandler = event => {
     event.preventDefault();
-    const email = this.emailEl.current.value;
-    const password = this.passwordEl.current.value;
+    const email = this.state.email;
+    const password = this.state.password;
 
-    if (email.trim().length === 0 || password.trim().length === 0) {
+    if (email === "" || password === "") {
       return;
     }
 
-    const requestBody = {
-      query: `
-        {
-          login(userInput:{email:"${email}", password:"${password}"}){
-            userId
-            token
-            tokenExpiration
-          }
-        }
-        `
-    };
-
-    fetch("http://localhost:8000/graphql", {
-      method: "POST",
-      body: JSON.stringify(requestBody),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => {
-        if (res.status !== 200 && res.status !== 201) {
-          throw new Error("Failed!");
-        }
-        return res.json();
+    this.props.client
+      .query({
+        query: LOGIN,
+        variables: { email, password }
       })
       .then(resData => {
         console.log(resData);
@@ -70,6 +64,7 @@ class AuthPage extends Component {
         }
       })
       .catch(err => {
+        this.setState({ error: true });
         console.log(err);
       });
   };
@@ -78,32 +73,77 @@ class AuthPage extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.authRoot}>
-        <form className="auth-form" onSubmit={this.submitHandler}>
-          <div className="auth-form__title">
-            <img height="100" src={logo} alt="IAFCJ" />
+        <form className={classes.authForm} onSubmit={this.submitHandler}>
+          <div className={classes.title}>
+            <img
+              height="100"
+              src={logo250w}
+              srcSet={`${logo120w} 120w, ${logo250w} 250w, ${logo500w} 500w`}
+              alt="IAFCJ-Logo"
+            />
             <Typography variant="h3" color="inherit">
               IAFCJ
             </Typography>
           </div>
-          <div className="form-control">
-            <label htmlFor="email">Correo Electrónico</label>
-            <input type="email" id="email" ref={this.emailEl} />
-          </div>
-          <div className="form-control">
-            <label htmlFor="password">Contraseña</label>
-            <input type="password" id="password" ref={this.passwordEl} />
-          </div>
-          <div className="form-actions">
-            <button type="submit">Login</button>
-          </div>
+
+          <TextField
+            required
+            autoFocus
+            margin="normal"
+            label="Correo electrónico"
+            type="text"
+            fullWidth
+            value={this.state.email}
+            onChange={this.changeHandler.bind(this, "email")}
+            error={this.state.error}
+          />
+
+          <TextField
+            required
+            autoFocus
+            margin="normal"
+            label="Contraseña"
+            type={this.state.showPassword ? "text" : "password"}
+            fullWidth
+            value={this.state.password}
+            error={this.state.error}
+            helperText={this.state.error ? "Usuario o contraseña inválida" : ""}
+            onChange={this.changeHandler.bind(this, "password")}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <Visibility />
+                    ) : (
+                      <VisibilityOff />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+
+          <Button
+            className={classes.button}
+            type="submit"
+            color="primary"
+            variant="contained"
+            autoFocus
+          >
+            Iniciar Sesión
+          </Button>
         </form>
       </div>
     );
   }
 }
+
 AuthPage.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(AuthPage);
+export default withApollo(withStyles(styles)(AuthPage));

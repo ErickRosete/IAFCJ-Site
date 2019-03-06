@@ -1,45 +1,37 @@
 import React, { Component } from "react";
 import Layout from "../../containers/Layout/Layout";
 
-import PropTypes from "prop-types";
+//styles
+import { styles } from "./constants";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
-import Spinner from "../../components/Spinner/Spinner";
-import {
-  styles,
-  DELETE_VIDEO,
-  GET_VIDEOS,
-  EDIT_VIDEO,
-  ADD_VIDEO
-} from "./constants";
-
-import CardList from "../../components/Videos/CardList/CardList";
-
-//Buttons
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
 import DeleteDialog from "../../components/Dialog/DeleteDialog";
 import FormDialog from "../../containers/Users/FormDialog";
-
-//Dialog
-import { Query, Mutation } from "react-apollo";
-
+import Table from "../../components/Users/Table";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 
-export class VideosPage extends Component {
+//graphql
+import { Query, Mutation } from "react-apollo";
+import Spinner from "../../components/Spinner/Spinner";
+import { GET_USERS, DELETE_USER, EDIT_USER, ADD_USER } from "./constants";
+
+export class UsersPage extends Component {
   state = {
     openDeleteDialog: false,
     openEditDialog: false,
     openAddDialog: false,
     filter: "",
-    selectedVideo: { _id: "" }
+    selectedUser: { _id: "" }
   };
 
-  handleClickOpenDeleteDialog = video => {
+  handleClickOpenDeleteDialog = user => {
     this.setState({
-      selectedVideo: video,
+      selectedUser: user,
       openDeleteDialog: true
     });
   };
@@ -48,9 +40,9 @@ export class VideosPage extends Component {
     this.setState({ openDeleteDialog: false });
   };
 
-  handleClickOpenEditDialog = video => {
+  handleClickOpenEditDialog = user => {
     this.setState({
-      selectedVideo: video,
+      selectedUser: user,
       openEditDialog: true
     });
   };
@@ -74,8 +66,8 @@ export class VideosPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Layout title="Lista de videos">
-        <div className={classes.videos}>
+      <Layout title="Lista de usuarios">
+        <div className={classes.users}>
           <TextField
             autoFocus
             margin="normal"
@@ -94,25 +86,22 @@ export class VideosPage extends Component {
           />
 
           {/* GET */}
-          <Query query={GET_VIDEOS}>
+          <Query query={GET_USERS}>
             {({ loading, error, data }) => {
               if (loading) return <Spinner />;
               if (error) return <p>Error :(</p>;
 
-              let filteredVideos = data.videos;
+              let filteredUsers = data.users;
               if (this.state.filter) {
                 const filter = this.state.filter.toUpperCase();
-                filteredVideos = data.videos.filter(
-                  video =>
-                    video.name.toUpperCase().includes(filter) ||
-                    video.description.toUpperCase().includes(filter) ||
-                    video.link.toUpperCase().includes(filter)
+                filteredUsers = data.users.filter(user =>
+                  user.email.toUpperCase().includes(filter)
                 );
               }
 
               return (
-                <CardList
-                  videos={filteredVideos}
+                <Table
+                  users={filteredUsers}
                   openEdit={this.handleClickOpenEditDialog}
                   openDelete={this.handleClickOpenDeleteDialog}
                 />
@@ -122,26 +111,26 @@ export class VideosPage extends Component {
 
           {/* DELETE */}
           <Mutation
-            mutation={DELETE_VIDEO}
-            update={(cache, { data: { deleteVideo } }) => {
-              const { videos } = cache.readQuery({ query: GET_VIDEOS });
-              const videoIndex = videos.findIndex(
-                video => video._id === deleteVideo._id
+            mutation={DELETE_USER}
+            update={(cache, { data: { deleteUser } }) => {
+              const { users } = cache.readQuery({ query: GET_USERS });
+              const userIndex = users.findIndex(
+                user => user._id === deleteUser._id
               );
-              videos.splice(videoIndex, 1);
+              users.splice(userIndex, 1);
               cache.writeQuery({
-                query: GET_VIDEOS,
-                data: { videos }
+                query: GET_USERS,
+                data: { users }
               });
             }}
           >
-            {deleteVideo => (
+            {deleteUser => (
               <DeleteDialog
-                info="Video"
+                info="Usuario"
                 open={this.state.openDeleteDialog}
                 onConfirm={() => {
-                  deleteVideo({
-                    variables: { id: this.state.selectedVideo._id }
+                  deleteUser({
+                    variables: { id: this.state.selectedUser._id }
                   });
                   this.setState({
                     openDeleteDialog: false
@@ -153,15 +142,15 @@ export class VideosPage extends Component {
           </Mutation>
 
           {/* EDIT */}
-          <Mutation mutation={EDIT_VIDEO}>
-            {updateVideo => (
+          <Mutation mutation={EDIT_USER}>
+            {updateUser => (
               <FormDialog
-                key={this.state.selectedVideo._id}
-                video={this.state.selectedVideo}
+                key={this.state.selectedUser._id}
+                user={this.state.selectedUser}
                 open={this.state.openEditDialog}
-                onConfirm={video => {
-                  updateVideo({
-                    variables: { ...video }
+                onConfirm={user => {
+                  updateUser({
+                    variables: { ...user }
                   });
                   this.setState({
                     openEditDialog: false
@@ -183,22 +172,22 @@ export class VideosPage extends Component {
           </Fab>
 
           <Mutation
-            mutation={ADD_VIDEO}
-            update={(cache, { data: { createVideo } }) => {
-              const { videos } = cache.readQuery({ query: GET_VIDEOS });
-              videos.push(createVideo);
+            mutation={ADD_USER}
+            update={(cache, { data: { createUser } }) => {
+              const { users } = cache.readQuery({ query: GET_USERS });
+              users.push(createUser);
               cache.writeQuery({
-                query: GET_VIDEOS,
-                data: { videos }
+                query: GET_USERS,
+                data: { users }
               });
             }}
           >
-            {createVideo => (
+            {createUser => (
               <FormDialog
                 open={this.state.openAddDialog}
-                onConfirm={video => {
-                  createVideo({
-                    variables: { ...video }
+                onConfirm={user => {
+                  createUser({
+                    variables: { ...user }
                   });
                   this.setState({
                     openAddDialog: false
@@ -214,8 +203,8 @@ export class VideosPage extends Component {
   }
 }
 
-VideosPage.propTypes = {
+UsersPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(VideosPage);
+export default withStyles(styles)(UsersPage);

@@ -21,10 +21,12 @@ import BlogIcon from "@material-ui/icons/CollectionsBookmark";
 import MemberIcon from "@material-ui/icons/Person";
 import VideoIcon from "@material-ui/icons/VideoLibrary";
 import NewsletterIcon from "@material-ui/icons/Email";
+import UserIcon from "@material-ui/icons/Person";
 
 import logo500w from "../../assets/images/logos/logo-500w.png";
 import logo250w from "../../assets/images/logos/logo-250w.png";
 import logo120w from "../../assets/images/logos/logo-120w.png";
+import AuthContext from "../../context/auth-context";
 
 const drawerWidth = 241;
 
@@ -76,6 +78,10 @@ const ResponsiveDrawer = props => {
     { id: 8, icon: <VideoIcon />, text: "Videos", linkTo: "/videos" }
   ];
 
+  const adminLinks = [
+    { id: 1, icon: <UserIcon />, text: "Usuarios", linkTo: "/user" }
+  ];
+
   const { classes, theme } = props;
   const drawer = (
     <div>
@@ -111,6 +117,31 @@ const ResponsiveDrawer = props => {
       </List>
 
       <Divider />
+
+      <AuthContext.Consumer>
+        {context => {
+          return (
+            context.role === "Admin" && (
+              <React.Fragment>
+                <List>
+                  {adminLinks.map(adminLink => (
+                    <ListItem
+                      button
+                      key={adminLink.id}
+                      component={NavLink}
+                      to={adminLink.linkTo}
+                    >
+                      <ListItemIcon>{adminLink.icon}</ListItemIcon>
+                      <ListItemText primary={adminLink.text} />
+                    </ListItem>
+                  ))}
+                </List>
+                <Divider />
+              </React.Fragment>
+            )
+          );
+        }}
+      </AuthContext.Consumer>
     </div>
   );
 
