@@ -5,7 +5,8 @@ const eventDef = `
         imageLink: String
         shortDescription: String
         description: String!
-        date: String!
+        startDate: String!
+        endDate: String!
         address: String
         googlemaps: String
         lat: Float
@@ -19,7 +20,8 @@ const eventDef = `
         imageLink: String
         shortDescription: String
         description: String
-        date: String
+        startDate: String
+        endDate: String
         address: String
         googlemaps: String
         lat: Float

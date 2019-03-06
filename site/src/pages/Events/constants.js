@@ -8,7 +8,8 @@ export const GET_FEATURED_EVENT = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat
@@ -27,7 +28,8 @@ export const GET_EVENTS = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat
