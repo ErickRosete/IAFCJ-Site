@@ -4,7 +4,7 @@ const transformEvent = event => {
   return {
     ...event._doc,
     endDate: dateToString(event.endDate),
-    startsDate: dateToString(event.startDate),
+    startDate: dateToString(event.startDate),
     createdAt: dateToString(event.createdAt),
     updatedAt: dateToString(event.updatedAt)
   };

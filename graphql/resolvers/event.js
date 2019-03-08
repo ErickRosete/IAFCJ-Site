@@ -17,13 +17,13 @@ module.exports = {
   featuredEvent: async () => {
     try {
       //search next event
-      let event = await Event.findOne({ date: { $gt: new Date() } }).sort({
-        date: 1
+      let event = await Event.findOne({ startDate: { $gt: new Date() } }).sort({
+        startDate: 1
       });
 
       if (!event) {
         //if no future events show last event
-        event = await Event.findOne().sort({ date: -1 });
+        event = await Event.findOne().sort({ startDate: -1 });
       }
 
       return transformEvent(event);

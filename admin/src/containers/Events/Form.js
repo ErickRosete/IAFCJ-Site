@@ -26,7 +26,7 @@ export class Form extends Component {
     let title;
     let imageLink;
     let shortDescription;
-    let date;
+    let startDate;
 
     if (props.event) {
       console.log(props.event);
@@ -35,7 +35,7 @@ export class Form extends Component {
         ? props.event.shortDescription
         : "";
       imageLink = props.event.imageLink ? props.event.imageLink : "";
-      date = props.event.date ? props.event.date : "";
+      startDate = props.event.startDate ? props.event.startDate : "";
 
       //editor
       const html = props.event.description;
@@ -48,7 +48,7 @@ export class Form extends Component {
       }
     } else {
       title = "";
-      date = "";
+      startDate = "";
       shortDescription = "";
       imageLink = "";
       editorState = EditorState.createEmpty();
@@ -56,7 +56,7 @@ export class Form extends Component {
 
     this.state = {
       title,
-      date,
+      startDate,
       shortDescription,
       editorState,
       imageLink,
@@ -78,7 +78,7 @@ export class Form extends Component {
 
   changeDateHandler = event => {
     this.setState({
-      date: event.target.value
+      startDate: event.target.value
     });
   };
 
@@ -125,7 +125,7 @@ export class Form extends Component {
 
     let event = {
       title,
-      date: this.state.date,
+      startDate: this.state.startDate,
       imageLink: this.state.imageLink,
       shortDescription: this.state.shortDescription,
       description: draftToHtml(
@@ -205,10 +205,10 @@ export class Form extends Component {
               id="datetime-local"
               label="Fecha"
               type="datetime-local"
-              value={this.state.date}
+              value={this.state.startDate}
               onChange={this.changeDateHandler}
-              error={this.state.date === ""}
-              helperText={this.state.date === "" ? "Valor Requerido" : ""}
+              error={this.state.startDate === ""}
+              helperText={this.state.startDate === "" ? "Valor Requerido" : ""}
               required
               fullWidth
               InputLabelProps={{
