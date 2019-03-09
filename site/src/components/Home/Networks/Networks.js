@@ -38,7 +38,6 @@ const networks = () => {
       </Query>
       <div className="home__networks-info">
         <h2>Líderes de red</h2>
-        <p>Todos son bienvenidos gratuitamente a nuestros grupos celulares</p>
       </div>
     </div>
   );

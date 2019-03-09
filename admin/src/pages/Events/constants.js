@@ -8,7 +8,8 @@ export const GET_EVENT = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat
@@ -25,7 +26,8 @@ export const GET_EVENTS = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat
@@ -40,7 +42,8 @@ export const ADD_EVENT = gql`
     $imageLink: String
     $shortDescription: String
     $description: String
-    $date: String
+    $startDate: String
+    $endDate: String
     $address: String
     $googlemaps: String
     $lat: Float
@@ -52,7 +55,8 @@ export const ADD_EVENT = gql`
         imageLink: $imageLink
         shortDescription: $shortDescription
         description: $description
-        date: $date
+        startDate: $startDate
+        endDate: $endDate
         address: $address
         googlemaps: $googlemaps
         lat: $lat
@@ -64,7 +68,8 @@ export const ADD_EVENT = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat
@@ -77,7 +82,8 @@ export const EDIT_EVENT = gql`
   mutation UpdateEvent(
     $id: ID!
     $title: String
-    $date: String
+    $startDate: String
+    $endDate: String
     $imageLink: String
     $shortDescription: String
     $description: String
@@ -93,7 +99,8 @@ export const EDIT_EVENT = gql`
         imageLink: $imageLink
         shortDescription: $shortDescription
         description: $description
-        date: $date
+        startDate: $startDate
+        endDate: $endDate
         address: $address
         googlemaps: $googlemaps
         lat: $lat
@@ -105,7 +112,8 @@ export const EDIT_EVENT = gql`
       imageLink
       shortDescription
       description
-      date
+      startDate
+      endDate
       address
       googlemaps
       lat

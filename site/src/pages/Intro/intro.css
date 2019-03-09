@@ -7,10 +7,14 @@
 
 .intro__first-text {
     display: block;
-    margin: auto;
+    padding: auto;
+    margin: 0px;
     text-align: center;
     font-weight: normal;
-    margin: 2rem 1.3rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1rem;
+    background-color:#202020;
+    color:white;
 }
 
 .intro__faq-title {
@@ -25,7 +29,7 @@
 
 .intro__faq-question {
     margin-bottom: 2rem;
-    color: #f7bd1d;
+    color: black;
 }
 
 .intro__faq-answer {
@@ -53,7 +57,7 @@
         width: 50%;
     }
     .intro__first-text {
-        margin: 4rem 15vw;
+        padding: 4rem 15vw;
     }
     .intro__faq-cont {
         margin: 10vh 5vw 0 5vw;

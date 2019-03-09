@@ -18,7 +18,7 @@ export class IntroPage extends Component {
   render() {
     return (
       <Layout>
-        <div className="Intro">
+        <div className="Intro bg-gray">
           <Helmet>
             <title>Nuevos miembros - 2da IAFCJ</title>
             <meta
@@ -32,11 +32,11 @@ export class IntroPage extends Component {
             bigTitle
             title="Bienvenido!"
           />
-
           <h2 className="intro__first-text">
-            Seguramente tendrás muchas dudas... no te preocupes! estamos mas que
-            contentos de ayudarte a responderlas.
+            Seguramente tendrás muchas dudas... <br/>
+            No te preocupes! estamos mas que contentos de ayudarte a responderlas.
           </h2>
+
           <div className="intro__video-cont">
             <div className="intro__video">
               <ReactPlayer

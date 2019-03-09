@@ -51,7 +51,7 @@ export class CellsPage extends Component {
   render() {
     return (
       <Layout>
-        <div className="cells">
+        <div className="cells bg-gray">
           <Helmet>
             <title>Encuéntranos! - 2da IAFCJ</title>
             <meta

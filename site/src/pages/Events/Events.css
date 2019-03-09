@@ -4,7 +4,13 @@
     text-align: center;
     padding: 2rem;
 }
-
+.examples {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 .event__card {
     border: solid 1px lightgray;
     border-radius: 5px;
@@ -29,6 +35,13 @@
 
 .event__card-info {
     margin-top: 1rem;
+}
+
+.calendar-container {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-bottom:3rem;
+    height: 80vh;
 }
 
 @media screen and (min-width: 600px) {

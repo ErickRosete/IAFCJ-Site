@@ -3,7 +3,8 @@ const { dateToString } = require("../../helpers/date");
 const transformEvent = event => {
   return {
     ...event._doc,
-    date: dateToString(event.date),
+    endDate: dateToString(event.endDate),
+    startDate: dateToString(event.startDate),
     createdAt: dateToString(event.createdAt),
     updatedAt: dateToString(event.updatedAt)
   };

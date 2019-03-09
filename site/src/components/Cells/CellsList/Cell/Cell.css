@@ -5,6 +5,7 @@
 
 .cells__cell-item {
     border: 1px solid gray;
+    background-color:white;
     padding: 1rem;
     border-radius: 1rem;
     transition: border 200ms ease;

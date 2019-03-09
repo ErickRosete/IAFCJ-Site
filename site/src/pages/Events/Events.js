@@ -9,6 +9,9 @@ import Spinner from "../../components/Spinner/Spinner";
 import { Container, Col, Row } from "react-bootstrap";
 import "./Events.css";
 
+/*Calendar*/
+import CalendarView from "../../components/Events/CalendarView/CalendarView";
+
 export class EventsPage extends Component {
   render() {
     return (
@@ -49,32 +52,9 @@ export class EventsPage extends Component {
                 );
               console.log(data);
               return (
-                <Container>
-                  <Row>
-                    {data.events.map(event => {
-                      return (
-                        <Col
-                          key={event._id}
-                          xs={12}
-                          md={6}
-                          xl={4}
-                          className="mb-3"
-                        >
-                          <div className="event__card">
-                            <div className="event__card-img-cont">
-                              <img src={event.imageLink} alt={event.title} />
-                            </div>
-                            <div className="event__card-info">
-                              <p>{event.title}</p>
-                              <p>{event.shortDescription}</p>
-                              <p>{new Date(event.date).toLocaleTimeString()}</p>
-                            </div>
-                          </div>
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </Container>
+                <div className= "calendar-container">
+                  <CalendarView />
+                </div>
               );
             }}
           </Query>
@@ -85,5 +65,31 @@ export class EventsPage extends Component {
     );
   }
 }
+
+/*<Row>
+    {data.events.map(event => {
+      return (
+        <Col
+          key={event._id}
+          xs={12}
+          md={6}
+          xl={4}
+          className="mb-3"
+        >
+          <div className="event__card">
+            <div className="event__card-img-cont">
+              <img src={event.imageLink} alt={event.title} />
+            </div>
+            <div className="event__card-info">
+              <p>{event.title}</p>
+              <p>{event.shortDescription}</p>
+              <p>{new Date(event.date).toLocaleTimeString()}</p>
+            </div>
+          </div>
+        </Col>
+      );
+    })}
+  </Row>
+*/
 
 export default EventsPage;
