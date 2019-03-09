@@ -8,7 +8,7 @@ const FeaturedEvent = props => {
   const day = startDate.getDay();
   const month = startDate.toLocaleString('es', { month: 'long' });
   const timeHours=startDate.getHours();
-  var timeMarker =timeMarker%12<1?"am":"pm";
+  var timeMarker = timeHours%12<1?"am":"pm";
   var minutes= startDate.getMinutes()<10?'0'+startDate.getMinutes().toString():startDate.getMinutes().toString();
 
   return (
