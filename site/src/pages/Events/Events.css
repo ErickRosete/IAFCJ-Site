@@ -4,13 +4,7 @@
     text-align: center;
     padding: 2rem;
 }
-.examples {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+
 .event__card {
     border: solid 1px lightgray;
     border-radius: 5px;
