@@ -1,0 +1,60 @@
+.rbc-header a span{
+    font-size: 0.75rem;
+    text-overflow: unset;
+}
+
+.rbc-header{
+    flex-wrap: nowrap;
+    white-space: unset;
+}
+
+.rbc-toolbar-label{
+    font-size: 1rem;
+    font-weight: bolder;
+    font-family: 'Open Sans', sans-serif
+}
+
+.rbc-toolbar{
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.rbc-month-row{
+    flex: 100px;
+}
+
+.rbc-time-view .rbc-row{
+    min-height: 50px;
+}
+
+.rbc-time-content{
+    overflow-y: none;
+}
+/*Eventos*/
+.rbc-event{
+    background-color: #00a7ff;
+}
+.rbc-event.rbc-selected{
+    background-color: #0079cb;
+}
+
+@media screen and (min-width: 600px) {
+    .rbc-toolbar-label{
+       font-size: 1.5rem;
+    }
+    .rbc-toolbar{
+        flex-direction: row;
+    }
+    .rbc-header span{
+       font-family: 'Open Sans', sans-serif
+    }
+    .rbc-header a span{
+        font-size: 1rem;
+    }
+    .rbc-time-view .rbc-row{
+        min-height: 25px;
+    }
+    .rbc-time-content{
+        height: 50vh;
+    }
+}

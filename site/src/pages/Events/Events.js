@@ -51,9 +51,41 @@ export class EventsPage extends Component {
                   </p>
                 );
               console.log(data);
+              /*Fetch events */
+              
+              let ev = []
+              data.events.map (event=>{
+                ev.push({
+                  id:event._id,
+                  title:event.title,
+                  start:new Date(event.startDate),
+                  end: new Date(event.endDate),
+                  desc: event.shortDescription,
+                  selectable:true,
+                });
+              })
+/*
+              let ev=[
+                {
+                  id: 'ewrijiw0133',
+                  title: 'All Day Event very long title',
+                  allDay: true,
+                  start: new Date(2019, 3, 0),
+                  end: new Date(2019, 3, 1),
+                },
+                {
+                  id: 1,
+                  title: 'Long Event',
+                  start: new Date(2019, 3, 7),
+                  end: new Date(2019, 3, 10),
+                },
+              ]*/
+
+              console.log(ev);
+              /*show events */
               return (
                 <div className= "calendar-container">
-                  <CalendarView />
+                  <CalendarView events= {ev} />
                 </div>
               );
             }}

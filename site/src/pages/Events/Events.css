@@ -32,15 +32,19 @@
 }
 
 .calendar-container {
-    margin-left: 15vw;
-    margin-right: 15vw;
-    margin-bottom:3rem;
-    height: 80vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 600px) {
     .events__title {
         font-size: 5rem;
         padding: 4rem;
+    }
+    .calendar-container {
+        margin-left: 10vw;
+        margin-right: 10vw;
+        margin-bottom:3rem;
     }
 }
