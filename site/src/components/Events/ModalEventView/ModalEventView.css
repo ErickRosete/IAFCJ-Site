@@ -1,0 +1,45 @@
+.bg-black{
+    background-color:black;
+}
+
+.bg-dark-grey{
+    background-color: #363636;
+}
+
+.txt-white{
+    color:white;
+}
+
+.txt-blue{
+    color: #00a7ff;
+}
+
+.txt-yellow{
+    color: #f7bd1d;
+}
+
+.start-date{
+    background-color:black;
+    color:#00a7ff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p .bold{ 
+    display: inline;
+    font-weight: bold;
+}
+.modal-footer{
+    justify-content: center;
+}
+.d-block{
+    display:block;
+    margin:auto;
+}
+@media screen and (min-width: 600px) {
+    .start-date{
+        align-items: normal;
+    }
+}

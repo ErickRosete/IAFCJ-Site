@@ -5,7 +5,7 @@ import "./FeaturedEvent.css";
 
 const FeaturedEvent = props => {
   const startDate = new Date(props.event.startDate);
-  const day = startDate.getDay();
+  const day = startDate.getDate();
   const month = startDate.toLocaleString('es', { month: 'long' });
   const timeHours=startDate.getHours();
   var timeMarker = timeHours%12<1?"am":"pm";

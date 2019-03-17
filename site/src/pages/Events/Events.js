@@ -13,6 +13,21 @@ import "./Events.css";
 import CalendarView from "../../components/Events/CalendarView/CalendarView";
 
 export class EventsPage extends Component {
+  state = {
+    modalShow: false,
+    selectedEvent: null
+  };
+
+  showModal = (event) => {
+    this.setState(
+      {
+        modalShow: true,
+        selectedEvent: event
+      }
+    );
+  }
+  closeModal = () => this.setState({ modalShow: false });
+
   render() {
     return (
       <Layout>
@@ -52,40 +67,28 @@ export class EventsPage extends Component {
                 );
               console.log(data);
               /*Fetch events */
-              
+
               let ev = []
-              data.events.map (event=>{
+              data.events.map(event => {
                 ev.push({
-                  id:event._id,
-                  title:event.title,
-                  start:new Date(event.startDate),
+                  id: event._id,
+                  title: event.title,
+                  start: new Date(event.startDate),
                   end: new Date(event.endDate),
                   desc: event.shortDescription,
-                  selectable:true,
+                  selectable: true,
                 });
               })
-/*
-              let ev=[
-                {
-                  id: 'ewrijiw0133',
-                  title: 'All Day Event very long title',
-                  allDay: true,
-                  start: new Date(2019, 3, 0),
-                  end: new Date(2019, 3, 1),
-                },
-                {
-                  id: 1,
-                  title: 'Long Event',
-                  start: new Date(2019, 3, 7),
-                  end: new Date(2019, 3, 10),
-                },
-              ]*/
 
               console.log(ev);
               /*show events */
               return (
-                <div className= "calendar-container">
-                  <CalendarView events= {ev} />
+                <div className="calendar-container">
+                  <CalendarView events={ev}
+                    showModal={this.showModal}
+                    closeModal={this.closeModal}
+                    modalShow={this.state.modalShow}
+                    selectedEvent={this.state.selectedEvent} />
                 </div>
               );
             }}
@@ -97,31 +100,5 @@ export class EventsPage extends Component {
     );
   }
 }
-
-/*<Row>
-    {data.events.map(event => {
-      return (
-        <Col
-          key={event._id}
-          xs={12}
-          md={6}
-          xl={4}
-          className="mb-3"
-        >
-          <div className="event__card">
-            <div className="event__card-img-cont">
-              <img src={event.imageLink} alt={event.title} />
-            </div>
-            <div className="event__card-info">
-              <p>{event.title}</p>
-              <p>{event.shortDescription}</p>
-              <p>{new Date(event.date).toLocaleTimeString()}</p>
-            </div>
-          </div>
-        </Col>
-      );
-    })}
-  </Row>
-*/
 
 export default EventsPage;
