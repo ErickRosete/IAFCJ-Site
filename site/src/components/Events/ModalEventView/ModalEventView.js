@@ -70,7 +70,7 @@ const ModalEventView = (props) => {
       </Modal.Body>
       
       <Modal.Footer>
-        <Button onClick={props.onHide} variant="danger">Close</Button>
+        <Button onClick={props.onHide} variant="danger">Cerrar</Button>
       </Modal.Footer>
     </Modal>
   );
