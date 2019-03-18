@@ -9,7 +9,8 @@ const { newsletterEmailDef, newsletterEmailQuery, newsletterEmailMutation } = re
 const { memberDef, memberQuery, memberMutation } = require("./member");
 const { videoDef, videoQuery, videoMutation } = require("./video");
 const { introDef, introQuery, introMutation } = require("./intro");
-
+const { introVideoDef, introVideoQuery, introVideoMutation } = require("./intro-video");
+const { aboutDef, aboutQuery, aboutMutation } = require("./about");
 
 module.exports = buildSchema(`
   ${authDef}
@@ -21,6 +22,8 @@ module.exports = buildSchema(`
   ${memberDef}
   ${videoDef}
   ${introDef}
+  ${introVideoDef}
+  ${aboutDef}
 
   type RootQuery {
     ${authQuery}
@@ -32,6 +35,8 @@ module.exports = buildSchema(`
     ${memberQuery}
     ${videoQuery}
     ${introQuery}
+    ${introVideoQuery}
+    ${aboutQuery}
   }
 
   type RootMutation {
@@ -44,6 +49,8 @@ module.exports = buildSchema(`
     ${memberMutation}
     ${videoMutation}
     ${introMutation}
+    ${introVideoMutation}
+    ${aboutMutation}
   }
 
   schema {

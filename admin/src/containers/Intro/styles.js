@@ -4,7 +4,8 @@ const styles = theme => ({
     margin: "auto",
     [theme.breakpoints.up("sm")]: {
       width: "70%"
-    }
+    },
+    marginBottom: '1rem'
   },
   root: {
     ...theme.mixins.gutters(),
@@ -40,7 +41,17 @@ const styles = theme => ({
   },
   input: {
     display: "none"
-  }
+  },
+  playerWrapper: {
+    marginBottom: '0.5rem',
+    position: "relative",
+    paddingTop: "56.25%" /* Player ratio: 100 / (1280 / 720) */
+  },
+  reactPlayer: {
+    position: "absolute",
+    top: 0,
+    left: 0
+  },
 });
 
 export default styles;

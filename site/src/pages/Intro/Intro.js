@@ -6,7 +6,10 @@ import ReactPlayer from "react-player";
 import Link from "react-router-dom/Link";
 import Layout from "../../components/Layout/Layout";
 
-import introVideo from "../../assets/videos/main.mp4";
+import Query from "react-apollo/Query"
+import { GET_INTRO_VIDEO } from "./constants";
+
+import Spinner from "../../components/Spinner/Spinner";
 import poster from "../../assets/images/logos/logo-500w.png";
 import banner400w from "../../assets/images/Intro/intro-banner-400w.jpg";
 import banner800w from "../../assets/images/Intro/intro-banner-800w.jpg";
@@ -33,25 +36,34 @@ export class IntroPage extends Component {
             title="Bienvenido!"
           />
           <h2 className="intro__first-text">
-            Seguramente tendrás muchas dudas... <br/>
+            Seguramente tendrás muchas dudas... <br />
             No te preocupes! estamos mas que contentos de ayudarte a responderlas.
           </h2>
 
-          <div className="intro__video-cont">
-            <div className="intro__video">
-              <ReactPlayer
-                url={introVideo}
-                config={{
-                  file: {
-                    attributes: { poster: poster }
-                  }
-                }}
-                width="100%"
-                height="100%"
-                controls
-              />
-            </div>
-          </div>
+          <Query query={GET_INTRO_VIDEO}>
+            {({ loading, error, data }) => {
+              if (loading) return <Spinner />;
+              if (error) return <p>Error :(</p>;
+              return (
+                <div className="intro__video-cont">
+
+                  <div className="intro__video">
+                    <ReactPlayer
+                      url={data.introVideo.videoLink}
+                      config={{
+                        file: {
+                          attributes: { poster: poster }
+                        }
+                      }}
+                      width="100%"
+                      height="100%"
+                      controls
+                    />
+                  </div>
+                </div>)
+            }}
+          </Query>
+
           <div className="intro__faq">
             <h1 className="intro__faq-title">Preguntas frecuentes</h1>
             <div className="intro__faq-cont">
@@ -83,7 +95,7 @@ export class IntroPage extends Component {
               <h2 className="intro__faq-question">
                 ¿Cuándo son los servicios?
               </h2>
-              <p className="intro__faq-answer">
+              <div className="intro__faq-answer">
                 Puedes asistir a nuestros servicios en los siguientes horarios:
                 <div className="intro__faq-horarios">
                   <p className="m-0">
@@ -97,7 +109,7 @@ export class IntroPage extends Component {
                     Avenida Colima y 1ra. San Luis Rio Colorado, Son.
                   </p>
                 </div>
-              </p>
+              </div>
               <p className="intro__faq-note">
                 ¿Más dudas? Aquí puedes contactarnos!
               </p>

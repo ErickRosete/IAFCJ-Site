@@ -33,7 +33,6 @@ const client = new ApolloClient({
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_SERVER_URL);
     library.add([
       faFacebook,
       faLinkedin,

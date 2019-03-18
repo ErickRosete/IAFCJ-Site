@@ -8,8 +8,6 @@ import Paper from "@material-ui/core/Paper";
 import Spinner from "../../components/Spinner/Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { EDIT_INTRO } from "../../pages/Intro/constants";
-import Mutation from "react-apollo/Mutation";
 
 export class Form extends Component {
   constructor(props) {
@@ -87,6 +85,7 @@ export class Form extends Component {
     return (
       <form className={classes.form} onSubmit={this.onSubmitHandler}>
         <Paper className={classes.root} elevation={1}>
+          <h2 style={{ textAlign: 'center' }}>Banner Principal</h2>
           <TextField
             required
             autoFocus
@@ -128,32 +127,24 @@ export class Form extends Component {
                 {this.state.uploadingImage ? (
                   <Spinner />
                 ) : (
-                  <img
-                    className={classes.image}
-                    src={this.state.imageLink}
-                    alt="intro-background"
-                  />
-                )}
+                    <img
+                      className={classes.image}
+                      src={this.state.imageLink}
+                      alt="intro-background"
+                    />
+                  )}
               </div>
             )}
           </div>
-          <Mutation mutation={EDIT_INTRO}>
-            {updateIntro => (
-              <Button
-                className={classes.buttonCenter}
-                variant="contained"
-                color="primary"
-                onClick={updateIntro.bind(this, {
-                  variables: {
-                    attentionSchedule: this.state.attentionSchedule,
-                    imageLink: this.state.imageLink
-                  }
-                })}
-              >
-                Guardar
-              </Button>
-            )}
-          </Mutation>
+
+          <Button
+            className={classes.buttonCenter}
+            variant="contained"
+            color="primary"
+            onClick={this.onSubmitHandler}
+          >
+            Guardar
+          </Button>
         </Paper>
       </form>
     );
