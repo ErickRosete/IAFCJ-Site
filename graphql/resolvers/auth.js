@@ -58,7 +58,7 @@ module.exports = {
       }
       const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
       const user = User({
-        email: args.userInput.email,
+        ...args.userInput,
         password: hashedPassword
       });
       const result = await user.save();
@@ -73,6 +73,19 @@ module.exports = {
       const user = await User.findByIdAndUpdate(
         args.id,
         { password: args.password },
+        { new: true }
+      );
+      return transformUser(user);
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  updateUser: async args => {
+    try {
+      const user = await User.findByIdAndUpdate(
+        args.id,
+        { ...args.userInput },
         { new: true }
       );
       return transformUser(user);

@@ -5,6 +5,13 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import Select from 'react-select'
+import FormLabel from '@material-ui/core/FormLabel';
+
+const options = [
+  { value: 'admin', label: 'Administrador' },
+  { value: 'editor', label: 'Editor' },
+];
 
 export class FormDialog extends Component {
   constructor(props) {
@@ -12,18 +19,21 @@ export class FormDialog extends Component {
 
     let email = "";
     let password = "";
-    let role = "";
+    let selectedRole = { value: "editor", label: "Editor" }
 
     if (this.props.user) {
       email = this.props.user.email ? this.props.user.email : "";
       password = this.props.user.password ? this.props.user.password : "";
-      role = this.props.user.role ? this.props.user.role : "";
+
+      if (props.user.role === "admin") {
+        selectedRole = { value: "admin", label: "Administrador" }
+      }
     }
 
     this.state = {
       email,
       password,
-      role
+      selectedRole
     };
 
     console.log(this.state);
@@ -35,25 +45,32 @@ export class FormDialog extends Component {
     });
   };
 
+  changeRoleHandler = (role) => {
+    this.setState({
+      selectedRole: role
+    });
+  }
+
   onConfirmHandler = () => {
     //validation
     if (
       this.state.email === "" ||
-      this.state.password === "" ||
-      this.state.role === ""
+      this.state.password === ""
     ) {
       return;
     }
 
     //grouping info
     let user = {
-      ...this.state
+      ...this.state,
+      role: this.state.selectedRole.value
     };
 
     //adding id in edit
     if (this.props.user) {
       user = { ...user, id: this.props.user._id };
     }
+
     console.log(user);
 
     this.props.onConfirm(user);
@@ -71,6 +88,9 @@ export class FormDialog extends Component {
         </DialogTitle>
 
         <DialogContent>
+          <FormLabel component="legend" style={{ marginBottom: '.2rem' }} required>Tipo de Usuario</FormLabel>
+          <Select options={options} onChange={this.changeRoleHandler} value={this.state.selectedRole} />
+
           <TextField
             required
             autoFocus
@@ -97,18 +117,7 @@ export class FormDialog extends Component {
             onChange={this.changeHandler.bind(this, "password")}
           />
 
-          <TextField
-            required
-            autoFocus
-            margin="normal"
-            label="Tipo"
-            type="text"
-            fullWidth
-            value={this.state.role}
-            onChange={this.changeHandler.bind(this, "role")}
-            error={this.state.role === ""}
-            helperText={this.state.role === "" ? "Valor Requerido" : ""}
-          />
+
         </DialogContent>
 
         <DialogActions>

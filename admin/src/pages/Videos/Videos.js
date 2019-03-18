@@ -19,7 +19,7 @@ import CardList from "../../components/Videos/CardList/CardList";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteDialog from "../../components/Dialog/DeleteDialog";
-import FormDialog from "../../containers/Users/FormDialog";
+import FormDialog from "../../containers/Videos/FormDialog";
 
 //Dialog
 import { Query, Mutation } from "react-apollo";

@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   login = (token, userId, tokenExpiration, role) => {
-    if (role === "Admin" || role === "Editor") {
+    if (role.toLowerCase() === "admin" || role.toLowerCase() === "editor") {
       const authObject = {
         token,
         userId,
@@ -102,7 +102,7 @@ class App extends Component {
                     <Route path="/newsletter" component={NewsletterPage} />
                     <Route path="/organigrama" component={OrganigramaPage} />
                     <Route path="/videos" component={VideosPage} />
-                    {this.state.role === "admin" && (
+                    {this.state.role.toLowerCase() === "admin" && (
                       <Route path="/users" component={UsersPage} />
                     )}
                     <Redirect to="/events" exact />

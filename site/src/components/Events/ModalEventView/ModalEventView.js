@@ -15,7 +15,7 @@ const ModalEventView = (props) => {
   var minutes = startDate.getMinutes() < 10 ? '0' + startDate.getMinutes().toString() : startDate.getMinutes().toString();
 
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-  var endOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'numeric'};
+  // var endOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'numeric'};
 
   const title = props.event ? props.event.title : "";
   const address = props.event ? props.event.address : "";
@@ -51,7 +51,7 @@ const ModalEventView = (props) => {
         </Container>
 
         <Container fluid>
-          <img src={placeholder} className="img-fluid px-4 pb-3"></img>
+          <img src={placeholder} alt="Evento" className="img-fluid px-4 pb-3"></img>
           <p className="px-4">
             esta es la descripcion de la imagen (:
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,

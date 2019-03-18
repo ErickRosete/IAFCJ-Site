@@ -50,7 +50,7 @@ export class Newsletter extends Component {
       body
     };
 
-    fetch("http://localhost:8000/sendNewsletterEmail", {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/sendNewsletterEmail`, {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {

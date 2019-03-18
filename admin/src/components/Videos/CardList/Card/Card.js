@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import ReactPlayer from "react-player"
+
 
 import Typography from "@material-ui/core/Typography";
 
@@ -20,9 +20,6 @@ const styles = theme => ({
     maxWidth: 345,
     margin: "1rem"
   },
-  media: {
-    height: 140
-  },
   button: {
     margin: theme.spacing.unit
   },
@@ -31,6 +28,24 @@ const styles = theme => ({
   },
   rightIcon: {
     marginLeft: theme.spacing.unit
+  },
+  playerWrapper: {
+    marginBottom: '0.5rem',
+    position: "relative",
+    paddingTop: "56.25%" /* Player ratio: 100 / (1280 / 720) */
+  },
+  reactPlayer: {
+    position: "absolute",
+    top: 0,
+    left: 0
+  },
+  cardContent: {
+    padding: 0,
+    flexGrow: 1
+  },
+  cardInfo: {
+    margin: 2 * theme.spacing.unit,
+    marginBottom: 0
   }
 });
 
@@ -38,19 +53,32 @@ const VideoCard = props => {
   const { classes, video } = props;
   return (
     <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          video={video.link ? video.link : "placeholder"}
-          title={video.name}
-        />
-        <CardContent>
+      <CardContent className={classes.cardContent}>
+        {video.link && (
+          <div className={classes.playerWrapper}>
+            <ReactPlayer
+              className={classes.reactPlayer}
+              url={video.link}
+              config={{
+                youtube: {
+                  playerVars: {
+                    origin: process.env.REACT_APP_ADMIN_URL
+                  }
+                }
+              }}
+              width="100%"
+              height="100%"
+              controls
+            />
+          </div>
+        )}
+        <div className={classes.cardInfo}>
           <Typography gutterBottom variant="h5" component="h2">
             {video.name}
           </Typography>
           <Typography component="p">{video.description}</Typography>
-        </CardContent>
-      </CardActionArea>
+        </div>
+      </CardContent>
 
       <CardActions>
         <Button
@@ -69,7 +97,7 @@ const VideoCard = props => {
           color="secondary"
           aria-label="Edit"
           className={classes.button}
-          onClick={props.openDeleteDialog.bind(this, video)}
+          onClick={props.openDelete.bind(this, video)}
         >
           Eliminar
           <DeleteIcon className={classes.rightIcon} />

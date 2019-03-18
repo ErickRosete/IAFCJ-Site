@@ -5,9 +5,6 @@ const Video = props => {
   return (
     <ReactPlayer
       url={props.video.link}
-      playing
-      loop
-      muted
       playsInline
       controls
       width="100%"

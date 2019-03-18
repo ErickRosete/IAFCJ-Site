@@ -42,6 +42,7 @@ module.exports = buildSchema(`
     ${networkMutation}
     ${newsletterEmailMutation}
     ${memberMutation}
+    ${videoMutation}
     ${introMutation}
   }
 

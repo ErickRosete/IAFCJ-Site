@@ -16,8 +16,10 @@
     "react-dom": "^16.7.0",
     "react-draft-wysiwyg": "^1.13.1",
     "react-places-autocomplete": "^7.2.0",
+    "react-player": "^1.9.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.5",
+    "react-select": "^2.4.2",
     "recompose": "^0.30.0"
   },
   "scripts": {

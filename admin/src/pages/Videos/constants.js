@@ -25,9 +25,8 @@ export const ADD_VIDEO = gql`
 `;
 
 export const EDIT_VIDEO = gql`
-  mutation UpdateVideo($name: String, $description: String, $link: String) {
-    updateVideo(
-      videoInput: { name: $name, description: $description, link: $link }
+  mutation UpdateVideo($id: ID!, $name: String, $description: String, $link: String) {
+    updateVideo(id: $id, videoInput: { name: $name, description: $description, link: $link }
     ) {
       _id
       name

@@ -79,7 +79,7 @@ const ResponsiveDrawer = props => {
   ];
 
   const adminLinks = [
-    { id: 1, icon: <UserIcon />, text: "Usuarios", linkTo: "/user" }
+    { id: 1, icon: <UserIcon />, text: "Usuarios", linkTo: "/users" }
   ];
 
   const { classes, theme } = props;
@@ -121,7 +121,7 @@ const ResponsiveDrawer = props => {
       <AuthContext.Consumer>
         {context => {
           return (
-            context.role === "Admin" && (
+            context.role.toLowerCase() === "admin" && (
               <React.Fragment>
                 <List>
                   {adminLinks.map(adminLink => (

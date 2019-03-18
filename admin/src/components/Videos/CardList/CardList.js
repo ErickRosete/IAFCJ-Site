@@ -18,7 +18,8 @@ const CardList = props => {
         return (
           <Card
             key={video._id}
-            openDeleteDialog={props.openDeleteDialog}
+            openEdit={props.openEdit}
+            openDelete={props.openDelete}
             video={video}
           />
         );

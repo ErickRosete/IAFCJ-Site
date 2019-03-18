@@ -6,7 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import { Query } from "react-apollo";
 import { GET_EVENTS, GET_FEATURED_EVENT } from "./constants";
 import Spinner from "../../components/Spinner/Spinner";
-import { Container, Col, Row } from "react-bootstrap";
+// import { Container, Col, Row } from "react-bootstrap";
 import "./Events.css";
 
 /*Calendar*/
@@ -69,7 +69,7 @@ export class EventsPage extends Component {
               /*Fetch events */
 
               let ev = []
-              data.events.map(event => {
+              data.events.forEach(event => {
                 ev.push({
                   id: event._id,
                   title: event.title,

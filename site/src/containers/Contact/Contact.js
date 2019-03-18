@@ -34,7 +34,7 @@ export class Contact extends Component {
       body
     };
 
-    fetch("http://localhost:8000/sendEmail", {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/sendEmail`, {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {

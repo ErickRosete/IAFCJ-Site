@@ -9,7 +9,7 @@ const authDef = `
     type User {
         _id: ID!
         email: String!
-        password: String!
+        password: String
         role: String!
     }
 
@@ -29,6 +29,7 @@ const authQuery = `
 const authMutation = `
     createUser(userInput: UserInput!): User
     updatePassword(id: ID!, password: String!): User
+    updateUser(id: ID!, userInput: UserInput!): User
     deleteUser(id: ID!): User
 `;
 
