@@ -10,6 +10,8 @@
     justify-content: center;
     align-items: flex-start;
     max-height: 75vh;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .home__about-img-container img {
@@ -39,6 +41,11 @@
 .home__about-text {
     max-width: 75%;
     padding-top: 3rem;
+}
+
+.home__about-text p {
+    font-family: 'Maitree', sans;
+    font-weight: 500;
 }
 
 .home__about .btn {
