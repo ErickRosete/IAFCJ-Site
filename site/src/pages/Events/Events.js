@@ -76,9 +76,25 @@ export class EventsPage extends Component {
                   start: new Date(event.startDate),
                   end: new Date(event.endDate),
                   desc: event.shortDescription,
+                  description: event.description,
+                  address: event.address,
+                  imageLink: event.imageLink,
                   selectable: true,
                 });
               })
+
+              // const ev = data.events.map(event => {
+              //   return ({
+              //     id: event._id,
+              //     title: event.title,
+              //     start: new Date(event.startDate),
+              //     end: new Date(event.endDate),
+              //     desc: event.shortDescription,
+              //     description: event.description,
+              //     address: event.address,
+              //     selectable: true,
+              //   })
+              // })
 
               console.log(ev);
               /*show events */
