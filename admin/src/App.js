@@ -102,7 +102,7 @@ class App extends Component {
                     <Route path="/newsletter" component={NewsletterPage} />
                     <Route path="/organigrama" component={OrganigramaPage} />
                     <Route path="/videos" component={VideosPage} />
-                    {this.state.role.toLowerCase() === "admin" && (
+                    {this.state.role && this.state.role.toLowerCase() === "admin" && (
                       <Route path="/users" component={UsersPage} />
                     )}
                     <Redirect to="/events" exact />

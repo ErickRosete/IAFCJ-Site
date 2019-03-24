@@ -108,10 +108,10 @@ export class Form extends Component {
               accept="image/*"
               onChange={this.changeImageHandler}
               className={classes.input}
-              id="contained-button-file"
+              id="about-button-file"
               type="file"
             />
-            <label htmlFor="contained-button-file">
+            <label htmlFor="about-button-file">
               <Button
                 variant="contained"
                 component="span"

@@ -58,6 +58,14 @@
     font-weight: bold;
 }
 
+.contact__alert {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    margin: 1rem;
+    font-size: larger;
+}
+
 @media screen and (min-width: 600px) {
     .home__contact-banner {
         background-size: 100% 100%;

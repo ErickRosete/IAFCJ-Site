@@ -17,7 +17,8 @@ module.exports = {
       MONGO_USER: "erick-rw",
       MONGO_PASSWORD: "LocLnbdoa1Pi7GLW",
       MONGO_DB: "iglesia-db",
-      SERVER_URL: "https://server.iglesiacristianasanluis.com"
+      SERVER_URL: "https://server.iglesiacristianasanluis.com",
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
     }
   }],
 

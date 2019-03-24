@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 import "./Contact.css";
 
 export class Contact extends Component {
+  state = {
+    showAlert: false,
+  }
+
   constructor(props) {
     super(props);
     this.nameEl = React.createRef();
@@ -12,6 +17,15 @@ export class Contact extends Component {
     this.topicEl = React.createRef();
     this.bodyEl = React.createRef();
   }
+
+  showAlertHandler = () => {
+    this.setState({ showAlert: true });
+    setTimeout(this.hideAlertHandler, 2500);
+  };
+
+  hideAlertHandler = () => {
+    this.setState({ showAlert: false });
+  };
 
   submitHandler = event => {
     event.preventDefault();
@@ -49,6 +63,7 @@ export class Contact extends Component {
       })
       .then(resData => {
         console.log(resData);
+        this.showAlertHandler();
       })
       .catch(err => {
         console.log(err);
@@ -146,6 +161,16 @@ export class Contact extends Component {
             </Container>
           </Form>
         </div>
+        {this.state.showAlert && (
+          <Alert
+            dismissible
+            onClose={this.hideAlertHandler}
+            className="contact__alert"
+            variant="success"
+          >
+            Su mensaje ha sido recibido, gracias por contactarnos!
+          </Alert>
+        )}
       </div>
     );
   }

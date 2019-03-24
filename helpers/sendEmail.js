@@ -4,14 +4,13 @@ const nodemailer = require("nodemailer");
 exports.sendEmail = async (emailContent) => {
     try {
         console.log(emailContent);
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
             auth: {
-                user: 'hfcz7vurbmh5wei5@ethereal.email',
-                pass: 'k2JkgW7Ygj2hzQXfAD'
-            }
-        });
+                   user: '2daiadfcjsl@gmail.com',
+                   pass: '2daiafcj.'
+               }
+           });
 
         const htmlContent = `
             <p style="margin-bottom:2rem;">Saludos</p>
@@ -26,8 +25,8 @@ exports.sendEmail = async (emailContent) => {
 
         // setup email data with unicode symbols
         const mailOptions = {
-            from: '"Sitio IAFCJ" <erickrosetebeas@hotmail.com>', // sender address
-            to: "erickrosetebeas@hotmail.com", // list of receivers
+            from: '"Sitio IAFCJ" <2daiadfcjsl@gmail.com>', // sender address
+            to: "cielomia65@yahoo.com", // list of receivers
             subject: "Contacto - Sitio Web", // Subject line
             html: htmlContent // html body
         };

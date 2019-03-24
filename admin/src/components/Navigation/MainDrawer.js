@@ -121,7 +121,7 @@ const ResponsiveDrawer = props => {
       <AuthContext.Consumer>
         {context => {
           return (
-            context.role.toLowerCase() === "admin" && (
+            context.role && context.role.toLowerCase() === "admin" && (
               <React.Fragment>
                 <List>
                   {adminLinks.map(adminLink => (

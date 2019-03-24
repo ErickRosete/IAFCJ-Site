@@ -1,8 +1,9 @@
 {
-    "env":{
+    "env": {
         "MONGO_USER": "erick-rw",
         "MONGO_PASSWORD": "LocLnbdoa1Pi7GLW",
-        "MONGO_DB":"iglesia-db",
-        "SERVER_URL": "http://localhost:8000"
+        "MONGO_DB": "iglesia-db",
+        "SERVER_URL": "http://localhost:8000",
+        "NODE_TLS_REJECT_UNAUTHORIZED": 0
     }
 }
