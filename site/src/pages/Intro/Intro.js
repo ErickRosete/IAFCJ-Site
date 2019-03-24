@@ -15,6 +15,8 @@ import banner400w from "../../assets/images/Intro/intro-banner-400w.jpg";
 import banner800w from "../../assets/images/Intro/intro-banner-800w.jpg";
 import banner1620w from "../../assets/images/Intro/intro-banner-1620w.jpg";
 
+import { GET_INTRO } from "../../components/Home/Intro/constants";
+
 import "./intro.css";
 
 export class IntroPage extends Component {
@@ -98,12 +100,24 @@ export class IntroPage extends Component {
               <div className="intro__faq-answer">
                 Puedes asistir a nuestros servicios en los siguientes horarios:
                 <div className="intro__faq-horarios">
-                  <p className="m-0">
-                    <span className="font-weight-bold">Viernes: </span> 7:30 pm
-                  </p>
-                  <p className="m-0">
-                    <span className="font-weight-bold"> Domingos: </span> 2:00pm
-                  </p>
+                  <Query query={GET_INTRO}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <Spinner />;
+                      if (error) return <p>Error :(</p>;
+
+                      const attentionSchedule = data.intro.attentionSchedule.split("\n");
+                      return (
+                        attentionSchedule.map(day => {
+                          const dayArray = day.split(" ");
+                          return (
+                            <p className="m-0" key={day}>
+                              <span className="font-weight-bold">{dayArray.splice(0, 1)}{" "}</span>{dayArray.join(" ")}
+                            </p>
+                          );
+                        })
+                      );
+                    }}
+                  </Query>
                   <p className="m-0">
                     <span className="font-weight-bold">Ubicación: </span>{" "}
                     Avenida Colima y 1ra. San Luis Rio Colorado, Son.
@@ -117,6 +131,7 @@ export class IntroPage extends Component {
           </div>
           <Contact />
         </div>
+
       </Layout>
     );
   }

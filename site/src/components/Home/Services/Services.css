@@ -56,22 +56,15 @@
     text-align: left;
 }
 
-.home__services-list-container-bullets ul li {
+.home__services-list-container-bullets ul {
     color: black;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
 }
 
-.home__services-list-left {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width:50%
-}
-
-.home__services-list-right {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width
+.home__services-list-container-bullets ul li {
+    padding: 0rem 1rem;
 }
 
 .home__services-img-container {

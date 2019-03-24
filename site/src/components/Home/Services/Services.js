@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container, Badge } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "./Services.css";
 
 import servicios320w from "../../../assets/images/landing-page/servicios-320w.jpg";
@@ -24,20 +24,13 @@ const Services = () => {
             </div>
 
             <div className="home__services-list-container-bullets">
-              <div>
-                <ul>
-                  <li>Ayuda a familias Vulnerables, inmigrantes o de bajos recursos</li>
-                  <li>Guía espiritual</li>
-                  <li>Ayuda a enfermos</li>
-                </ul>
-              </div>
-
-              <div>
-                <ul>
-                  <li>Asistencia a Personas de la tercera edad</li>
-                  <li>Consejería familiar y matrimonial</li>
-                </ul>
-              </div>
+              <ul>
+                <li>Ayuda a familias Vulnerables, inmigrantes o de bajos recursos</li>
+                <li>Guía espiritual</li>
+                <li>Ayuda a enfermos</li>
+                <li>Asistencia a Personas de la tercera edad</li>
+                <li>Consejería familiar y matrimonial</li>
+              </ul>
             </div>
           </div>
         </Col>

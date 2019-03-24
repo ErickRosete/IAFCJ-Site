@@ -66,4 +66,7 @@
     .home__about .btn {
         margin-top: 2rem
     }
+    .home__about-text p{
+        font-size:1.25rem;
+    }
 }

@@ -43,8 +43,7 @@
 .home__networks-info {
     background-color: #f7bd1d;
     text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+    padding: 2rem 0px;
 }
 
 .home__networks-info p {
