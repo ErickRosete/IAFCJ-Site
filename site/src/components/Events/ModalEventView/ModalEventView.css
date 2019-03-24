@@ -2,6 +2,7 @@
     margin-top:1rem;
     margin-bottom: 0;
 }
+
 .bg-black{
     background-color:black;
 }
@@ -35,6 +36,7 @@ p .bold{
     display: inline;
     font-weight: bold;
 }
+
 .modal-footer{
     justify-content: center;
 }
