@@ -35,7 +35,7 @@ const ModalEventView = (props) => {
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className="px-0 py-0">
+      <Modal.Body className="px-0 py-0 modal-body">
         <Container fluid className="pt-0 pb-3">
           <Row>
             <Col xs={12} md={3} className="start-date">
@@ -63,9 +63,9 @@ const ModalEventView = (props) => {
 
         <Container fluid className="bg-dark-grey txt-white py-3">
           <h1>Detalles</h1>
-          <p> <div className="bold"> Fecha: </div>{startDate.toLocaleString('es', options)} </p>
-          <p> <div className="bold"> Hora: </div> {timeHours % 12}:{minutes} {timeMarker} - {endDate.toLocaleString('es')}</p>
-          <p> <div className="bold"> Ubicación: </div>{address}</p>
+          <p> <span className="bold"> Fecha: </span>{startDate.toLocaleString('es', options)} </p>
+          <p> <span className="bold"> Hora: </span> {timeHours % 12}:{minutes} {timeMarker} - {endDate.toLocaleString('es')}</p>
+          <p> <span className="bold"> Ubicación: </span>{address}</p>
         </Container>
       </Modal.Body>
 
