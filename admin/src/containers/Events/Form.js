@@ -22,11 +22,13 @@ export class Form extends Component {
   constructor(props) {
     super(props);
 
-    let editorState;
-    let title;
-    let imageLink;
-    let shortDescription;
-    let startDate;
+    let editorState = EditorState.createEmpty();;
+    let title = "";
+    let imageLink = "";
+    let shortDescription = "";
+    let startDate = "";
+    let endDate = "";
+    let address = "";
 
     if (props.event) {
       console.log(props.event);
@@ -36,6 +38,8 @@ export class Form extends Component {
         : "";
       imageLink = props.event.imageLink ? props.event.imageLink : "";
       startDate = props.event.startDate ? props.event.startDate : "";
+      endDate = props.event.endDate ? props.event.endDate : "";
+      address = props.event.address ? props.event.address : "";
 
       //editor
       const html = props.event.description;
@@ -46,21 +50,17 @@ export class Form extends Component {
         );
         editorState = EditorState.createWithContent(contentState);
       }
-    } else {
-      title = "";
-      startDate = "";
-      shortDescription = "";
-      imageLink = "";
-      editorState = EditorState.createEmpty();
     }
 
     this.state = {
       title,
       startDate,
+      endDate,
       shortDescription,
       editorState,
       imageLink,
-      uploadingImage: false
+      uploadingImage: false,
+      address
     };
   }
 
@@ -70,23 +70,11 @@ export class Form extends Component {
     });
   };
 
-  changeTitleHandler = event => {
+  changeHandler = (name, event) => {
     this.setState({
-      title: event.target.value
+      [name]: event.target.value
     });
-  };
-
-  changeDateHandler = event => {
-    this.setState({
-      startDate: event.target.value
-    });
-  };
-
-  changeShortDescriptionHandler = event => {
-    this.setState({
-      shortDescription: event.target.value
-    });
-  };
+  }
 
   changeImageHandler = event => {
     this.setState({ uploadingImage: true });
@@ -119,15 +107,20 @@ export class Form extends Component {
     e.preventDefault();
 
     const title = this.state.title;
-    if (title === "") {
+    const startDate = this.state.startDate;
+    const endDate = this.state.endDate;
+
+    if (title === "" || startDate === "" || endDate === "") {
       return;
     }
 
     let event = {
       title,
-      startDate: this.state.startDate,
+      startDate,
+      endDate,
       imageLink: this.state.imageLink,
       shortDescription: this.state.shortDescription,
+      address: this.state.address,
       description: draftToHtml(
         convertToRaw(this.state.editorState.getCurrentContent())
       )
@@ -155,7 +148,7 @@ export class Form extends Component {
               type="text"
               fullWidth
               value={this.state.title}
-              onChange={this.changeTitleHandler}
+              onChange={this.changeHandler.bind(this, "title")}
               error={this.state.title === ""}
               helperText={this.state.title === "" ? "Valor Requerido" : ""}
             />
@@ -186,14 +179,14 @@ export class Form extends Component {
                   {this.state.uploadingImage ? (
                     <Spinner />
                   ) : (
-                    <img
-                      height={100}
-                      key={this.state.imageLink}
-                      className={classes.img}
-                      src={this.state.imageLink}
-                      alt="evento"
-                    />
-                  )}
+                      <img
+                        height={100}
+                        key={this.state.imageLink}
+                        className={classes.img}
+                        src={this.state.imageLink}
+                        alt="evento"
+                      />
+                    )}
                 </div>
               )}
             </div>
@@ -202,13 +195,30 @@ export class Form extends Component {
           <Grid item xs={12} md={5}>
             <TextField
               className={classes.textField}
+              margin="dense"
               id="datetime-local"
-              label="Fecha"
+              label="Fecha inicial"
               type="datetime-local"
               value={this.state.startDate}
-              onChange={this.changeDateHandler}
+              onChange={this.changeHandler.bind(this, "startDate")}
               error={this.state.startDate === ""}
               helperText={this.state.startDate === "" ? "Valor Requerido" : ""}
+              required
+              fullWidth
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <TextField
+              className={classes.textField}
+              margin="dense"
+              id="datetime-local"
+              label="Fecha final"
+              type="datetime-local"
+              value={this.state.endDate}
+              onChange={this.changeHandler.bind(this, "endDate")}
+              error={this.state.endDate === ""}
+              helperText={this.state.endDate === "" ? "Valor Requerido" : ""}
               required
               fullWidth
               InputLabelProps={{
@@ -225,7 +235,19 @@ export class Form extends Component {
               type="text"
               fullWidth
               value={this.state.shortDescription}
-              onChange={this.changeShortDescriptionHandler}
+              onChange={this.changeHandler.bind(this, "shortDescription")}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              className={classes.textfield}
+              margin="dense"
+              label="Dirección"
+              type="text"
+              fullWidth
+              value={this.state.address}
+              onChange={this.changeHandler.bind(this, "address")}
             />
           </Grid>
 

@@ -37,17 +37,17 @@ export class Newsletter extends Component {
     event.preventDefault();
 
     const topic = this.state.topic;
-    const body = draftToHtml(
+    const content = draftToHtml(
       convertToRaw(this.state.editorState.getCurrentContent())
     );
 
-    if (topic === "" || body === "") {
+    if (topic === "" || content === "") {
       return;
     }
 
     const requestBody = {
       topic,
-      body
+      content
     };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/sendNewsletterEmail`, {
@@ -65,6 +65,7 @@ export class Newsletter extends Component {
       })
       .then(resData => {
         console.log(resData);
+        alert("Mensaje enviado")
       })
       .catch(err => {
         console.log(err);

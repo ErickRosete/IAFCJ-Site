@@ -11,6 +11,7 @@ const externalRequest = require("./middleware/external-requests");
 const isAuth = require("./middleware/is-auth");
 
 const { sendEmail } = require("./helpers/sendEmail");
+const { sendNewsletterEmail } = require("./helpers/sendNewsletterEmail");
 const { saveImage } = require("./helpers/images");
 
 const app = express();
@@ -31,6 +32,11 @@ app.use(
 
 app.post('/sendEmail', (req, res) => {
   const isSend = sendEmail(req.body);
+  isSend ? res.status(200).json(req.body) : res.status(400).send({ error: "server error" });
+});
+
+app.post('/sendNewsletterEmail', (req, res) => {
+  const isSend = sendNewsletterEmail(req.body);
   isSend ? res.status(200).json(req.body) : res.status(400).send({ error: "server error" });
 });
 
