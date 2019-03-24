@@ -22,7 +22,7 @@ export class Form extends Component {
   constructor(props) {
     super(props);
 
-    let editorState = "";
+    let editorState = EditorState.createEmpty();
     let title = "";
     let subtitle = "";
     let shortDescription = "";
