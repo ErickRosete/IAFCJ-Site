@@ -50,15 +50,18 @@ const ModalEventView = (props) => {
           </Row>
         </Container>
 
-        <Container fluid>
-          <img src={imageLink} alt="Evento" className="img-fluid px-4 pb-3"></img>
-          <div
-            className="px-4"
-            dangerouslySetInnerHTML={{
-              __html: description
-            }}
-          />
-
+        <Container fluid >
+          <Row>
+            <Col className="modal__content_description">
+              <img src={imageLink} alt="Evento" className="img-fluid px-4 pb-3"></img>
+              <div
+                className="px-4"
+                dangerouslySetInnerHTML={{
+                  __html: description
+                }}
+              />
+            </Col>
+          </Row>
         </Container>
 
         <Container fluid className="bg-dark-grey txt-white py-3">
@@ -72,7 +75,7 @@ const ModalEventView = (props) => {
       <Modal.Footer>
         <Button onClick={props.onHide} variant="danger">Cerrar</Button>
       </Modal.Footer>
-    </Modal>
+    </Modal >
   );
 }
 

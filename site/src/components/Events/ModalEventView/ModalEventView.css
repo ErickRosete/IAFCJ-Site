@@ -3,6 +3,12 @@
     margin-bottom: 0;
 }
 
+.container-fluid .modal__content_description{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .bg-black{
     background-color:black;
 }
@@ -34,7 +40,7 @@
 
 p .bold{ 
     display: inline;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .modal-footer{
