@@ -95,6 +95,9 @@ export class IntroPage extends Component {
               <p className="intro__faq-note">Te esperamos!</p>
 
               <h2 className="intro__faq-question">
+                ¿Comó recibir información reciente de la iglesia?
+              </h2>
+              <h2 className="intro__faq-question">
                 ¿Cuándo son los servicios?
               </h2>
               <div className="intro__faq-answer">

@@ -65,7 +65,6 @@ export class EventsPage extends Component {
                     contacte al administrador
                   </p>
                 );
-              console.log(data);
               /*Fetch events */
 
               let ev = []
@@ -96,8 +95,6 @@ export class EventsPage extends Component {
               //   })
               // })
 
-              console.log(ev);
-              /*show events */
               return (
                 <div className="calendar-container">
                   <CalendarView events={ev}

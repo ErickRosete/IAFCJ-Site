@@ -30,6 +30,7 @@ export class Newsletter extends Component {
     return (
       <div className="newsletter">
         <h1>Suscribete a nuestro newsletter</h1>
+        <p className="txt-white">Recibirás la información más importante de las actividades de nuestra congregación en tu correo electrónico!</p>
         <Mutation mutation={ADD_NEWSLETTER_EMAIL}>
           {createNewsletterEmail => (
             <Form

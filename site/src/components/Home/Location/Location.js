@@ -29,10 +29,10 @@ const networks = () => {
                   </a>
                 </p>
                 <p>
-                  <b>Telefono:</b> 01 686 566 5791
+                  <b>Telefono:</b> 653 5349 108
                 </p>
                 <p>
-                  <b>Pagina de fb:</b>
+                  <b>Pagina de fb: </b>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"

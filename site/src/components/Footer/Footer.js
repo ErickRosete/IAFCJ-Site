@@ -12,8 +12,11 @@ const Footer = () => {
         <a target="_blank" rel="noopener noreferrer" href="https://facebook.com//2da-IAFCJ-San-Luis-750368241819032/">
           <FontAwesomeIcon icon={["fab", "facebook"]} size="2x" />
         </a>
-        <a  target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/">
-          <FontAwesomeIcon icon={["fab", "linkedin"]} size="2x"  />
+        <a  target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/2daiafcjsanluis/">
+          <FontAwesomeIcon icon={["fab", "instagram"]} size="2x"  />
+        </a>
+        <a  target="_blank" rel="noopener noreferrer" href="https://www.twitter.com/">
+          <FontAwesomeIcon icon={["fab", "twitter"]} size="2x"  />
         </a>
       </div>
     </footer>

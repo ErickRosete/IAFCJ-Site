@@ -4,14 +4,14 @@ import placeholder from '../../../assets/images/Events/event-800w.jpg';
 import './ModalEventView.css'
 
 const ModalEventView = (props) => {
-  console.log(props.event)
   const startDate = props.event ? new Date(props.event.start) : new Date();
   const endDate = props.event ? new Date(props.event.end) : new Date();
 
+  console.log(startDate);
   const day = startDate.getDate();
   const month = startDate.toLocaleString('es', { month: 'long' });
   const timeHours = startDate.getHours();
-  var timeMarker = timeHours % 12 < 1 ? "am" : "pm";
+  var timeMarker = timeHours < 12 ? "am" : "pm";
   var minutes = startDate.getMinutes() < 10 ? '0' + startDate.getMinutes().toString() : startDate.getMinutes().toString();
 
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
