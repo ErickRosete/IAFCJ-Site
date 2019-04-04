@@ -32,6 +32,9 @@
     z-index: 1;
     font-style: italic;
     color: white;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .blog__banner-author {
@@ -45,6 +48,7 @@
 
 @media screen and (min-width: 600px) {
     .blog__banner-phrase {
-        left: 40%;
+        font-size: 2rem;
+        left: 50%;
     }
 }

@@ -5,9 +5,8 @@ import Newsletter from "../../containers/Newsletter/Newsletter";
 import Spinner from "../../components/Spinner/Spinner";
 import Layout from "../../components/Layout/Layout";
 
-import banner1600w from "../../assets/images/Blog/blog-banner-1600w.jpg";
-import banner800w from "../../assets/images/Blog/blog-banner-800w.jpg";
-import banner400w from "../../assets/images/Blog/blog-banner-400w.jpg";
+import blogBanner1 from "../../assets/images/Blog/blog-banner1.jpg";
+import blogBanner2 from "../../assets/images/Blog/blog-banner2.jpg";
 
 import { Helmet } from "react-helmet";
 
@@ -29,10 +28,10 @@ export class BlogPage extends Component {
             />
           </Helmet>
           <Banner
-            srcSet={`${banner400w} 400w, ${banner800w} 800w, ${banner1600w} 1600w`}
-            img={banner800w}
-            phrase='"Frase bonita Lorem Ipsum Algo"'
-            author="-José Perez"
+            srcSet={`${blogBanner1} 400w, ${blogBanner1} 800w, ${blogBanner1} 1600w`}
+            img={blogBanner1}
+            phrase='"Cuando ustedes me busquen me encontrarán, siempre y cuando me busquen de todo corazón"'
+            author="Jeremias29:13"
           />
           <h1 className="blog__title">Bienvenido a nuestro blog!</h1>
 
