@@ -5,8 +5,9 @@ import Newsletter from "../../containers/Newsletter/Newsletter";
 import Spinner from "../../components/Spinner/Spinner";
 import Layout from "../../components/Layout/Layout";
 
-import blogBanner1 from "../../assets/images/Blog/blog-banner1.jpg";
-import blogBanner2 from "../../assets/images/Blog/blog-banner2.jpg";
+import blogBanner400w from "../../assets/images/Blog/blog-banner-400w.jpg";
+import blogBanner800w from "../../assets/images/Blog/blog-banner-800w.jpg";
+import blogBanner1600w from "../../assets/images/Blog/blog-banner-1600w.jpg";
 
 import { Helmet } from "react-helmet";
 
@@ -28,10 +29,10 @@ export class BlogPage extends Component {
             />
           </Helmet>
           <Banner
-            srcSet={`${blogBanner1} 400w, ${blogBanner1} 800w, ${blogBanner1} 1600w`}
-            img={blogBanner1}
+            srcSet={`${blogBanner400w} 400w, ${blogBanner800w} 800w, ${blogBanner1600w} 1600w`}
+            img={blogBanner800w}
             phrase='"Cuando ustedes me busquen me encontrarán, siempre y cuando me busquen de todo corazón"'
-            author="Jeremias29:13"
+            author="Jeremías 29:13"
           />
           <h1 className="blog__title">Bienvenido a nuestro blog!</h1>
 

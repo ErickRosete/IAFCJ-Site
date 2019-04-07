@@ -3,7 +3,7 @@ import Banner from "../../components/Banner/Banner";
 import Helmet from "react-helmet";
 import Contact from "../../containers/Contact/Contact";
 import ReactPlayer from "react-player";
-import Link from "react-router-dom/Link";
+import { HashLink as Link } from "react-router-hash-link";
 import Layout from "../../components/Layout/Layout";
 
 import Query from "react-apollo/Query"
@@ -13,7 +13,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import poster from "../../assets/images/logos/logo-500w.png";
 import banner400w from "../../assets/images/Intro/intro-banner-400w.jpg";
 import banner800w from "../../assets/images/Intro/intro-banner-800w.jpg";
-import banner1620w from "../../assets/images/Intro/intro-banner-1620w.jpg";
+import banner1620w from "../../assets/images/Intro/intro-banner-1600w.jpg";
 
 import { GET_INTRO } from "../../components/Home/Intro/constants";
 
@@ -73,10 +73,10 @@ export class IntroPage extends Component {
                 ¿Qué son los grupos celulares?
               </h2>
               <p className="intro__faq-answer">
-                Nuestra organizacion ofrece grupos celulares donde podrás....
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud.
+                Nuestra organizacion ofrece grupos celulares donde podrás convivir
+                con gente de la comunidad y conocer la palabra de Diós. No importa donde
+                te encuentres ni tu disponibilidad de horario, seguro que hay un grupo que
+                se ajuste a tus necesidades.
               </p>
               <p className="intro__faq-note">
                 Todos son bienvenidos gratuitamente a nuestros grupos celulares,
@@ -89,7 +89,7 @@ export class IntroPage extends Component {
                 No nos importa tu vestimenta, de donde vienes, el color de tu
                 pelo, tus intereses políticos, el color de tu piel, ni cuantos
                 tatuajes tienes. Somos una iglesia llena de gente imperfecta que
-                desea conocer a -- y servir a los demás juntos.
+                desea conocer a Jesús y servir a los demás juntos.
                 Independientemente de tu historia, queremos conocerte.
               </p>
               <p className="intro__faq-note">Te esperamos!</p>
@@ -97,6 +97,11 @@ export class IntroPage extends Component {
               <h2 className="intro__faq-question">
                 ¿Comó recibir información reciente de la iglesia?
               </h2>
+              <p className="intro__faq-answer">
+                Para recibir la información más actualizada, visita nuestra página y redes sociales,
+                si te interesa recibir correos con información reciente también puedes registrarte a nuestro
+                <Link smooth to="/blog#newsletter"> Newsletter</Link>
+              </p>
               <h2 className="intro__faq-question">
                 ¿Cuándo son los servicios?
               </h2>

@@ -47,7 +47,7 @@
     }
     .newsletter h1 {
         text-align: left;
-        width: 40%;
+        width: 80%;
     }
     .newsletter__form {
         flex-wrap: nowrap;
