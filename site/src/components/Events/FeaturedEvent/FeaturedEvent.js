@@ -7,9 +7,9 @@ const FeaturedEvent = props => {
   const startDate = new Date(props.event.startDate);
   const day = startDate.getDate();
   const month = startDate.toLocaleString('es', { month: 'long' });
-  const timeHours=startDate.getHours();
-  var timeMarker = timeHours%12<1?"am":"pm";
-  var minutes= startDate.getMinutes()<10?'0'+startDate.getMinutes().toString():startDate.getMinutes().toString();
+  const timeHours = startDate.getHours();
+  var timeMarker = timeHours >= 12 ? "pm" : "am";
+  var minutes = startDate.getMinutes() < 10 ? '0' + startDate.getMinutes().toString() : startDate.getMinutes().toString();
 
   return (
     <div className="events__featured">
@@ -33,7 +33,7 @@ const FeaturedEvent = props => {
                   <div className="events__featured-month"> {month} </div>
                 </div>
                 <div className="events__featured-time">
-                  {timeHours%12} : {minutes} {timeMarker}
+                  {timeHours % 12} : {minutes} {timeMarker}
                 </div>
               </div>
 

@@ -71,6 +71,7 @@ export class Form extends Component {
   };
 
   changeHandler = (name, event) => {
+    console.log(event.target.value)
     this.setState({
       [name]: event.target.value
     });
@@ -116,8 +117,8 @@ export class Form extends Component {
 
     let event = {
       title,
-      startDate,
-      endDate,
+      startDate: startDate + 'Z',
+      endDate: endDate + 'Z',
       imageLink: this.state.imageLink,
       shortDescription: this.state.shortDescription,
       address: this.state.address,
@@ -129,7 +130,7 @@ export class Form extends Component {
     if (this.props.event) {
       event = { id: this.props.event._id, ...event };
     }
-
+    console.log("evento a guardar", event)
     this.props.onSubmit(event);
   };
 
