@@ -33,7 +33,7 @@ const FeaturedEvent = props => {
                   <div className="events__featured-month"> {month} </div>
                 </div>
                 <div className="events__featured-time">
-                  {timeHours % 12} : {minutes} {timeMarker}
+                  {timeHours > 12 ? timeHours - 12 : timeHours} : {minutes} {timeMarker}
                 </div>
               </div>
 
